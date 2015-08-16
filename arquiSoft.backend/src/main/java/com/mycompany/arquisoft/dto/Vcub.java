@@ -39,7 +39,7 @@ public class Vcub
 
     /**
      * Constructor de la clase (con argumentos)
-     * @param nombre
+     * @param id
      */
     public Vcub(int id)
     {
@@ -83,11 +83,11 @@ public class Vcub
     public void setEstado() {
         if(this.estado.equalsIgnoreCase("disponible"))
         {
-            estado = "alquilado"; 
+            this.estado = "alquilado"; 
         }
         else
         {
-            estado = "disponible";
+            this.estado = "disponible";
         }
     }
 }

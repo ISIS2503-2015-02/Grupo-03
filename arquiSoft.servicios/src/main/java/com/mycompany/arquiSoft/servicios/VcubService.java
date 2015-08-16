@@ -40,7 +40,7 @@ public class VcubService
      */
     @GET
     @Path("vcubs/")
-    public List<Vcub> getTodosLosMuebles() 
+    public List<Vcub> getTodosLosVcubs() 
     {
         return vcubEjb.darVcubs();
     }
