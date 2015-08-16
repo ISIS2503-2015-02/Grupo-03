@@ -16,7 +16,7 @@ import javax.ejb.Local;
 @Local
 public interface IServicioVcubMockLocal 
 {
-    /**
+            /**
 	     * Agrega un Vcub al sistema
 	     * @param vcub Nuevo Vcub
 	     */
@@ -27,6 +27,12 @@ public interface IServicioVcubMockLocal
 	     * @param id Identificador único del Vcub a eliminar
 	     */
 	    public void eliminarVcub(long id);
+            
+            /**
+	     * Actualiza un Vcub al sistema
+	     * @param vcub Nuevo Vcub
+	     */
+	    public void actualizarVcub(Vcub vcub);
 	
 	    /**
 	     * Devuelve todos los Vcubs del sistema

@@ -81,4 +81,11 @@ public class ServicioVcubMock implements IServicioVcubMockLocal
     {
         return persistencia.findAll(Vcub.class);
     }    
+
+    @Override
+    public void actualizarVcub(Vcub vcub) 
+    {
+            vcub.setEstado();
+            persistencia.update(vcub);
+    }
 }

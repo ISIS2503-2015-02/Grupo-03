@@ -12,6 +12,8 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
+import static javax.ws.rs.HttpMethod.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -32,6 +34,12 @@ public class VcubService
     @EJB
     private IServicioVcubMockLocal vcubEjb;
    
+    @PUT
+    @Path("actualizar/")
+    public void actulizarVcub(Vcub vcub) 
+    {
+        vcubEjb.actualizarVcub(vcub);
+    }
  
     /**
      * Servicio que ofrece una lista JSON con el catálogo de Muebles de los alpes (Los muebles disponibles para la venta).
