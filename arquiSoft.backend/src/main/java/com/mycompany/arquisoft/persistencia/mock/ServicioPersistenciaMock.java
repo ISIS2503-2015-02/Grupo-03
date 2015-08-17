@@ -2,6 +2,8 @@ package com.mycompany.arquisoft.persistencia.mock;
 
 
 import com.mycompany.arquisoft.dto.Ubicacion;
+import com.mycompany.arquisoft.dto.Usuario;
+
 import com.mycompany.arquisoft.excepciones.OperacionInvalidaException;
 import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockLocal;
 import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockRemote;
@@ -38,6 +40,11 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
       * Lista con las ubicaciones del sistema
      */
     private static ArrayList<Ubicacion> ubicaciones;
+    /**
+     * Lista de usuarios del sistema
+     */
+    private static ArrayList<Usuario> usuarios;
+
 
     //-----------------------------------------------------------
     // Constructor
@@ -59,10 +66,17 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                         
             tranvias = new ArrayList<Tranvia>();
             tranvias.add(new Tranvia(69 ,"A", "123123'222:12", 15));
+            tranvias.add(new Tranvia(78 ,"A", "123123'222:12", 15));
             
             ubicaciones = new ArrayList<Ubicacion>();
             ubicaciones.add(new Ubicacion(0,0));
             ubicaciones.add(new Ubicacion(12.3,21.2));
+            
+            usuarios =new ArrayList<Usuario>();
+            usuarios.add(new Usuario("Java", 78, "CE", 15));
+            usuarios.add(new Usuario("Java", 123456, "CE", 3104444));
+
+            
         }
     }
 
@@ -94,6 +108,11 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         {
             Vehiculo v = (Vehiculo) obj;
             vehiculos.add(v);
+        else if (obj instanceof Usuario)
+        {
+           Usuario jesus = (Usuario) obj;
+           usuarios.add(jesus); 
+           
         }
     }
 
@@ -147,6 +166,19 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                     
             }
             
+        else  if (obj instanceof Usuario)
+        {
+            Usuario cuestion = (Usuario) obj;
+            for (int i = 0; i < usuarios.size(); i++)
+            {
+               Usuario usr = usuarios.get(i);
+                if (usr.getDocumento()== cuestion.getDocumento())
+                {
+                    usuarios.remove(i);
+                    usuarios.add(cuestion);                    
+                    break;
+                }
+            }
         }
     }
 
@@ -225,6 +257,10 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         {
             return vehiculos;
         }
+         else if(c.equals(Usuario.class))
+        {
+            return usuarios;
+        }
         else
         {
             return null;
@@ -270,6 +306,14 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 if(ve.getId()== Integer.parseInt(id.toString()))
                 {
                     return ve;
+         else  if (c.equals(Usuario.class))
+        {
+            for (Object v : findAll(c))
+            {
+                Usuario usr = (Usuario) v;
+                if (usr.getDocumento()== Long.parseLong(id.toString()))
+                {
+                    return usr;
                 }
             }
         }
