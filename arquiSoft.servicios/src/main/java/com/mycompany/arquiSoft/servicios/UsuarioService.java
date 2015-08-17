@@ -12,7 +12,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.POST;
@@ -32,21 +31,21 @@ import javax.ws.rs.core.MediaType;
 public class UsuarioService 
 {
     /**
-     * Referencia al Ejb del tranvia encargada de realizar las operaciones del mismo.
+     * Referencia al Ejb del usuario encargada de realizar las operaciones del mismo.
      */
     @EJB
     private IServicioUsuarioMockLocal usuarioEjb;
    
     @PUT
     @Path("actualizar/")
-    public void actulizarUsuario(List<Usuario> usr) 
+    public void actualizarUsuario(List<Usuario> usr) 
     {
         for (Usuario usuario : usr) {
         usuarioEjb.actualizarUsuario(usuario);
     }
         }
     
-     @POST
+    @POST
     @Path("agregar/")
  
     public List<Usuario> agregarUsuario(List<Usuario> usr) {
@@ -63,14 +62,14 @@ public class UsuarioService
   
      */
     @GET
-    @Path("usuario/")
+    @Path("usuarios/")
     public List<Usuario> getTodosLosUsuarios() 
     {
         return usuarioEjb.darUsuarios();
     }
     
 
-    @POST
+    @PUT
     @Path("prestar/idUsr/{idUsr}/idVcub/{idVcub}")
     public List<Vcub> prestarVcub(@PathParam("idUsr") String idUsr, @PathParam("idVcub") String idVcub) throws Exception
     
