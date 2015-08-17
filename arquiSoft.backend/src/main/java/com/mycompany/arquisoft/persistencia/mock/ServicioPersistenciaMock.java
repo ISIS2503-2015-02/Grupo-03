@@ -81,7 +81,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     }
 
     //-----------------------------------------------------------
-    // Métodos
+    // Metodos
     //-----------------------------------------------------------
     
     /**
@@ -168,7 +168,6 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                     
             }
         }
-            
         else  if (obj instanceof Usuario)
         {
             Usuario cuestion = (Usuario) obj;
@@ -311,6 +310,9 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 if(ve.getId()== Integer.parseInt(id.toString()))
                 {
                     return ve;
+                }
+            }
+        }
          else  if (c.equals(Usuario.class))
         {
             for (Object v : findAll(c))
@@ -325,3 +327,5 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         return null;
     }
 }
+            
+        
