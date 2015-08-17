@@ -24,6 +24,7 @@ public class Vcub
      * Estado del Vcub
      */
     private String estado;
+    
 
     //-----------------------------------------------------------
     // Constructores
