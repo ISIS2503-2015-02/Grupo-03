@@ -22,7 +22,7 @@ import javax.ejb.Stateless;
 @Stateless
 public class ServicioVcubMock implements IServicioVcubMockLocal
 {
-//-----------------------------------------------------------
+    //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
 

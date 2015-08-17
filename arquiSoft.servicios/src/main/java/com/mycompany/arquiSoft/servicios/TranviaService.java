@@ -11,10 +11,13 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import static javax.ws.rs.HttpMethod.PUT;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -29,7 +32,7 @@ import javax.ws.rs.core.MediaType;
 public class TranviaService 
 {
     /**
-     * Referencia al Ejb del vcub encargada de realizar las operaciones del mismo.
+     * Referencia al Ejb del tranvia encargada de realizar las operaciones del mismo.
      */
     @EJB
     private IServicioTranviaMockLocal tranviaEjb;
@@ -40,16 +43,60 @@ public class TranviaService
     {
         tranviaEjb.actualizarTranvia(tranvia);
     }
+    
+     @POST
+    @Path("agregar/")
+ 
+    public List<Tranvia> agregarTranvia(List<Tranvia> usr) {
+        for (Tranvia usuario : usr) {
+            tranviaEjb.agregarTranvia(usuario);
+        }
+        
+        return usr;
+    }
  
     /**
-     * Servicio que ofrece una lista JSON con el catálogo de Muebles de los alpes (Los muebles disponibles para la venta).
-     * @return la lista JSON con los muebles de MDLA.
+     * Servicio que ofrece una lista JSON con todos los tranvias del Tbc
+     * @return la lista JSON con los tranvias
   
      */
     @GET
     @Path("tranvias/")
-    public List<Tranvia> getTodosLosVcubs() 
+    public List<Tranvia> getTodosLosTranvias() 
     {
         return tranviaEjb.darTranvias();
     }
+     /**
+     * Servicio que ofrece una eliminar un tranvia dado el id
+     * @return la lista JSON con los tranvias
+  
+     */
+    @DELETE
+    @Path("tranvias/id/{id}")
+    
+    public void eliminarTranvia(@PathParam("id") String id) 
+    {
+         tranviaEjb.eliminarTranvia(Long.parseLong(id));
+    }
+
+     @PUT
+    @Path("emergencia/id/{id}")
+    public void emergenciaTranvia(@PathParam("id") String id)
+    {
+     tranviaEjb.emergenciaTranvia(Long.parseLong(id));
+    
+    
+    }
+         
+ @PUT
+    @Path("choque/id/{id}")
+    public void choqueTranvia(@PathParam("id") String id)
+    {
+     tranviaEjb.choqueTranvia(Long.parseLong(id));
+    
+    
+    }
+    
+    
+    
 }

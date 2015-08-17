@@ -1,6 +1,7 @@
 package com.mycompany.arquisoft.persistencia.mock;
 
 
+import com.mycompany.arquisoft.dto.Ubicacion;
 import com.mycompany.arquisoft.excepciones.OperacionInvalidaException;
 import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockLocal;
 import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockRemote;
@@ -18,8 +19,8 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     // Atributos
     //-----------------------------------------------------------
 
-     /**
-     * Lista con los vendedores del sistema
+    /**
+     * Lista con los vcubs del sistema
      */
     private static ArrayList<Vcub> vcubs;
     
@@ -27,6 +28,10 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
      * Lista tranvias del sistema
      */
     private static ArrayList<Tranvia> tranvias;
+     /**
+      * Lista con las ubicaciones del sistema
+     */
+    private static ArrayList<Ubicacion> ubicaciones;
 
     //-----------------------------------------------------------
     // Constructor
@@ -46,6 +51,9 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             tranvias = new ArrayList<Tranvia>();
             tranvias.add(new Tranvia(69 ,"A", "123123'222:12", 15));
             
+            ubicaciones = new ArrayList<Ubicacion>();
+            ubicaciones.add(new Ubicacion(0,0));
+            ubicaciones.add(new Ubicacion(12.3,21.2));
         }
     }
 
@@ -165,6 +173,10 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         else if (c.equals(Tranvia.class))
         {
             return tranvias;
+        }
+        else if(c.equals(Ubicacion.class))
+        {
+            return ubicaciones;
         }
         else
         {
