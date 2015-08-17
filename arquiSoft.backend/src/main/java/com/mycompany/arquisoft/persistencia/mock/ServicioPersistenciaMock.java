@@ -81,7 +81,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     }
 
     //-----------------------------------------------------------
-    // MÃ©todos
+    // Métodos
     //-----------------------------------------------------------
     
     /**
@@ -108,6 +108,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         {
             Vehiculo v = (Vehiculo) obj;
             vehiculos.add(v);
+        }
         else if (obj instanceof Usuario)
         {
            Usuario jesus = (Usuario) obj;
@@ -120,6 +121,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
      * Permite modificar un objeto dentro de la persistencia del sistema.
      * @param obj Objeto que representa la instancia de la entidad que se quiere modificar.
      */
+        
     @Override
     public void update(Object obj)
     {
@@ -165,6 +167,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                }
                     
             }
+        }
             
         else  if (obj instanceof Usuario)
         {
@@ -180,6 +183,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 }
             }
         }
+        else{}
     }
 
     /**
@@ -231,6 +235,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 
             }
         }
+        else{}
     }
 
     /**
