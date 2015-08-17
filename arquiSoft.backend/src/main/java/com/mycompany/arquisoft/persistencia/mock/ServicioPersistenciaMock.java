@@ -7,6 +7,7 @@ import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockLocal;
 import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockRemote;
 import com.mycompany.arquisoft.dto.Vcub;
 import com.mycompany.arquisoft.dto.Tranvia;
+import com.mycompany.arquisoft.dto.Vehiculo;
 
 
 import java.util.ArrayList;
@@ -23,6 +24,11 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
      * Lista con los vcubs del sistema
      */
     private static ArrayList<Vcub> vcubs;
+    
+    /**
+     * Lista con los vehiculos desl sistema
+     */
+    private static ArrayList<Vehiculo> vehiculos;
     
     /**
      * Lista tranvias del sistema
@@ -48,6 +54,9 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             vcubs.add(new Vcub(1));
             vcubs.add(new Vcub(2));
             
+            vehiculos = new ArrayList();
+            vehiculos.add(new Vehiculo(1));
+                        
             tranvias = new ArrayList<Tranvia>();
             tranvias.add(new Tranvia(69 ,"A", "123123'222:12", 15));
             
@@ -80,6 +89,11 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
            Tranvia jesus = (Tranvia) obj;
            tranvias.add(jesus); 
            
+        }
+        else if(obj instanceof Vehiculo)
+        {
+            Vehiculo v = (Vehiculo) obj;
+            vehiculos.add(v);
         }
     }
 
@@ -117,6 +131,22 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                     break;
                 }
             }
+        }
+        else if (obj instanceof Vehiculo)
+        {
+            Vehiculo nuevo = (Vehiculo) obj;
+            Vehiculo v;
+            for (int i = 0; i < vehiculos.size(); i++) 
+            {
+               v= vehiculos.get(i);
+               if(v.getId() == nuevo.getId())
+               {
+                   vehiculos.set(i, nuevo);
+                   break;
+               }
+                    
+            }
+            
         }
     }
 
@@ -156,6 +186,19 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 }
             }
         } 
+        else if(obj instanceof Vehiculo)
+        {
+            Vehiculo ae= (Vehiculo) obj;
+            for (int i = 0; i < 10; i++) {
+                Vehiculo v= (Vehiculo) vehiculos.get(i);
+                if(v.getId() == ae.getId())
+                {
+                    vehiculos.remove(i);
+                    break;
+                }
+                
+            }
+        }
     }
 
     /**
@@ -177,6 +220,10 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         else if(c.equals(Ubicacion.class))
         {
             return ubicaciones;
+        }
+        else if(c.equals(Vehiculo.class))
+        {
+            return vehiculos;
         }
         else
         {
@@ -212,6 +259,17 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 if (tranvia.getId() == Long.parseLong(id.toString()))
                 {
                     return tranvia;
+                }
+            }
+        }
+        else if (c.equals(Vehiculo.class))
+        {
+            for(Object v : findAll(c))
+            {
+                Vehiculo ve =(Vehiculo) v;
+                if(ve.getId()== Integer.parseInt(id.toString()))
+                {
+                    return ve;
                 }
             }
         }

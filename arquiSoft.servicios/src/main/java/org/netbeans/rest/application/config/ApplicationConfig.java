@@ -39,6 +39,7 @@ public class ApplicationConfig extends Application {
         resources.add(com.mycompany.arquiSoft.servicios.TranviaService.class);
         resources.add(com.mycompany.arquiSoft.servicios.UbicacionService.class);
         resources.add(com.mycompany.arquiSoft.servicios.VcubService.class);
+        resources.add(com.mycompany.arquiSoft.servicios.VehiculoService.class);
     }
     
 }
