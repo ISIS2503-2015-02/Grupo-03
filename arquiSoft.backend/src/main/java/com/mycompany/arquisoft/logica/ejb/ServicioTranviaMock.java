@@ -94,10 +94,10 @@ Tranvia t=(Tranvia) persistencia.findById(Tranvia.class, id);
     @Override
     public void actualizarTranvia(Tranvia tranvia) 
     {
-        Tranvia t=(Tranvia) persistencia.findById(Tranvia.class, tranvia.getId());
+
         try
         {
-            persistencia.update(t);
+            persistencia.update(tranvia);
         }
         catch (Exception ex)
         {
