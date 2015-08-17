@@ -5,14 +5,18 @@
  */
 package com.mycompany.arquisoft.dto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author je.camargo10
  */
-public class Reserva
+public class Reservas
 {
   //-----------------------------------------------------------
     // Atributos
@@ -32,10 +36,7 @@ public class Reserva
      */
    private ArrayList<Usuario> listaEspera;
    
-   /**
-    * Diferente notificacion que puede generarse
-    */
-    private String notificacion; 
+   
     
     /**
      * Usuario acargo de la reserva
@@ -52,7 +53,7 @@ public class Reserva
     /**
      * Constructor de la clase (sin argumentos)
      */
-    public Reserva()
+    public Reservas()
     {
 
     }
@@ -61,9 +62,20 @@ public class Reserva
      * Constructor de la clase (con argumentos)
      * @param id
      */
-    public Reserva(long id ,String pfecha, String coordenadaInic, long pkilometraje)
+    public Reservas(long id ,String pfecha)
     {
         this.id = id;
+        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
+        
+        try {
+            fecha = formatoDeFecha.parse(pfecha);
+        } catch (ParseException ex) {
+System.out.print("error fecha");
+        }
+        
+        listaEspera = new ArrayList<Usuario>();
+    usuario = null;
+
         
   
     }
@@ -72,6 +84,38 @@ public class Reserva
     // Getters y setters
     //-----------------------------------------------------------
 
+    public void soltarReserva()
+    {
+    if (listaEspera.size()!= 0)
+    {
+    Usuario jesus = listaEspera.get(0);
+    jesus.setNotificacion("se ha liberado un Mobibus, usted queda con la reserva");
+    listaEspera.remove(0);
+    }
+    else
+    {
+    listaEspera = new ArrayList<Usuario>();
+    usuario = null;
+    }
+    }
+    
+    public void verificarFecha()
+    {
+    java.util.Date fechaActual = new Date();
+    if (fechaActual.before(fecha))
+    {
+        for (int i = 0; listaEspera.size() > i; i++)
+        {
+         Usuario jesus =  listaEspera.get(i);
+         jesus.setNotificacion("No se pudo generar el servicio");
+              
+        }
+ 
+    
+    }
+
+    
+    }
     /**
      * Devuelve el id de la Reserva
      * @return id Id de la Reserva
@@ -97,7 +141,8 @@ public class Reserva
         this.fecha = fecha;
     }
 
-    public ArrayList<Usuario> getListaEspera() {
+    public ArrayList<Usuario> getListaEspera()
+    {
         return listaEspera;
     }
 
@@ -105,13 +150,7 @@ public class Reserva
         this.listaEspera = listaEspera;
     }
 
-    public String getNotificacion() {
-        return notificacion;
-    }
-
-    public void setNotificacion(String notificacion) {
-        this.notificacion = notificacion;
-    }
+  
 
     public Usuario getUsuario() {
         return usuario;

@@ -17,7 +17,7 @@ public interface IServicioUsuarioMockLocal
 
     /**
      * Agrega un usuario al sistema
-     * @param usr Nuevo mueble
+     * @param usr Nuevo Usuario
      */
     public void agregarUsuario(Usuario usr);
 

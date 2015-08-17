@@ -1,12 +1,24 @@
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * $Id$ ServicioUsuarioMock.java
+ * Universidad de los Andes (Bogotá - Colombia)
+ * Departamento de Ingeniería de Sistemas y Computación
+ * Licenciado bajo el esquema Academic Free License version 3.0
+ *
+ * Ejercicio: Muebles de los Alpes
+ * Autor: Javier Camargo
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
 
 package com.mycompany.arquisoft.logica.ejb;
 
 
+import com.mycompany.arquisoft.dto.Reservas;
 import com.mycompany.arquisoft.dto.Usuario;
 import com.mycompany.arquisoft.dto.Vcub;
 import com.mycompany.arquisoft.excepciones.NoSePudoAlquilarException;
 import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockLocal;
-import com.mycompany.arquisoft.logica.interfaces.IServicioUsuarioMockLocal;
+import com.mycompany.arquisoft.logica.interfaces.IServicioReservasMockLocal;
 import com.mycompany.arquisoft.persistencia.mock.ServicioPersistenciaMock;
 import java.util.ArrayList;
 
@@ -15,11 +27,11 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
- * Implementación de los servicios de administración de un usuario
+ * Implementación de los servicios de una serva
  * @author Javier Camargo
  */
 @Stateless
-public class ServicioUsuarioMock implements IServicioUsuarioMockLocal {
+public class ServicioReservaMock implements IServicioReservasMockLocal {
 
     //-----------------------------------------------------------
     // Atributos
@@ -37,7 +49,7 @@ public class ServicioUsuarioMock implements IServicioUsuarioMockLocal {
     /**
      * Constructor de la clase sin argumentos
      */
-    public ServicioUsuarioMock()
+    public ServicioReservaMock()
     {
        persistencia=new ServicioPersistenciaMock();
         //Inicializa el arreglo de los usuario
@@ -48,16 +60,16 @@ public class ServicioUsuarioMock implements IServicioUsuarioMockLocal {
     //-----------------------------------------------------------
 
     /**
-     * Agrega un usuario al sistema
-     * @param usr Nuevo usuario
+     * Agrega una reserva al sistema
+     * @param res Nuevo reserva
      * @throws OperacionInvalidaException Excepción lanzada en caso de error
      */
     @Override
-    public void agregarUsuario(Usuario usr)
+    public void agregarReservasMoviBus(Reservas res)
     {
         try
         {
-            persistencia.create(usr);
+            persistencia.create(res);
         }
         catch (Exception ex)
         {
@@ -74,18 +86,26 @@ public class ServicioUsuarioMock implements IServicioUsuarioMockLocal {
     {
         return persistencia.findAll(Usuario.class);
     }
+     /**
+     * Devuelve el  usuarios de la reserva
+     * @return usuario Usuario de la reserva
+     */
+    public List<Usuario> darUsuario()
+    {
+        return persistencia.findAll(Usuario.class);
+    }
 
     /**
      * Actualiza la informacion de un usario
      * @param usr usuario a ser actualizado
      */
     @Override
-    public void actualizarUsuario(Usuario usr) 
+    public void actualizarReservas(Reservas res) 
     {
         
          try
         {
-            persistencia.update(usr);
+            persistencia.update(res);
         }
         catch (Exception ex)
         {
@@ -93,41 +113,24 @@ public class ServicioUsuarioMock implements IServicioUsuarioMockLocal {
         }
     }
 
-    @Override
-    public List<Vcub> prestarVcub(Long idUsr, Long idVcub) throws NoSePudoAlquilarException 
+      /**
+     * Cancela una reserva
+     * @param res Reserva en cuestion
+     */
+    public void cancelarReserva (Reservas res)
     {
- 
-        List<Vcub> retorno = new ArrayList<Vcub>();
-        
-        try
+     try
         {
-         Vcub jesus = (Vcub) persistencia.findById(Vcub.class,idVcub);
-          Usuario cliente = (Usuario) persistencia.findById(Usuario.class,idUsr);
-
-          if (jesus != null && cliente != null && jesus.getEstado().equals("disponible"))
-          {
-              cliente.prestarVicicleta(jesus);
-              jesus.setEstado();
-              persistencia.update(cliente);
-              persistencia.update(jesus);
-              retorno.add(jesus);
-
-          }
-          else
-          {
-              throw new NoSePudoAlquilarException("No se pudo");
-          }
-        
+           Reservas jesus = (Reservas)persistencia.findById(Reservas.class, res);
+           jesus.soltarReserva();
+           persistencia.update(jesus);
+            
         }
-         catch (Exception ex)
+        catch (Exception ex)
         {
             System.out.println("Error"+ex.getMessage());
-                          throw new NoSePudoAlquilarException("No se pudo");
-
         }
-        return retorno;
-        
-        
+    
     }
 }
     

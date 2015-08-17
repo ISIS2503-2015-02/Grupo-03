@@ -54,6 +54,19 @@ public class Usuario
      * Bicicleta alquilada por el usuario
      */
     private Vcub bicicleta;
+    
+    /**
+     * Notificacion pendiente para el usuario
+     */
+    public String notificacion;
+
+    public String getNotificacion() {
+        return notificacion;
+    }
+
+    public void setNotificacion(String notificacion) {
+        this.notificacion = notificacion;
+    }
 
     //-----------------------------------------------------------
     // Constructores
@@ -79,6 +92,7 @@ public class Usuario
         this.documento = pDocumento;
         this.tipoDocumento = ptipoDocumento;
         this.telefono = pTelefono;
+        notificacion = "";
     
     }
 
