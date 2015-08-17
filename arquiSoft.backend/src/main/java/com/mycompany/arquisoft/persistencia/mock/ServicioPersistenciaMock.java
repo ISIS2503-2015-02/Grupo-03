@@ -107,13 +107,13 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         else  if (obj instanceof Tranvia)
         {
             Tranvia cuestion = (Tranvia) obj;
-            Tranvia tranvia;
             for (int i = 0; i < tranvias.size(); i++)
             {
-                tranvia = tranvias.get(i);
+               Tranvia tranvia = tranvias.get(i);
                 if (tranvia.getId() == cuestion.getId())
                 {
-                    tranvias.set(i, cuestion);
+                    tranvias.remove(i);
+                    tranvias.add(cuestion);                    
                     break;
                 }
             }

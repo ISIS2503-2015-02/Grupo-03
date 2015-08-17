@@ -39,20 +39,22 @@ public class TranviaService
    
     @PUT
     @Path("actualizar/")
-    public void actulizarTranvia(Tranvia tranvia) 
+    public void actulizarTranvia(List<Tranvia> usr) 
     {
-        tranviaEjb.actualizarTranvia(tranvia);
+        for (Tranvia usuario : usr) {
+        tranviaEjb.actualizarTranvia(usuario);
     }
+        }
     
      @POST
     @Path("agregar/")
  
-    public List<Tranvia> agregarTranvia(List<Tranvia> usr) {
-        for (Tranvia usuario : usr) {
+    public List<Tranvia> agregarTranvia(List<Tranvia> trn) {
+        for (Tranvia usuario : trn) {
             tranviaEjb.agregarTranvia(usuario);
         }
         
-        return usr;
+        return trn;
     }
  
     /**

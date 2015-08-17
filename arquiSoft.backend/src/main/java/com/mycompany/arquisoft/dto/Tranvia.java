@@ -113,7 +113,7 @@ public class Tranvia
      */
     public void chocado()
     {
-     choque = false;
+     choque = true;
     }
       public long getKilometraje() {
         return kilometraje;
@@ -135,8 +135,8 @@ public class Tranvia
         return panico;
     }
 
-    public void setPanico(boolean panico) {
-        this.panico = panico;
+    public void setPanico() {
+        this.panico = true;
     }
 
     public String getCoordenada() {

@@ -116,7 +116,7 @@ Tranvia t=(Tranvia) persistencia.findById(Tranvia.class, id);
     public void emergenciaTranvia(long id)
     {
 Tranvia t=(Tranvia) persistencia.findById(Tranvia.class, id);
-t.isPanico();
+t.setPanico();
         try
         {
             persistencia.update(t);
