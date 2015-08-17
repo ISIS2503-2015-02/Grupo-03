@@ -13,8 +13,9 @@ import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
-import static javax.ws.rs.HttpMethod.PUT;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -34,9 +35,20 @@ public class VcubService
     @EJB
     private IServicioVcubMockLocal vcubEjb;
    
+    @POST
+    @Path("agregar/")
+ 
+    public List<Vcub> agregarMuebles(List<Vcub> vb) {
+        for (Vcub vcub : vb) {
+            vcubEjb.agregarVcub(vcub);
+        }
+ 
+        return vb;
+    }
+    
     @PUT
-    @Path("actualizar/")
-    public void actulizarVcub(Vcub vcub) 
+    @Path("{id}")
+    public void actulizarVcub(@PathParam("id") int id,Vcub vcub) 
     {
         vcubEjb.actualizarVcub(vcub);
     }
