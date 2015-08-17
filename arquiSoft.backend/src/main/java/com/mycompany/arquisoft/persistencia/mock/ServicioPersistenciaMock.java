@@ -108,6 +108,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         {
             Vehiculo v = (Vehiculo) obj;
             vehiculos.add(v);
+        }
         else if (obj instanceof Usuario)
         {
            Usuario jesus = (Usuario) obj;
@@ -165,7 +166,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                }
                     
             }
-            
+        }
         else  if (obj instanceof Usuario)
         {
             Usuario cuestion = (Usuario) obj;
@@ -306,6 +307,9 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 if(ve.getId()== Integer.parseInt(id.toString()))
                 {
                     return ve;
+                }
+            }
+        }
          else  if (c.equals(Usuario.class))
         {
             for (Object v : findAll(c))
@@ -320,3 +324,5 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         return null;
     }
 }
+            
+        
