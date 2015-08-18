@@ -2,6 +2,7 @@ package com.mycompany.arquisoft.persistencia.mock;
 
 
 import com.mycompany.arquisoft.dto.Emergencia;
+import com.mycompany.arquisoft.dto.Estacion;
 import com.mycompany.arquisoft.dto.Ubicacion;
 import com.mycompany.arquisoft.dto.Usuario;
 
@@ -51,6 +52,11 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
      * Lista de emergencias del sistema
      */
     private static ArrayList<Emergencia> emergencias;
+    
+    /**
+     * Lista de estaciones del sistema
+     */
+    private static ArrayList<Estacion> estaciones;
 
 
     //-----------------------------------------------------------
@@ -87,7 +93,13 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             List<Vehiculo> vInvolucrados=new ArrayList<Vehiculo>();
             vInvolucrados.add(new Vehiculo(1));
             emergencias.add(new Emergencia(1,"choque suave", vInvolucrados, "leve", new Ubicacion(10,20), new Date("31/10/1996")));
-                        
+            
+            estaciones = new ArrayList<Estacion>();
+            List<Vcub> vcubs= new ArrayList<Vcub>();
+            vcubs.add(new Vcub(1));
+            vcubs.add(new Vcub(2));
+            estaciones.add(new Estacion(1, 500, vcubs, new Ubicacion(24, 36)));
+                   
         }
     }
 
@@ -129,6 +141,11 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         {
             Emergencia e = (Emergencia) obj;
             emergencias.add(e);
+        }
+        else if (obj instanceof Estacion)
+        {
+            Estacion e=(Estacion) obj;
+            estaciones.add(e);
         }
     }
 
@@ -211,6 +228,20 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                }                   
             }
         }
+        else if (obj instanceof Estacion)
+        {
+            Estacion nueva = (Estacion) obj;
+            Estacion e;
+            for (int i = 0; i < estaciones.size(); i++) 
+            {
+               e=estaciones.get(i);
+               if(e.getId() == nueva.getId())
+               {
+                   estaciones.set(i, nueva);
+                   break;
+               }                   
+            }
+        }
         else{}
     }
 
@@ -275,7 +306,21 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 }
                 
             }
-        }        else{}
+        }  
+        else if(obj instanceof Estacion)
+        {
+            Estacion ae= (Estacion) obj;
+            for (int i = 0; i < estaciones.size(); i++) {
+                Estacion e= (Estacion) estaciones.get(i);
+                if(e.getId() == ae.getId())
+                {
+                    estaciones.remove(i);
+                    break;
+                }
+                
+            }
+        }
+        else{}
     }
 
     /**
@@ -309,6 +354,10 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
          else if(c.equals(Emergencia.class))
         {
             return emergencias; 
+        }
+        else if(c.equals(Estacion.class))
+        {
+            return estaciones; 
         }
         else
         {
@@ -363,6 +412,17 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             for(Object e : findAll(c))
             {
                 Emergencia ve =(Emergencia) e;
+                if(ve.getId()== Integer.parseInt(id.toString()))
+                {
+                    return ve;
+                }
+            }
+        }
+          else if (c.equals(Estacion.class))
+        {
+            for(Object e : findAll(c))
+            {
+                Estacion ve =(Estacion) e;
                 if(ve.getId()== Integer.parseInt(id.toString()))
                 {
                     return ve;

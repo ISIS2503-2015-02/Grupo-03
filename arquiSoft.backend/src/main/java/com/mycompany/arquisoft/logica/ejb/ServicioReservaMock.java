@@ -17,6 +17,7 @@ import com.mycompany.arquisoft.dto.Reservas;
 import com.mycompany.arquisoft.dto.Usuario;
 import com.mycompany.arquisoft.dto.Vcub;
 import com.mycompany.arquisoft.excepciones.NoSePudoAlquilarException;
+import com.mycompany.arquisoft.excepciones.OperacionInvalidaException;
 import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockLocal;
 import com.mycompany.arquisoft.logica.interfaces.IServicioReservasMockLocal;
 import com.mycompany.arquisoft.persistencia.mock.ServicioPersistenciaMock;
@@ -49,7 +50,7 @@ public class ServicioReservaMock implements IServicioReservasMockLocal {
     /**
      * Constructor de la clase sin argumentos
      */
-    public ServicioReservaMock()
+    public ServicioReservaMock() throws OperacionInvalidaException
     {
        persistencia=new ServicioPersistenciaMock();
         //Inicializa el arreglo de los usuario

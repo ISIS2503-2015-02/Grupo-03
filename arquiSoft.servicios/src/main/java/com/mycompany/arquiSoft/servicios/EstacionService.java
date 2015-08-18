@@ -5,8 +5,8 @@
  */
 package com.mycompany.arquiSoft.servicios;
 
-import com.mycompany.arquisoft.dto.Emergencia;
-import com.mycompany.arquisoft.logica.interfaces.IServicioEmergenciaMockLocal;
+import com.mycompany.arquisoft.dto.Estacion;
+import com.mycompany.arquisoft.logica.interfaces.IServicioEstacionMockLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -19,29 +19,28 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 /**
  *
  * @author df.sabogal10
  */
-@Path("/Emergencia")
+@Path("/Estacion")
 @Stateless
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class EmergenciaService {
-    
-    /**
+public class EstacionService 
+{
+        /**
      * Referencia al Ejb de la emergenica encargada de realizar las operaciones del mismo.
      */
     @EJB
-    private IServicioEmergenciaMockLocal emergenciaEjb;
+    private IServicioEstacionMockLocal estacionEjb;
    
     @POST
     @Path("agregar/")
  
-    public List<Emergencia> agregarEstaciones(List<Emergencia> vs) {
-        for (Emergencia veh : vs) {
-            emergenciaEjb.agregarEmergencia(veh);
+    public List<Estacion> agregarEstaciones(List<Estacion> vs) {
+        for (Estacion veh : vs) {
+            estacionEjb.agregarEstacion(veh);
         }
  
         return vs;
@@ -49,9 +48,9 @@ public class EmergenciaService {
     
     @PUT
     @Path("{id}")
-    public void actulizarEmergencia(Emergencia emergencia) 
+    public void actulizarEstacion(Estacion estacion) 
     {
-        emergenciaEjb.actualizarEmergencia(emergencia);
+        estacionEjb.actualizarEstacion(estacion);
     }
  
     /**
@@ -60,10 +59,10 @@ public class EmergenciaService {
   
      */
     @GET
-    @Path("emergencias/")
-    public List<Emergencia> getTodasLasEmergencias() 
+    @Path("estaciones/")
+    public List<Estacion> getTodasLasEstaciones() 
     {
-        return emergenciaEjb.darEmergencias();
+        return estacionEjb.darEstaciones();
     }
     
     /**
@@ -71,19 +70,21 @@ public class EmergenciaService {
      */
     @GET
     @Path("{id}")
-    public Emergencia getEmergencia(@PathParam("id") int id)
+    public Estacion getEstacion(@PathParam("id") int id)
     {
-       return emergenciaEjb.darEmergencia(id);
+       return estacionEjb.darEstacion(id);
     }
     /**
      * 
      */
     @DELETE
     @Path("{id}")
-    public void eliminaEmergencia(@PathParam("id") int id)
+    public void eliminaEstacion(@PathParam("id") int id)
     {
-       emergenciaEjb.eliminarEmergencia(id);
+       estacionEjb.eliminarEstacion(id);
     }
     
+    
+
     
 }
