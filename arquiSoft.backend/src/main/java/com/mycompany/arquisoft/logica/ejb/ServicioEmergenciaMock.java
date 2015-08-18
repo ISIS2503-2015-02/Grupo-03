@@ -5,10 +5,11 @@
  */
 package com.mycompany.arquisoft.logica.ejb;
 
-import com.mycompany.arquisoft.dto.Ubicacion;
+import com.mycompany.arquisoft.dto.Emergencia;
+import com.mycompany.arquisoft.dto.Vehiculo;
 import com.mycompany.arquisoft.excepciones.OperacionInvalidaException;
 import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockLocal;
-import com.mycompany.arquisoft.logica.interfaces.IServicioUbicacionMockLocal;
+import com.mycompany.arquisoft.logica.interfaces.IServicioEmergenciaMockLocal;
 import com.mycompany.arquisoft.persistencia.mock.ServicioPersistenciaMock;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,10 +18,10 @@ import javax.ejb.Stateless;
 
 /**
  *
- * @author ja.silva11
+ * @author df.sabogal10
  */
 @Stateless
-public class ServicioUbicacionMock implements IServicioUbicacionMockLocal
+public class ServicioEmergenciaMock implements IServicioEmergenciaMockLocal
 {
     //-----------------------------------------------------------
     // Atributos
@@ -38,10 +39,10 @@ public class ServicioUbicacionMock implements IServicioUbicacionMockLocal
     /**
      * Constructor sin argumentos de la clase
      */
-    public ServicioUbicacionMock() throws OperacionInvalidaException
+    public ServicioEmergenciaMock() throws OperacionInvalidaException
     {
         persistencia=new ServicioPersistenciaMock();
-        //Inicializa el arreglo de los muebles
+        //Inicializa el arreglo de las emergencias
   
     }
 
@@ -50,40 +51,43 @@ public class ServicioUbicacionMock implements IServicioUbicacionMockLocal
     //-----------------------------------------------------------
 
     @Override
-    public void agregarUbicacion(Ubicacion ubicacion)
-    {
+    public void agregarEmergencia(Emergencia emergencia) {
         try
         {
-            persistencia.create(ubicacion);
+            persistencia.create(emergencia);
         }
         catch (OperacionInvalidaException ex)
         {
-            Logger.getLogger(ServicioUbicacionMock.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @Override
-    public void eliminarUbicacion(long id) 
-    {
-        Ubicacion u=(Ubicacion) persistencia.findById(Ubicacion.class, id);
-        try
-        {
-            persistencia.delete(u);
-        }
-        catch (OperacionInvalidaException ex)
-        {
-            Logger.getLogger(ServicioUbicacionMock.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @Override
-    public List<Ubicacion> darUbicaciones() 
-    {
-        return persistencia.findAll(Ubicacion.class);
+            Logger.getLogger(ServicioEmergenciaMock.class.getName()).log(Level.SEVERE, null, ex);
+        }    
     }    
 
     @Override
-    public void actualizarUbicacion(Ubicacion Ubicacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void eliminarEmergencia(int id) 
+    {
+        Emergencia e=(Emergencia) persistencia.findById(Emergencia.class, id);
+        try
+        {
+            persistencia.delete(e);
+        }
+        catch (OperacionInvalidaException ex)
+        {
+            Logger.getLogger(ServicioEmergenciaMock.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+    }
+
+    @Override
+    public void actualizarEmergencia(Emergencia emergencia) {
+        persistencia.update(emergencia);    
+    }
+
+    @Override
+    public List<Emergencia> darEmergencias() {
+        return persistencia.findAll(Emergencia.class);
+    }
+
+    @Override
+    public Emergencia darEmergencia(int id) {
+        return (Emergencia) persistencia.findById(Emergencia.class, id);
     }
 }

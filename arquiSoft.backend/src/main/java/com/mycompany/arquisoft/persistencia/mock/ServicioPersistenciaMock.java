@@ -1,6 +1,7 @@
 package com.mycompany.arquisoft.persistencia.mock;
 
 
+import com.mycompany.arquisoft.dto.Emergencia;
 import com.mycompany.arquisoft.dto.Ubicacion;
 import com.mycompany.arquisoft.dto.Usuario;
 
@@ -13,6 +14,7 @@ import com.mycompany.arquisoft.dto.Vehiculo;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -44,6 +46,11 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
      * Lista de usuarios del sistema
      */
     private static ArrayList<Usuario> usuarios;
+    
+    /**
+     * Lista de emergencias del sistema
+     */
+    private static ArrayList<Emergencia> emergencias;
 
 
     //-----------------------------------------------------------
@@ -53,7 +60,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     /**
      * Constructor de la clase. Inicializa los atributos.
      */
-    public ServicioPersistenciaMock()
+    public ServicioPersistenciaMock() throws OperacionInvalidaException
     {
         if (vcubs == null)
         {
@@ -75,8 +82,12 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             usuarios =new ArrayList<Usuario>();
             usuarios.add(new Usuario("Java", 78, "CE", 15));
             usuarios.add(new Usuario("Java", 123456, "CE", 3104444));
-
             
+            emergencias = new ArrayList<Emergencia>();
+            List<Vehiculo> vInvolucrados=new ArrayList<Vehiculo>();
+            vInvolucrados.add(new Vehiculo(1));
+            emergencias.add(new Emergencia(1,"choque suave", vInvolucrados, "leve", new Ubicacion(10,20), new Date("31/10/1996")));
+                        
         }
     }
 
@@ -112,8 +123,12 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         else if (obj instanceof Usuario)
         {
            Usuario jesus = (Usuario) obj;
-           usuarios.add(jesus); 
-           
+           usuarios.add(jesus);    
+        }
+        else if (obj instanceof Emergencia)
+        {
+            Emergencia e = (Emergencia) obj;
+            emergencias.add(e);
         }
     }
 
@@ -182,6 +197,20 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 }
             }
         }
+        else if (obj instanceof Emergencia)
+        {
+            Emergencia nueva = (Emergencia) obj;
+            Emergencia e;
+            for (int i = 0; i < emergencias.size(); i++) 
+            {
+               e=emergencias.get(i);
+               if(e.getId() == nueva.getId())
+               {
+                   emergencias.set(i, nueva);
+                   break;
+               }                   
+            }
+        }
         else{}
     }
 
@@ -224,7 +253,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         else if(obj instanceof Vehiculo)
         {
             Vehiculo ae= (Vehiculo) obj;
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i <vehiculos.size(); i++) {
                 Vehiculo v= (Vehiculo) vehiculos.get(i);
                 if(v.getId() == ae.getId())
                 {
@@ -234,7 +263,19 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 
             }
         }
-        else{}
+        else if(obj instanceof Emergencia)
+        {
+            Emergencia ae= (Emergencia) obj;
+            for (int i = 0; i < emergencias.size(); i++) {
+                Emergencia e= (Emergencia) emergencias.get(i);
+                if(e.getId() == ae.getId())
+                {
+                    emergencias.remove(i);
+                    break;
+                }
+                
+            }
+        }        else{}
     }
 
     /**
@@ -264,6 +305,10 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
          else if(c.equals(Usuario.class))
         {
             return usuarios;
+        }
+         else if(c.equals(Emergencia.class))
+        {
+            return emergencias; 
         }
         else
         {
@@ -307,6 +352,17 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             for(Object v : findAll(c))
             {
                 Vehiculo ve =(Vehiculo) v;
+                if(ve.getId()== Integer.parseInt(id.toString()))
+                {
+                    return ve;
+                }
+            }
+        }
+         else if (c.equals(Emergencia.class))
+        {
+            for(Object e : findAll(c))
+            {
+                Emergencia ve =(Emergencia) e;
                 if(ve.getId()== Integer.parseInt(id.toString()))
                 {
                     return ve;

@@ -38,7 +38,7 @@ public class ServicioVcubMock implements IServicioVcubMockLocal
     /**
      * Constructor sin argumentos de la clase
      */
-    public ServicioVcubMock()
+    public ServicioVcubMock() throws OperacionInvalidaException
     {
         persistencia=new ServicioPersistenciaMock();
         //Inicializa el arreglo de los muebles

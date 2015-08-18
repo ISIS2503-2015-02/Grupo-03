@@ -38,7 +38,7 @@ public class ServicioVehiculoMock implements IServicioVehiculoMockLocal
     /**
      * Constructor sin argumentos de la clase
      */
-    public ServicioVehiculoMock()
+    public ServicioVehiculoMock() throws OperacionInvalidaException
     {
         persistencia=new ServicioPersistenciaMock();
         //Inicializa el arreglo de los muebles

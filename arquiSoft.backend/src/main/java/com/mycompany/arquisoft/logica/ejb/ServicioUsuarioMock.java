@@ -5,6 +5,7 @@ package com.mycompany.arquisoft.logica.ejb;
 import com.mycompany.arquisoft.dto.Usuario;
 import com.mycompany.arquisoft.dto.Vcub;
 import com.mycompany.arquisoft.excepciones.NoSePudoAlquilarException;
+import com.mycompany.arquisoft.excepciones.OperacionInvalidaException;
 import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockLocal;
 import com.mycompany.arquisoft.logica.interfaces.IServicioUsuarioMockLocal;
 import com.mycompany.arquisoft.persistencia.mock.ServicioPersistenciaMock;
@@ -37,7 +38,7 @@ public class ServicioUsuarioMock implements IServicioUsuarioMockLocal {
     /**
      * Constructor de la clase sin argumentos
      */
-    public ServicioUsuarioMock()
+    public ServicioUsuarioMock() throws OperacionInvalidaException
     {
        persistencia=new ServicioPersistenciaMock();
         //Inicializa el arreglo de los usuario
