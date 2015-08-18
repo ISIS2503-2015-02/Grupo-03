@@ -7,7 +7,6 @@ package com.mycompany.arquiSoft.servicios;
 
 import com.mycompany.arquisoft.dto.Emergencia;
 import com.mycompany.arquisoft.logica.interfaces.IServicioEmergenciaMockLocal;
-import com.mycompany.arquisoft.logica.interfaces.IServicioVehiculoMockLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -40,7 +39,7 @@ public class EmergenciaService {
     @POST
     @Path("agregar/")
  
-    public List<Emergencia> agregarVehiculos(List<Emergencia> vs) {
+    public List<Emergencia> agregarEstaciones(List<Emergencia> vs) {
         for (Emergencia veh : vs) {
             emergenciaEjb.agregarEmergencia(veh);
         }
