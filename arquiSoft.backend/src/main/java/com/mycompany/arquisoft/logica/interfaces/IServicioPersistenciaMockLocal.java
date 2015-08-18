@@ -1,5 +1,6 @@
 package com.mycompany.arquisoft.logica.interfaces;
 
+import com.mycompany.arquisoft.dto.Vcub;
 import com.mycompany.arquisoft.excepciones.OperacionInvalidaException;
 
 import javax.ejb.Local;
@@ -45,4 +46,7 @@ public interface IServicioPersistenciaMockLocal
      */
     public java.lang.Object findById(java.lang.Class c, Object id);
     
+    public Vcub agregarVcubEstacion(long idEstacion,long idVcub);
+    
+    public void eliminarVcubEstacion(long idEstacion,long idVcub);
 }

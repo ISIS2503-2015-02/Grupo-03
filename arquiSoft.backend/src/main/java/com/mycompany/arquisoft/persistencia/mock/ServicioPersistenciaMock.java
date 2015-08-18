@@ -2,6 +2,7 @@ package com.mycompany.arquisoft.persistencia.mock;
 
 
 import com.mycompany.arquisoft.dto.Emergencia;
+import com.mycompany.arquisoft.dto.EstacionVcub;
 import com.mycompany.arquisoft.dto.Ubicacion;
 import com.mycompany.arquisoft.dto.Usuario;
 
@@ -51,6 +52,11 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
      * Lista de emergencias del sistema
      */
     private static ArrayList<Emergencia> emergencias;
+    
+    /**
+     * Lista de estaciones de Vcub del sistema
+     */
+    private static ArrayList<EstacionVcub> estaciones;
 
 
     //-----------------------------------------------------------
@@ -67,6 +73,10 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             vcubs = new ArrayList();
             vcubs.add(new Vcub(1));
             vcubs.add(new Vcub(2));
+            
+            estaciones = new ArrayList<EstacionVcub>();
+            estaciones.add(new EstacionVcub(50));
+            estaciones.add(new EstacionVcub(20));
             
             vehiculos = new ArrayList();
             vehiculos.add(new Vehiculo(1));
@@ -306,7 +316,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         {
             return usuarios;
         }
-         else if(c.equals(Emergencia.class))
+        else if(c.equals(Emergencia.class))
         {
             return emergencias; 
         }
@@ -381,6 +391,22 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             }
         }
         return null;
+    }
+    
+    @Override
+    public Vcub agregarVcubEstacion(long idEstacion,long idVcub)
+    {
+        EstacionVcub ev = (EstacionVcub)findById(EstacionVcub.class,idEstacion);
+        ev.agregarVcub(idVcub);
+        Vcub vb = (Vcub) findById(Vcub.class, idVcub);
+        return vb;
+    }
+    
+    @Override
+    public void eliminarVcubEstacion(long idEstacion,long idVcub)
+    {
+        EstacionVcub ev = (EstacionVcub)findById(EstacionVcub.class,idEstacion);
+        ev.eliminarVcub(idVcub);
     }
 }
             

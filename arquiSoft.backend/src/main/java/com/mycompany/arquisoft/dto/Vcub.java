@@ -18,7 +18,7 @@ public class Vcub
     /**
      * ID del Vcub
      */
-    private int id;
+    private long id;
     
     /**
      * Estado del Vcub
@@ -42,7 +42,7 @@ public class Vcub
      * Constructor de la clase (con argumentos)
      * @param id
      */
-    public Vcub(int id)
+    public Vcub(long id)
     {
         this.id = id;
         this.estado = "disponible";
