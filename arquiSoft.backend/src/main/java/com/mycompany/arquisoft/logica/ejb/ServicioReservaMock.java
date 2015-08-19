@@ -13,6 +13,7 @@
 package com.mycompany.arquisoft.logica.ejb;
 
 
+import com.mycompany.arquisoft.dto.Mobibus;
 import com.mycompany.arquisoft.dto.Reservas;
 import com.mycompany.arquisoft.dto.Usuario;
 import com.mycompany.arquisoft.dto.Vcub;
@@ -133,6 +134,14 @@ public class ServicioReservaMock implements IServicioReservasMockLocal {
         }
     
     }
+
+    @Override
+    public List<Reservas> darReservas()
+    {
+        return persistencia.findAll(Reservas.class);
+    }
+
+
 }
     
     

@@ -35,6 +35,12 @@ public class Reservas
      * Usuarios en listade espera
      */
    private ArrayList<Usuario> listaEspera;
+   /**
+     * Buses disponibles para reserva
+     */
+   private ArrayList<Mobibus> mobibuses;
+
+    
    
    
     
@@ -62,7 +68,7 @@ public class Reservas
      * Constructor de la clase (con argumentos)
      * @param id
      */
-    public Reservas(long id ,String pfecha)
+    public Reservas(long id ,String pfecha , ArrayList<Mobibus> pJesus)
     {
         this.id = id;
         SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
@@ -75,6 +81,8 @@ System.out.print("error fecha");
         
         listaEspera = new ArrayList<Usuario>();
     usuario = null;
+    mobibuses = new ArrayList<Mobibus> ();
+    mobibuses = pJesus;
 
         
   
@@ -125,7 +133,13 @@ System.out.print("error fecha");
         return id;
     }
     
-       
+       public ArrayList<Mobibus> getMobibuses() {
+        return mobibuses;
+    }
+
+    public void setMobibuses(ArrayList<Mobibus> mobibuses) {
+        this.mobibuses = mobibuses;
+    }
     /**
      * Modifica el id de la Reserva
      * @param id Nuevo id de la Reserva
