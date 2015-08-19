@@ -34,11 +34,6 @@ public interface IServicioReservasMockLocal
      */
     public void cancelarReserva (Reservas res) ; 
     
-    /**
-     * Devuelve el usuario de la reserva
-     * @return usuarios Lista de usuarios
-     */
-    public List<Usuario> darUsuario();
    /**
      * Devuelve los  usuarios en espera
      * @return usuarios Lista de usuarios

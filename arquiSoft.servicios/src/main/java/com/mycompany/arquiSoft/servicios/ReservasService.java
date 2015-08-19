@@ -61,16 +61,16 @@ public class ReservasService
     
      @GET
     @Path("reservas/")
-    public List<Reservas> getTodosLosTranvias() 
+    public List<Reservas> getTodosLasReservas() 
     {
         return reservaEjb.darReservas();
     }
     
       @GET
     @Path("usuario/")
-    public List<Usuario> getUsuarioReserva() 
+    public List<Usuario> getUsuariosConReserva() 
     {
-        return reservaEjb.darUsuario();
+        return reservaEjb.darUsuarios();
     }
     
 }
