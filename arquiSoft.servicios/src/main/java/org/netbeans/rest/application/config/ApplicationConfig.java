@@ -40,6 +40,7 @@ public class ApplicationConfig extends Application {
         resources.add(com.mycompany.arquiSoft.servicios.EstacionService.class);
         resources.add(com.mycompany.arquiSoft.servicios.EstacionVcubService.class);
         resources.add(com.mycompany.arquiSoft.servicios.MobibusService.class);
+        resources.add(com.mycompany.arquiSoft.servicios.ReporteService.class);
         resources.add(com.mycompany.arquiSoft.servicios.ReservasService.class);
         resources.add(com.mycompany.arquiSoft.servicios.TranviaService.class);
         resources.add(com.mycompany.arquiSoft.servicios.UbicacionService.class);

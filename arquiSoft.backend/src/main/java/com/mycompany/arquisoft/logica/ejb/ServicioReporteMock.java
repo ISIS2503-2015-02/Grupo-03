@@ -5,10 +5,11 @@
  */
 package com.mycompany.arquisoft.logica.ejb;
 
-import com.mycompany.arquisoft.dto.Emergencia;
+import com.mycompany.arquisoft.dto.Reporte;
 import com.mycompany.arquisoft.excepciones.OperacionInvalidaException;
 import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockLocal;
-import com.mycompany.arquisoft.logica.interfaces.IServicioEmergenciaMockLocal;
+import com.mycompany.arquisoft.logica.interfaces.IServicioReporteMockLocal;
+import com.mycompany.arquisoft.logica.interfaces.IServicioReporteMockLocal;
 import com.mycompany.arquisoft.persistencia.mock.ServicioPersistenciaMock;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,7 +21,7 @@ import javax.ejb.Stateless;
  * @author df.sabogal10
  */
 @Stateless
-public class ServicioEmergenciaMock implements IServicioEmergenciaMockLocal
+public class ServicioReporteMock implements IServicioReporteMockLocal
 {
     //-----------------------------------------------------------
     // Atributos
@@ -38,10 +39,10 @@ public class ServicioEmergenciaMock implements IServicioEmergenciaMockLocal
     /**
      * Constructor sin argumentos de la clase
      */
-    public ServicioEmergenciaMock() throws OperacionInvalidaException
+    public ServicioReporteMock() throws OperacionInvalidaException
     {
         persistencia=new ServicioPersistenciaMock();
-        //Inicializa el arreglo de las emergencias
+        //Inicializa el arreglo de las reportes
   
     }
 
@@ -50,47 +51,43 @@ public class ServicioEmergenciaMock implements IServicioEmergenciaMockLocal
     //-----------------------------------------------------------
 
     @Override
-    public void agregarEmergencia(Emergencia emergencia) {
+    public void agregarReporte(Reporte reporte) {
         try
         {
-            persistencia.create(emergencia);
-            if(emergencia.getConsecuencia().equals(Emergencia.VEHICULOS_FUERA_DE_SERVICIO))
-            {
-                //mandar otro vehiculo a cubrir la ruta
-            }
+            persistencia.create(reporte);
         }
         catch (OperacionInvalidaException ex)
         {
-            Logger.getLogger(ServicioEmergenciaMock.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicioReporteMock.class.getName()).log(Level.SEVERE, null, ex);
         }    
     }    
 
     @Override
-    public void eliminarEmergencia(int id) 
+    public void eliminarReporte(int id) 
     {
-        Emergencia e=(Emergencia) persistencia.findById(Emergencia.class, id);
+        Reporte e=(Reporte) persistencia.findById(Reporte.class, id);
         try
         {
             persistencia.delete(e);
         }
         catch (OperacionInvalidaException ex)
         {
-            Logger.getLogger(ServicioEmergenciaMock.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicioReporteMock.class.getName()).log(Level.SEVERE, null, ex);
         }     
     }
 
     @Override
-    public void actualizarEmergencia(Emergencia emergencia) {
-        persistencia.update(emergencia);    
+    public void actualizarReporte(Reporte reporte) {
+        persistencia.update(reporte);    
     }
 
     @Override
-    public List<Emergencia> darEmergencias() {
-        return persistencia.findAll(Emergencia.class);
+    public List<Reporte> darReportes() {
+        return persistencia.findAll(Reporte.class);
     }
 
     @Override
-    public Emergencia darEmergencia(int id) {
-        return (Emergencia) persistencia.findById(Emergencia.class, id);
+    public Reporte darReporte(int id) {
+        return (Reporte) persistencia.findById(Reporte.class, id);
     }
 }
