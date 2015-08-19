@@ -38,9 +38,10 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.mycompany.arquiSoft.servicios.EmergenciaService.class);
         resources.add(com.mycompany.arquiSoft.servicios.EstacionService.class);
-        resources.add(com.mycompany.arquiSoft.servicios.EstacionVcubService.class        resources.add(com.mycompany.arquiSoft.servicios.MobibusService.class);
+        resources.add(com.mycompany.arquiSoft.servicios.EstacionVcubService.class);
+        resources.add(com.mycompany.arquiSoft.servicios.MobibusService.class);
         resources.add(com.mycompany.arquiSoft.servicios.TranviaService.class);
-        resources.add(com.mycompany.arquiSoft.servicios.UbicacionService.class)
+        resources.add(com.mycompany.arquiSoft.servicios.UbicacionService.class);
         resources.add(com.mycompany.arquiSoft.servicios.UsuarioService.class);
         resources.add(com.mycompany.arquiSoft.servicios.VcubService.class);
         resources.add(com.mycompany.arquiSoft.servicios.VehiculoService.class);
