@@ -2,11 +2,8 @@ package com.mycompany.arquisoft.persistencia.mock;
 
 
 import com.mycompany.arquisoft.dto.Emergencia;
-<<<<<<< HEAD
 import com.mycompany.arquisoft.dto.EstacionVcub;
-=======
 import com.mycompany.arquisoft.dto.Estacion;
->>>>>>> origin/master
 import com.mycompany.arquisoft.dto.Ubicacion;
 import com.mycompany.arquisoft.dto.Usuario;
 
@@ -58,16 +55,13 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     private static ArrayList<Emergencia> emergencias;
     
     /**
-<<<<<<< HEAD
      * Lista de estaciones de Vcub del sistema
      */
-    private static ArrayList<EstacionVcub> estaciones;
-=======
-     * Lista de estaciones del sistema
+    private static ArrayList<EstacionVcub> estacionesVcub;
+    /**     
+    * Lista de estaciones del sistema
      */
     private static ArrayList<Estacion> estaciones;
->>>>>>> origin/master
-
 
     //-----------------------------------------------------------
     // Constructor
@@ -84,9 +78,9 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             vcubs.add(new Vcub(1));
             vcubs.add(new Vcub(2));
             
-            estaciones = new ArrayList<EstacionVcub>();
-            estaciones.add(new EstacionVcub(50));
-            estaciones.add(new EstacionVcub(20));
+            estacionesVcub = new ArrayList<EstacionVcub>();
+            estacionesVcub.add(new EstacionVcub(50));
+            estacionesVcub.add(new EstacionVcub(20));
             
             vehiculos = new ArrayList();
             vehiculos.add(new Vehiculo(1));
@@ -160,6 +154,11 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         {
             Estacion e=(Estacion) obj;
             estaciones.add(e);
+        }
+        else if (obj instanceof EstacionVcub)
+        {
+            EstacionVcub e=(EstacionVcub) obj;
+            estacionesVcub.add(e);
         }
     }
 
@@ -372,6 +371,10 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         else if(c.equals(Estacion.class))
         {
             return estaciones; 
+        }
+        else if(c.equals(EstacionVcub.class))
+        {
+            return estacionesVcub; 
         }
         else
         {

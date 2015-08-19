@@ -8,11 +8,13 @@ package com.mycompany.arquisoft.logica.interfaces;
 import com.mycompany.arquisoft.dto.EstacionVcub;
 import com.mycompany.arquisoft.dto.Vcub;
 import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author ja.silva11
  */
+@Local
 public interface IServicioEstacionVcubMockLocal
 {
     /**

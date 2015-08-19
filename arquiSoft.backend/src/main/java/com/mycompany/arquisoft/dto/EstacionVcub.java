@@ -32,7 +32,8 @@ public class EstacionVcub
     /**
      * Constructor sin argumentos de la clase
      */
-    public EstacionVcub() {
+    public EstacionVcub() 
+    {
     }
     
     /**
