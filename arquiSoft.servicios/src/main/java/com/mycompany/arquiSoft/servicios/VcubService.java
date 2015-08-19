@@ -54,7 +54,7 @@ public class VcubService
     }
  
     /**
-     * Servicio que ofrece una lista JSON con el catálogo de Muebles de los alpes (Los muebles disponibles para la venta).
+     * Servicio que ofrece una lista JSON con todos los Vcubs.
      * @return la lista JSON con los muebles de MDLA.
   
      */

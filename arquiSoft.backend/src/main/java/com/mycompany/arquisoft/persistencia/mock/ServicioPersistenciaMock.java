@@ -2,7 +2,9 @@ package com.mycompany.arquisoft.persistencia.mock;
 
 
 import com.mycompany.arquisoft.dto.Emergencia;
+import com.mycompany.arquisoft.dto.EstacionVcub;
 import com.mycompany.arquisoft.dto.Estacion;
+import com.mycompany.arquisoft.dto.Reporte;
 import com.mycompany.arquisoft.dto.Ubicacion;
 import com.mycompany.arquisoft.dto.Usuario;
 
@@ -54,10 +56,18 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     private static ArrayList<Emergencia> emergencias;
     
     /**
-     * Lista de estaciones del sistema
+     * Lista de estaciones de Vcub del sistema
+     */
+    private static ArrayList<EstacionVcub> estacionesVcub;
+    /**     
+    * Lista de estaciones del sistema
      */
     private static ArrayList<Estacion> estaciones;
-
+    
+    /**
+     * 
+     */
+    private static ArrayList<Reporte> reportes;
 
     //-----------------------------------------------------------
     // Constructor
@@ -73,6 +83,10 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             vcubs = new ArrayList();
             vcubs.add(new Vcub(1));
             vcubs.add(new Vcub(2));
+            
+            estacionesVcub = new ArrayList<EstacionVcub>();
+            estacionesVcub.add(new EstacionVcub(50));
+            estacionesVcub.add(new EstacionVcub(20));
             
             vehiculos = new ArrayList();
             vehiculos.add(new Vehiculo(1));
@@ -99,6 +113,9 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             vcubs.add(new Vcub(1));
             vcubs.add(new Vcub(2));
             estaciones.add(new Estacion(1, 500, vcubs, new Ubicacion(24, 36)));
+            
+            reportes = new ArrayList<Reporte>();
+            reportes.add(new Reporte(1, new Date("19/08/2015"), new Vehiculo(1)));
                    
         }
     }
@@ -142,10 +159,21 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             Emergencia e = (Emergencia) obj;
             emergencias.add(e);
         }
+        else if (obj instanceof Reporte)
+        {
+            Reporte e = (Reporte) obj;
+            reportes.add(e);
+        }
+
         else if (obj instanceof Estacion)
         {
             Estacion e=(Estacion) obj;
             estaciones.add(e);
+        }
+        else if (obj instanceof EstacionVcub)
+        {
+            EstacionVcub e=(EstacionVcub) obj;
+            estacionesVcub.add(e);
         }
     }
 
@@ -224,6 +252,20 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                if(e.getId() == nueva.getId())
                {
                    emergencias.set(i, nueva);
+                   break;
+               }                   
+            }
+        }
+        else if (obj instanceof Reporte)
+        {
+            Reporte nuevo = (Reporte) obj;
+            Reporte e;
+            for (int i = 0; i < reportes.size(); i++) 
+            {
+               e=reportes.get(i);
+               if(e.getId() == nuevo.getId())
+               {
+                   reportes.set(i, nuevo);
                    break;
                }                   
             }
@@ -307,6 +349,19 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 
             }
         }  
+         else if(obj instanceof Reporte)
+        {
+            Reporte ae= (Reporte) obj;
+            for (int i = 0; i < reportes.size(); i++) {
+                Reporte e= (Reporte) reportes.get(i);
+                if(e.getId() == ae.getId())
+                {
+                    reportes.remove(i);
+                    break;
+                }
+                
+            }
+        } 
         else if(obj instanceof Estacion)
         {
             Estacion ae= (Estacion) obj;
@@ -351,13 +406,22 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         {
             return usuarios;
         }
-         else if(c.equals(Emergencia.class))
+        else if(c.equals(Emergencia.class))
         {
             return emergencias; 
         }
+        else if(c.equals(Reporte.class))
+        {
+            return reportes; 
+        }
+
         else if(c.equals(Estacion.class))
         {
             return estaciones; 
+        }
+        else if(c.equals(EstacionVcub.class))
+        {
+            return estacionesVcub; 
         }
         else
         {
@@ -418,6 +482,18 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 }
             }
         }
+         else if (c.equals(Reporte.class))
+        {
+            for(Object e : findAll(c))
+            {
+                Reporte ve =(Reporte) e;
+                if(ve.getId()== Integer.parseInt(id.toString()))
+                {
+                    return ve;
+                }
+            }
+        }
+
           else if (c.equals(Estacion.class))
         {
             for(Object e : findAll(c))
@@ -441,6 +517,22 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             }
         }
         return null;
+    }
+    
+    @Override
+    public Vcub agregarVcubEstacion(long idEstacion,long idVcub)
+    {
+        EstacionVcub ev = (EstacionVcub)findById(EstacionVcub.class,idEstacion);
+        ev.agregarVcub(idVcub);
+        Vcub vb = (Vcub) findById(Vcub.class, idVcub);
+        return vb;
+    }
+    
+    @Override
+    public void eliminarVcubEstacion(long idEstacion,long idVcub)
+    {
+        EstacionVcub ev = (EstacionVcub)findById(EstacionVcub.class,idEstacion);
+        ev.eliminarVcub(idVcub);
     }
 }
             

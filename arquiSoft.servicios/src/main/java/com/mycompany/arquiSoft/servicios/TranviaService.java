@@ -46,7 +46,7 @@ public class TranviaService
     }
         }
     
-     @POST
+    @POST
     @Path("agregar/")
  
     public List<Tranvia> agregarTranvia(List<Tranvia> trn) {
