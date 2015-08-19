@@ -67,7 +67,7 @@ public class ServicioMobibusMock implements IServicioMobibusMockLocal
     @Override
     public void eliminarMobibus(long id) 
     {
-        Mobibus m=(Mobibus) persistencia.findById(Vcub.class, id);
+        Mobibus m=(Mobibus) persistencia.findById(Mobibus.class, id);
         try
         {
             persistencia.delete(m);
