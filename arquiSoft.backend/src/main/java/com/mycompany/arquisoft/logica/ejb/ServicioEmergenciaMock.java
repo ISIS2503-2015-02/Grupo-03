@@ -6,7 +6,6 @@
 package com.mycompany.arquisoft.logica.ejb;
 
 import com.mycompany.arquisoft.dto.Emergencia;
-import com.mycompany.arquisoft.dto.Vehiculo;
 import com.mycompany.arquisoft.excepciones.OperacionInvalidaException;
 import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockLocal;
 import com.mycompany.arquisoft.logica.interfaces.IServicioEmergenciaMockLocal;
@@ -55,6 +54,10 @@ public class ServicioEmergenciaMock implements IServicioEmergenciaMockLocal
         try
         {
             persistencia.create(emergencia);
+            if(emergencia.getConsecuencia().equals(Emergencia.VEHICULOS_FUERA_DE_SERVICIO))
+            {
+                //mandar otro vehiculo a cubrir la ruta
+            }
         }
         catch (OperacionInvalidaException ex)
         {

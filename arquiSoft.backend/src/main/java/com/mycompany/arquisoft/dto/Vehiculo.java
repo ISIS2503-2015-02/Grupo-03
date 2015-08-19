@@ -21,9 +21,14 @@ public class Vehiculo {
     private int id;
     
     /**
-     * 
+     * capacidad del vehiculo
      */
     private int capacidad;
+    
+    /**
+     * ubicacion del vehiculo
+     */
+    private Ubicacion ubicacion;
     
     //-----------------------------------------------------------
     // Constructores
@@ -40,10 +45,13 @@ public class Vehiculo {
     /**
      * Constructor de la clase (con argumentos)
      * @param id
+     * @param ubic
      */
-    public Vehiculo(int id)
+    public Vehiculo(int id, Ubicacion ubic)
     {
         this.id = id;
+        ubicacion = ubic;
+        
     }
      /**
      * Devuelve el id del Vehiculo
@@ -62,6 +70,15 @@ public class Vehiculo {
     {
         return capacidad;
     }
+
+    /**
+     * getter ubicacion
+     * @return ubicacion
+     */
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+
     
 
     
@@ -72,5 +89,14 @@ public class Vehiculo {
     public void setCapacidad(int cap) {
         capacidad= cap;
     }
+
+    /**
+     * setter ubicacion
+     * @param ubicacion 
+     */
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+   
     
 }

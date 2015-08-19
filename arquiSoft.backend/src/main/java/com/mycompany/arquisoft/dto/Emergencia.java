@@ -32,6 +32,10 @@ public class Emergencia {
      */
     public final static String GRAVE="grave";
     
+    public final static String VEHICULOS_FUERA_DE_SERVICIO ="ko";
+    
+    public final static String VEHICULOS_SIGUEN_FUNCIONANDO = "sigue";
+    
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
@@ -50,6 +54,11 @@ public class Emergencia {
      * vehiculos involucrados en la emergencia
      */
     private List<Vehiculo> VehiculosInvolucrados;
+    
+    /**
+     * 
+     */
+    private String consecuencia;
     
     /**
      * magnitud de la emergencia 
@@ -85,8 +94,10 @@ public class Emergencia {
      * @param vehInv
      * @param magn
      * @param ubic 
+     * @param fec 
+     * @param consec 
      */
-    public Emergencia(int i,String descr, List<Vehiculo> vehInv, String magn, Ubicacion ubic, Date fec) throws OperacionInvalidaException
+    public Emergencia(int i,String descr, List<Vehiculo> vehInv, String magn, Ubicacion ubic, Date fec, String consec) throws OperacionInvalidaException
     {
         if(!magn.equals(LEVE) && !magn.equals(MODERADA) && !magn.equals(GRAVE))
         {
@@ -96,12 +107,22 @@ public class Emergencia {
         {
             this.magnitud=magn;
         }
+        if(!consec.equals(VEHICULOS_FUERA_DE_SERVICIO) && !consec.equals(VEHICULOS_SIGUEN_FUNCIONANDO))
+        {
+            throw new OperacionInvalidaException("consecuencia de la emergencia no válida");
+        }
+        else
+        {
+            this.consecuencia=consec;
+        }
         this.id=i;
         this.descripcion= descr;
         this.VehiculosInvolucrados= vehInv;
         this.ubicacion=ubic;
-        this.fecha=fecha;
+        this.fecha=fec;
+
     }
+
     
     //-----------------------------------------------------------
     // Metodos
@@ -114,6 +135,14 @@ public class Emergencia {
     public int getId()
     {
         return id;
+    }
+
+    /**
+     * getter consecuencia
+     * @return 
+     */
+    public String getConsecuencia() {
+        return consecuencia;
     }
     
     /**
@@ -140,6 +169,14 @@ public class Emergencia {
     public void setDescripcion(String desc)
     {
         descripcion= desc;
+    }
+
+    /**
+     * setter consecuencia
+     * @param consecuencia 
+     */
+    public void setConsecuencia(String consecuencia) {
+        this.consecuencia = consecuencia;
     }
     
     /**

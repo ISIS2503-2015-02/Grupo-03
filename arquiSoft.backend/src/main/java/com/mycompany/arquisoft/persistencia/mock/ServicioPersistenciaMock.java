@@ -89,7 +89,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             estacionesVcub.add(new EstacionVcub(20));
             
             vehiculos = new ArrayList();
-            vehiculos.add(new Vehiculo(1));
+            vehiculos.add(new Vehiculo(1, new Ubicacion(64,26)));
                         
             tranvias = new ArrayList<Tranvia>();
             tranvias.add(new Tranvia(69 ,"A", "123123'222:12", 15));
@@ -105,8 +105,8 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             
             emergencias = new ArrayList<Emergencia>();
             List<Vehiculo> vInvolucrados=new ArrayList<Vehiculo>();
-            vInvolucrados.add(new Vehiculo(1));
-            emergencias.add(new Emergencia(1,"choque suave", vInvolucrados, "leve", new Ubicacion(10,20), new Date("31/10/1996")));
+            vInvolucrados.add(new Vehiculo(1, new Ubicacion(10,70)));
+            emergencias.add(new Emergencia(1,"choque suave", vInvolucrados, Emergencia.LEVE, new Ubicacion(10,20), new Date("31/10/1996"), Emergencia.VEHICULOS_SIGUEN_FUNCIONANDO));
             
             estaciones = new ArrayList<Estacion>();
             List<Vcub> vcubs= new ArrayList<Vcub>();
@@ -115,7 +115,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             estaciones.add(new Estacion(1, 500, vcubs, new Ubicacion(24, 36)));
             
             reportes = new ArrayList<Reporte>();
-            reportes.add(new Reporte(1, new Date("19/08/2015"), new Vehiculo(1)));
+            reportes.add(new Reporte(1, new Date("19/08/2015"), new Vehiculo(1,new Ubicacion(60,78))));
                    
         }
     }
