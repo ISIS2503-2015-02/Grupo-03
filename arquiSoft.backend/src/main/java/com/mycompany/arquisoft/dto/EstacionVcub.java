@@ -5,9 +5,6 @@
  */
 package com.mycompany.arquisoft.dto;
 
-import com.mycompany.arquisoft.excepciones.OperacionInvalidaException;
-import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockLocal;
-import com.mycompany.arquisoft.persistencia.mock.ServicioPersistenciaMock;
 import java.util.ArrayList;
 import java.util.List;
 

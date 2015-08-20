@@ -12,6 +12,7 @@ import com.mycompany.arquisoft.excepciones.OperacionInvalidaException;
 import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockLocal;
 import com.mycompany.arquisoft.logica.interfaces.IServicioPersistenciaMockRemote;
 import com.mycompany.arquisoft.dto.Vcub;
+import com.mycompany.arquisoft.dto.Mobibus;
 import com.mycompany.arquisoft.dto.Tranvia;
 import com.mycompany.arquisoft.dto.Vehiculo;
 
@@ -31,6 +32,11 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
      * Lista con los vcubs del sistema
      */
     private static ArrayList<Vcub> vcubs;
+    
+     /**
+     * Lista con los mobibus del sistema
+     */
+    private static ArrayList<Mobibus> mobibus;
     
     /**
      * Lista con los vehiculos desl sistema
@@ -83,6 +89,10 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             vcubs = new ArrayList();
             vcubs.add(new Vcub(1));
             vcubs.add(new Vcub(2));
+            
+            mobibus = new ArrayList();
+            mobibus.add(new Mobibus(1));
+            mobibus.add(new Mobibus(2));
             
             estacionesVcub = new ArrayList<EstacionVcub>();
             estacionesVcub.add(new EstacionVcub(50));
@@ -137,6 +147,12 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             Vcub v = (Vcub) obj;
             v.setId(vcubs.size() + 1);
             vcubs.add(v);
+        }
+        else if (obj instanceof Mobibus)
+        {
+            Mobibus m = (Mobibus) obj;
+            m.setId(mobibus.size() + 1);
+            mobibus.add(m);
         }
         else if (obj instanceof Tranvia)
         {
@@ -195,6 +211,22 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 if (vcub.getId() == editar.getId())
                 {
                     vcubs.set(i, editar);
+                    break;
+                }
+            }
+        }
+        
+        
+        else if (obj instanceof Mobibus)
+        {
+            Mobibus editar = (Mobibus) obj;
+            Mobibus mobi;
+            for (int i = 0; i < mobibus.size(); i++)
+            {
+                mobi = mobibus.get(i);
+                if (mobi.getId() == editar.getId())
+                {
+                    mobibus.set(i, editar);
                     break;
                 }
             }
@@ -308,7 +340,21 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                     break;
                 }
             }
-        } 
+        }
+        else if (obj instanceof Mobibus)
+        {
+            Mobibus mobiABorrar = (Mobibus) obj;
+
+            for (int e = 0; e < mobibus.size(); e++)
+            {
+                Mobibus v = (Mobibus) mobibus.get(e);
+                if (v.getId() == mobiABorrar.getId())
+                {
+                    mobibus.remove(e);
+                    break;
+                }
+            }
+        }
         else if (obj instanceof Tranvia)
         {
             Tranvia aBorrar = (Tranvia) obj;
@@ -390,6 +436,11 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         {
             return vcubs;
         } 
+        
+        if (c.equals(Mobibus.class))
+        {
+            return mobibus;
+        } 
         else if (c.equals(Tranvia.class))
         {
             return tranvias;
@@ -446,6 +497,18 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 if (vcub.getId() == Integer.parseInt(id.toString()))
                 {
                     return vcub;
+                }
+            }
+        }
+        
+        else if (c.equals(Mobibus.class))
+        {
+            for (Object v : findAll(c))
+            {
+                Mobibus mobibus = (Mobibus) v;
+                if (mobibus.getId() == Integer.parseInt(id.toString()))
+                {
+                    return mobibus;
                 }
             }
         }

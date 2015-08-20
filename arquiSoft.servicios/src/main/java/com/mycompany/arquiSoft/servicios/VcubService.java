@@ -37,8 +37,7 @@ public class VcubService
    
     @POST
     @Path("agregar/")
- 
-    public List<Vcub> agregarMuebles(List<Vcub> vb) {
+    public List<Vcub> agregarVcubs(List<Vcub> vb) {
         for (Vcub vcub : vb) {
             vcubEjb.agregarVcub(vcub);
         }
