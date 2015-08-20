@@ -79,7 +79,15 @@ public class UsuarioService
         
     }
     
-
+@PUT
+    @Path("devolver/idUsr/{idUsr}/idVcub/{idVcub}")
+    public List<Vcub>deevolverVcub(@PathParam("idUsr") String idUsr, @PathParam("idVcub") String idVcub) throws Exception
+    
+    {
+      
+        return usuarioEjb.prestarVcub(Long.parseLong(idUsr), Long.parseLong(idVcub));
+        
+    }
     
     
 }
