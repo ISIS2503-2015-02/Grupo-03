@@ -37,7 +37,6 @@ public class MobibusService
    
     @POST
     @Path("agregar/")
- 
     public List<Mobibus> agregarMobibus(List<Mobibus> mb) {
         for (Mobibus mobibus : mb) {
             mobibusEjb.agregarMobibus(mobibus);
@@ -59,7 +58,7 @@ public class MobibusService
   
      */
     @GET
-    @Path("mobibus/")
+    @Path("darmobibus/")
     public List<Mobibus> getTodosLosMobibus() 
     {
         return mobibusEjb.darMobibus();

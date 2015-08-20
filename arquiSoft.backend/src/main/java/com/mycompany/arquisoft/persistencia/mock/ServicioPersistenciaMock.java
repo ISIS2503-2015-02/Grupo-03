@@ -437,7 +437,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
             return vcubs;
         } 
         
-        if (c.equals(Mobibus.class))
+        else if (c.equals(Mobibus.class))
         {
             return mobibus;
         } 
