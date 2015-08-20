@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.arquisoft.dto;
+package com.mycompany.arquisoft.logica.interfaces;
+
+import javax.ejb.Local;
 
 /**
  *
  * @author ja.silva11
  */
-public class Tbc 
+@Local
+public interface IServicioTbcMockLocal
 {
+    public long darConductorProductivo();
     
 }
