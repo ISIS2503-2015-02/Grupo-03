@@ -1,4 +1,4 @@
-(function(){var aplicacionMundial= angular.module('aplicacionMundial',[]);
+(function(){var aplicacionMundial= angular.module('aplicacionTbc',[]);
 aplicacionMundial.directive('toolbar', function(){
         return{
             restrict:'E',
