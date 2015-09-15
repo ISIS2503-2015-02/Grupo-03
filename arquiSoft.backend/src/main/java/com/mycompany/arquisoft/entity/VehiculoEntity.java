@@ -3,21 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.models;
+package com.mycompany.arquisoft.entity;
+
+import com.mycompany.arquisoft.dto.*;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
+import org.eclipse.persistence.nosql.annotations.DataFormatType;
+import org.eclipse.persistence.nosql.annotations.Field;
+import org.eclipse.persistence.nosql.annotations.NoSql;
 
 /**
  *
  * @author df.sabogal10
  */
-public class VehiculoDTO {
+@NoSql(dataFormat=DataFormatType.MAPPED)
+@Entity
+@XmlRootElement
+public class Vehiculo implements Serializable {
     
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
 
     /**
-     * ID del VehiculoDTO
+     * ID del Vehiculo
      */
+    @Id
+    @GeneratedValue
+    @Field(name="_id")
     private int id;
     
     /**
@@ -37,7 +53,7 @@ public class VehiculoDTO {
     /**
      * Constructor de la clase (sin argumentos)
      */
-    public VehiculoDTO()
+    public Vehiculo()
     {
 
     }
@@ -47,15 +63,15 @@ public class VehiculoDTO {
      * @param id
      * @param ubic
      */
-    public VehiculoDTO(int id, Ubicacion ubic)
+    public VehiculoEntity(int id, Ubicacion ubic)
     {
         this.id = id;
         ubicacion = ubic;
         
     }
      /**
-     * Devuelve el id del VehiculoDTO
-     * @return id Id del VehiculoDTO
+     * Devuelve el id del Vehiculo
+     * @return id Id del Vehiculo
      */
     public long getId()
     {
@@ -63,7 +79,7 @@ public class VehiculoDTO {
     }
     
     /**
-     * Devuelve la capacidad del VehiculoDTO
+     * Devuelve la capacidad del Vehiculo
      * @return capacidad Capacidad del vehiculo
      */
     public int getCapacidad()
@@ -83,7 +99,7 @@ public class VehiculoDTO {
 
     
     /**
-     * Modifica la capacidad del VehiculoDTO
+     * Modifica la capacidad del Vehiculo
      * @param cap La nueva capacidad del vehiculo
      */
     public void setCapacidad(int cap) {

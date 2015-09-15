@@ -6,12 +6,18 @@
 package com.example.models;
 
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * clase que representa una estación de vcubs
  * @author df.sabogal10
  */
-public class EstacionDTO {
+@Entity
+public class Estacion {
     
      //-----------------------------------------------------------
     // Atributos
@@ -20,6 +26,9 @@ public class EstacionDTO {
     /**
      * ID de la estación
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="idEstacion")
     private int id;
     
     /**
@@ -45,7 +54,7 @@ public class EstacionDTO {
       /**
      * Constructor de la clase (sin argumentos)
      */
-    public EstacionDTO()
+    public Estacion()
     {
 
     }
@@ -56,7 +65,7 @@ public class EstacionDTO {
      * @param vcubs
      * @param ubicacion 
      */
-    public EstacionDTO(int id, int capacidad, List<Vcub> vcubs, Ubicacion ubicacion) {
+    public Estacion(int id, int capacidad, List<Vcub> vcubs, Ubicacion ubicacion) {
         this.id = id;
         this.capacidad = capacidad;
         this.vcubs = vcubs;

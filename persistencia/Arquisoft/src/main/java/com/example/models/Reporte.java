@@ -6,12 +6,23 @@
 package com.example.models;
 
 import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author df.sabogal10
  */
-public class ReporteDTO {
+@Entity
+public class Reporte {
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
@@ -19,16 +30,21 @@ public class ReporteDTO {
     /**
      * ID de la estación
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
     /**
      * 
      */
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
     
     /** 
      * 
      */
+    @ManyToOne( targetEntity = Vehiculo.class)
+    @JoinColumn(name="idVehiculo")
     private Vehiculo vehiculo;
     
     //-----------------------------------------------------------
@@ -38,7 +54,7 @@ public class ReporteDTO {
      /**
      * Constructor de la clase (sin argumentos)
      */
-    public ReporteDTO()
+    public Reporte()
     {
 
     }
@@ -49,7 +65,7 @@ public class ReporteDTO {
      * @param fecha
      * @param vehiculo 
      */
-    public ReporteDTO(int id, Date fecha, Vehiculo vehiculo) {
+    public Reporte(int id, Date fecha, Vehiculo vehiculo) {
         this.id = id;
         this.fecha = fecha;
         this.vehiculo = vehiculo;
@@ -98,13 +114,4 @@ public class ReporteDTO {
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
-    
-    
-    
-    
-    
-
-    
-    
-    
 }

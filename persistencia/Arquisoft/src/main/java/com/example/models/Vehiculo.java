@@ -5,11 +5,23 @@
  */
 package com.example.models;
 
+import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 /**
  *
  * @author df.sabogal10
  */
-public class VehiculoDTO {
+@Entity
+public class Vehiculo implements Serializable {
+    
     
     //-----------------------------------------------------------
     // Atributos
@@ -18,6 +30,9 @@ public class VehiculoDTO {
     /**
      * ID del VehiculoDTO
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="idVehiculo")
     private int id;
     
     /**
@@ -28,6 +43,8 @@ public class VehiculoDTO {
     /**
      * ubicacion del vehiculo
      */
+    @OneToOne( cascade= CascadeType.PERSIST, targetEntity = Ubicacion.class)
+    @JoinColumn(name="idUbicacion")  
     private Ubicacion ubicacion;
     
     //-----------------------------------------------------------
@@ -37,7 +54,7 @@ public class VehiculoDTO {
     /**
      * Constructor de la clase (sin argumentos)
      */
-    public VehiculoDTO()
+    public Vehiculo()
     {
 
     }
@@ -47,12 +64,16 @@ public class VehiculoDTO {
      * @param id
      * @param ubic
      */
-    public VehiculoDTO(int id, Ubicacion ubic)
+    public Vehiculo(int id, Ubicacion ubic)
     {
         this.id = id;
-        ubicacion = ubic;
-        
+        ubicacion = ubic;    
     }
+    
+    //-----------------------------------------------------------
+    // Getters y setters
+    //-----------------------------------------------------------
+
      /**
      * Devuelve el id del VehiculoDTO
      * @return id Id del VehiculoDTO
@@ -79,9 +100,6 @@ public class VehiculoDTO {
         return ubicacion;
     }
 
-    
-
-    
     /**
      * Modifica la capacidad del VehiculoDTO
      * @param cap La nueva capacidad del vehiculo
