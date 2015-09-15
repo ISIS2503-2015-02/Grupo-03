@@ -5,28 +5,29 @@
  */
 package com.example.models;
 
+import com.sun.istack.NotNull;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import com.sun.istack.NotNull;
-
 import javax.persistence.Id;
-
 /**
  *
  * @author je.camargo10
  */
-public class TranviaDTO implements Serializable
+@Entity
+public class Tranvia implements Serializable
 {
   //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
+    private static final long serialVersionUID = 1L;
 
     /**
      * ID del TranviaDTO
      */
-   
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
     /**
@@ -53,6 +54,7 @@ public class TranviaDTO implements Serializable
     /**
      * Linea de circulacion
      */
+    @NotNull
     private String linea;
     /**
      * Kilometraje recorrido
@@ -67,7 +69,7 @@ public class TranviaDTO implements Serializable
     /**
      * Constructor de la clase (sin argumentos)
      */
-    public TranviaDTO()
+    public Tranvia()
     {
 
     }
@@ -76,7 +78,7 @@ public class TranviaDTO implements Serializable
      * Constructor de la clase (con argumentos)
      * @param id
      */
-    public TranviaDTO(long id ,String plinea, String coordenadaInic, long pkilometraje)
+    public Tranvia(long id ,String plinea, String coordenadaInic, long pkilometraje)
     {
         this.id = id;
         this.linea= plinea;
