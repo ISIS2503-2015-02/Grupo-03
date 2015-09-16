@@ -26,18 +26,11 @@
             <hr>
          <toolbar></toolbar>
             <div ng-if="toolbar.isSelected(1)">
-                <competitor-form competitorInfo></competitor-form>
+                <vcub-form vcubInfo></vcub-form>
             </div>
-            <div ng-if="toolbar.isSelected(2)">
-                <competitor-info></competitor-info>
+            <div ng-if="toolbar.isSelected(5)">
+                <vcub-info></vcub-info>
             </div>
-          <div ng-if="toolbar.isSelected(3)">
-                <login-form loginInfo ></login-form>
-            </div>
-         <div ng-if="toolbar.isSelected(4)">
-                <login-info></login-info>
-            </div>
-         <hr>
 			<!-- Header -->
 				<div id="header-wrapper" class="wrapper">
 					<div id="header">

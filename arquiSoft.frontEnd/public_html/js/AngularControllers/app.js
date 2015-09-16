@@ -26,7 +26,42 @@ aplicacionMundial.directive('toolbar', function(){
         };
     });
 
-
+    aplicacionMundial.directive('vcubInfo', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/vcub-info.html',
+            controller: 'getVcubs'
+        };
+    });
+    
+    aplicacionMundial.controller("getVcubs", function($http, $scope) {
+    $http.get('http://localhost:8080/vcub/get').
+      success(function(data, status, headers, config) {
+        $scope.vcubs = data;
+      }).
+      error(function(data, status, headers, config) {
+        // log error
+      });
+    });
+    
+    aplicacionMundial.directive('vcubForm', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/vcub-form.html',
+            controller: 'vcubCtrl'
+        };
+    });
+    
+    aplicacionMundial.controller("vcubCtrl", function($http, $scope) {
+ 
+        $scope.addCompetitor=function(){
+            console.log('estado');
+            $http.post('http://localhost:8080/vcub/add', JSON.stringify($scope.vcub)).success(function(data,headers){
+                $scope.vcub={};
+                $scope.toolbar.selectTab(5);
+            });
+        };
+    });    
 
 aplicacionMundial.directive('competitorInfo', function(){
         return{
@@ -45,10 +80,7 @@ aplicacionMundial.directive('competitorInfo', function(){
         // log error
       });
     });
-    
-    
-    
-    
+   
     aplicacionMundial.directive('competitorForm', function(){
         return{
             restrict:'E',
