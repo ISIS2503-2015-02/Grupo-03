@@ -38,7 +38,7 @@ public class ReporteService {
         }
     }
     
-        @POST
+    @POST
     @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
     public Response createReporte(ReporteDTO ub) {

@@ -31,7 +31,7 @@ public class ConductorDTO
      * Vehiculo que conduce
      */
     private MobibusDTO mobibus;
-    private TranviaDTO tranvia;
+    private Tranvia tranvia;
     
     /**
      * Tipó de ruta que cubre
@@ -69,7 +69,7 @@ public class ConductorDTO
      * @param tiempos
      * @param prom
      */
-    public ConductorDTO(long cc, String nombre, MobibusDTO movi, TranviaDTO tran, String tipoRuta, ArrayList tiempos, Double prom)
+    public ConductorDTO(long cc, String nombre, MobibusDTO movi, Tranvia tran, String tipoRuta, ArrayList tiempos, Double prom)
     {
         this.cc = cc;
         this.nombre = nombre;
@@ -105,11 +105,11 @@ public class ConductorDTO
         this.mobibus = mobibus;
     }
 
-    public TranviaDTO getTranvia() {
+    public Tranvia getTranvia() {
         return tranvia;
     }
 
-    public void setTranvia(TranviaDTO tranvia) {
+    public void setTranvia(Tranvia tranvia) {
         this.tranvia = tranvia;
     }
 

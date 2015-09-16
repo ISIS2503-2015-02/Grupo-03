@@ -1,0 +1,21 @@
+<form name="ubicacionForm" ng-submit="addUbicacion()" ng-controller="ubicacionCtrl" novalidate>
+    <h2 class="form-title">Registrar una Ubicacion</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Latitud:</label>
+            <input ng-model="ubicacion.latitud" type="number" class="form-control" required/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Longitud:</label>
+            <input ng-model="ubicacion.longitud" type="number" class="form-control" required/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <input type="submit" value="submit" class="btn btn-default">
+        </div>
+    </div>        
+</form>
+

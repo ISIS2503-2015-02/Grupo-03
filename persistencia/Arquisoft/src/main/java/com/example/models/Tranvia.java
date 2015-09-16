@@ -4,20 +4,30 @@
  * and open the template in the editor.
  */
 package com.example.models;
+
+import com.sun.istack.NotNull;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 /**
  *
  * @author je.camargo10
  */
-public class TranviaDTO 
+@Entity
+public class Tranvia implements Serializable
 {
   //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
+    private static final long serialVersionUID = 1L;
 
     /**
      * ID del TranviaDTO
      */
-   
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
     /**
@@ -25,6 +35,7 @@ public class TranviaDTO
      */
     private int choque;
     
+    private int magnitudEmergencia;
     
     /**
      * Temperatura
@@ -34,9 +45,8 @@ public class TranviaDTO
    /**
     * Boolean con referencia al boton de paanico para situacion de emergencia
     */
-   private int panico; 
+    private int panico; 
     
-   
     /**
      * String coordenada
      */
@@ -45,6 +55,7 @@ public class TranviaDTO
     /**
      * Linea de circulacion
      */
+    @NotNull
     private String linea;
     /**
      * Kilometraje recorrido
@@ -59,10 +70,25 @@ public class TranviaDTO
     /**
      * Constructor de la clase (sin argumentos)
      */
-    public TranviaDTO()
+    public Tranvia()
     {
 
     }
+
+    /**
+     * Constructor de la clase (con argumentos)
+     * @param id
+     */
+    public Tranvia(int id ,String plinea, String coordenadaInic, int pkilometraje)
+    {
+        this.id = id;
+        this.linea= plinea;
+        this.tempatura = 0;
+        this.coordenada = coordenadaInic;
+        this.panico= 0;
+        this.choque=0;
+    }
+
     //-----------------------------------------------------------
     // Getters y setters
     //-----------------------------------------------------------
@@ -82,7 +108,7 @@ public class TranviaDTO
      */
     public boolean getChoque()
     {
-        return choque >= 1 ;
+        return choque>0;
     }
     
     /**
@@ -96,9 +122,9 @@ public class TranviaDTO
     /**
      * Indica que ha sufrido un choque
      */
-    public void setChocado()
+    public void setchocado()
     {
-     this.choque = 1;
+     this.choque =1;
     }
       public int getKilometraje() {
         return kilometraje;
@@ -117,7 +143,7 @@ public class TranviaDTO
     }
 
     public boolean getPanico() {
-        return panico >=1;
+        return panico>0;
     }
 
     public void setPanico() {

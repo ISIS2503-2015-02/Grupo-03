@@ -7,12 +7,14 @@ package com.example.models;
 
 import java.io.Serializable;
 import javax.persistence.CascadeType;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -46,6 +48,7 @@ public class Vehiculo implements Serializable {
     @OneToOne( cascade= CascadeType.PERSIST, targetEntity = Ubicacion.class)
     @JoinColumn(name="idUbicacion")  
     private Ubicacion ubicacion;
+    
     
     //-----------------------------------------------------------
     // Constructores

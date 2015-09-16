@@ -1,4 +1,4 @@
-(function(){var aplicacionMundial= angular.module('aplicacionMundial',[]);
+(function(){var aplicacionMundial= angular.module('aplicacionTbc',[]);
 aplicacionMundial.directive('toolbar', function(){
         return{
             restrict:'E',
@@ -26,7 +26,81 @@ aplicacionMundial.directive('toolbar', function(){
         };
     });
 
-
+    aplicacionMundial.directive('vcubInfo', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/vcub-info.html',
+            controller: 'getVcubs'
+        };
+    });
+    
+    aplicacionMundial.controller("getVcubs", function($http, $scope) {
+    $http.get('http://localhost:8080/vcub/get').
+      success(function(data, status, headers, config) {
+        $scope.vcubs = data;
+      }).
+      error(function(data, status, headers, config) {
+        // log error
+      });
+    });
+    
+    aplicacionMundial.directive('vcubForm', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/vcub-form.html',
+            controller: 'vcubCtrl'
+        };
+    });
+    
+    aplicacionMundial.controller("vcubCtrl", function($http, $scope) {
+ 
+        $scope.addVcub=function(){
+            console.log('estado');
+            $http.post('http://localhost:8080/vcub/add', JSON.stringify($scope.vcub)).success(function(data,headers){
+                $scope.vcub={};
+                $scope.toolbar.selectTab(5);
+            });
+        };
+    });    
+    
+    
+    
+    aplicacionMundial.directive('ubicacionInfo', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/ubicacion-info.html',
+            controller: 'getUbicaciones'
+        };
+    });
+    
+    aplicacionMundial.controller("getUbicaciones", function($http, $scope) {
+    $http.get('http://localhost:8080/ubicacion/get').
+      success(function(data, status, headers, config) {
+        $scope.ubicaciones = data;
+      }).
+      error(function(data, status, headers, config) {
+        // log error
+      });
+    });
+    
+    aplicacionMundial.directive('ubicacionForm', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/ubicacion-form.html',
+            controller: 'ubicacionCtrl'
+        };
+    });
+    
+    aplicacionMundial.controller("ubicacionCtrl", function($http, $scope) {
+ 
+        $scope.addUbicacion=function(){
+            console.log('latitud');
+            $http.post('http://localhost:8080/ubicacion/add', JSON.stringify($scope.ubicacion)).success(function(data,headers){
+                $scope.ubicacion={};
+                $scope.toolbar.selectTab(7);
+            });
+        };
+    });    
 
 aplicacionMundial.directive('competitorInfo', function(){
         return{
@@ -45,10 +119,7 @@ aplicacionMundial.directive('competitorInfo', function(){
         // log error
       });
     });
-    
-    
-    
-    
+   
     aplicacionMundial.directive('competitorForm', function(){
         return{
             restrict:'E',

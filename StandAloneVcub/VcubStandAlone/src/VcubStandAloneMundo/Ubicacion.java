@@ -1,30 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.example.models;
+package VcubStandAloneMundo;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-/**
- *
- * @author ja.silva11
- */
-@Entity
-public class Ubicacion implements Serializable{
-    //-----------------------------------------------------------
+public class Ubicacion 
+{
+	//-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-     
+	private Long id;
     /**
      * Latitud de la ubicacion
      */
@@ -47,16 +29,14 @@ public class Ubicacion implements Serializable{
 
     }
     
-      /**
-     * Constructor de la clase (sin argumentos)
-     */
-    public Ubicacion(double lat, double lon)
+    public Ubicacion(Long pId, double lat, double lon)
     {
-        latitud = lat;
-        longitud = lon;
+    	id = pId;
+    	latitud = lat;
+    	longitud = lon;
     }
-    
-     //-----------------------------------------------------------
+
+    //-----------------------------------------------------------
     // Getters y setters
     //-----------------------------------------------------------
 
@@ -92,13 +72,6 @@ public class Ubicacion implements Serializable{
      */
     public void setLongitud(double lon) {
         this.longitud = lon;
-    }    
+    }  
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

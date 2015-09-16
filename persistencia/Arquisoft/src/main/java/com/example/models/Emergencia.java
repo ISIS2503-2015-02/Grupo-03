@@ -9,11 +9,24 @@ import com.example.excepciones.OperacionInvalidaException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import static javax.persistence.CascadeType.ALL;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 /**
  *
  * @author df.sabogal10
  */
-public class EmergenciaDTO {
+@Entity
+public class Emergencia {
     //-----------------------------------------------------------
     // Constantes
     //-----------------------------------------------------------
@@ -43,6 +56,9 @@ public class EmergenciaDTO {
     /**
      * ID de la emergencia
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="idEstacion")
     private int id;
     
     /**
@@ -53,6 +69,7 @@ public class EmergenciaDTO {
     /**
      * vehiculos involucrados en la emergencia
      */
+    @OneToMany(cascade=ALL)
     private List<Vehiculo> VehiculosInvolucrados;
     
     /**
@@ -68,11 +85,14 @@ public class EmergenciaDTO {
     /**
      * ubicacion de la emergencia
      */
+    @OneToOne( cascade= CascadeType.PERSIST, targetEntity = Ubicacion.class)
+    @JoinColumn(name="idUbicacion") 
     private Ubicacion ubicacion;
     
     /**
      * fecha de la emergencia
      */
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
     
     //-----------------------------------------------------------
@@ -82,7 +102,7 @@ public class EmergenciaDTO {
      /**
      * Constructor de la clase (sin argumentos)
      */
-    public EmergenciaDTO()
+    public Emergencia()
     {
 
     }
@@ -97,7 +117,7 @@ public class EmergenciaDTO {
      * @param fec 
      * @param consec 
      */
-    public EmergenciaDTO(int i,String descr, List<Vehiculo> vehInv, String magn, Ubicacion ubic, Date fec, String consec) throws OperacionInvalidaException
+    public Emergencia(int i,String descr, List<Vehiculo> vehInv, String magn, Ubicacion ubic, Date fec, String consec) throws OperacionInvalidaException
     {
         if(!magn.equals(LEVE) && !magn.equals(MODERADA) && !magn.equals(GRAVE))
         {

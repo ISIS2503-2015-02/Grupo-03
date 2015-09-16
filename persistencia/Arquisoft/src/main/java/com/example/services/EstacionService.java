@@ -4,17 +4,14 @@
  * and open the template in the editor.
  */
 package com.example.services;
-import com.example.models.Ubicacion;
-import com.example.models.UbicacionDTO;
 import com.example.PersistenceManager;
-import com.example.models.Vehiculo;
-import com.example.models.VehiculoDTO;
+import com.example.models.Estacion;
+import com.example.models.EstacionDTO;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -24,15 +21,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.json.simple.JSONObject;
-import javax.ws.rs.PathParam;
 
 /**
  *
  * @author df.sabogal10
  */
-@Path("/vehiculo")
+@Path("/estacion")
 @Produces(MediaType.APPLICATION_JSON)
-public class VehiculoService {
+public class EstacionService {
     
     @PersistenceContext(unitName = "tbcPU")
     EntityManager entityManager;
@@ -49,18 +45,19 @@ public class VehiculoService {
     @POST
     @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createVehicle(VehiculoDTO ub) {
+    public Response createEstacion(EstacionDTO ub) {
 
         JSONObject rta = new JSONObject();
-        Vehiculo vTmp= new Vehiculo();
+        Estacion vTmp= new Estacion();
         vTmp.setCapacidad(ub.getCapacidad());
         vTmp.setUbicacion(ub.getUbicacion());
+        vTmp.setVcubs(ub.getVcubs());
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(vTmp);
             entityManager.getTransaction().commit();
             entityManager.refresh(vTmp);
-            rta.put("vehiculo_id", vTmp.getId());
+            rta.put("estacion_id", vTmp.getId());
         } catch (Throwable t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
@@ -74,28 +71,39 @@ public class VehiculoService {
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta).build();
     }
     
+    @PUT
+    @Path("{id}")
+    public void actulizarEstacion(EstacionDTO ub, @PathParam("id") int idEstacion) 
+    {
+
+        Estacion v= entityManager.find(Estacion.class, idEstacion);
+        entityManager.getTransaction().begin();
+        v.setCapacidad(ub.getCapacidad());
+        v.setUbicacion(ub.getUbicacion());
+        v.setVcubs(ub.getVcubs());
+        entityManager.getTransaction().commit();
+        
+    }
+    
     @GET
     @Path("/get")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
-        Query q = entityManager.createQuery("select u from Vehiculo u");
-        List<Vehiculo> ubs = q.getResultList();
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(ubs).build();
+        Query q = entityManager.createQuery("select u from Estacion u");
+        List<Estacion> estaciones = q.getResultList();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(estaciones).build();
     }
     
-    @PUT
+    @GET
     @Path("{id}")
-    public void actulizarUbicacionVehiculo(UbicacionDTO ub, @PathParam("id") int idVehiculo) 
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getByID( @PathParam("id") int idEstacion) 
     {
-
-        Vehiculo v= entityManager.find(Vehiculo.class, idVehiculo);
-        Long  idUbicacion=v.getUbicacion().getId();
-        Ubicacion u = entityManager.find(Ubicacion.class, idUbicacion);
-        entityManager.getTransaction().begin();
-        u.setLatitud(ub.getLatitud());
-        u.setLongitud(ub.getLongitud());
-        entityManager.getTransaction().commit();
-        
+        Estacion e = entityManager.find(Estacion.class,idEstacion );
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(e).build();
     }
+
+    
+    
     
 }

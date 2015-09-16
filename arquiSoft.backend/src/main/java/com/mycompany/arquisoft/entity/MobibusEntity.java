@@ -5,47 +5,42 @@
  */
 package com.mycompany.arquisoft.entity;
 
-import com.mycompany.arquisoft.dto.*;
-import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
+
 import org.eclipse.persistence.nosql.annotations.DataFormatType;
 import org.eclipse.persistence.nosql.annotations.Field;
 import org.eclipse.persistence.nosql.annotations.NoSql;
-
 /**
  *
- * @author df.sabogal10
+ * @author ja.silva11
  */
 @NoSql(dataFormat=DataFormatType.MAPPED)
 @Entity
 @XmlRootElement
-public class Vehiculo implements Serializable {
+public class MobibusEntity 
+{
     
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
 
     /**
-     * ID del Vehiculo
+     * ID del Vcub
      */
     @Id
     @GeneratedValue
     @Field(name="_id")
-    private int id;
+    private String id;
     
     /**
-     * capacidad del vehiculo
+     * Estado del Mobibus
      */
-    private int capacidad;
+    private String estado;
     
-    /**
-     * ubicacion del vehiculo
-     */
-    private Ubicacion ubicacion;
-    
+
     //-----------------------------------------------------------
     // Constructores
     //-----------------------------------------------------------
@@ -53,66 +48,61 @@ public class Vehiculo implements Serializable {
     /**
      * Constructor de la clase (sin argumentos)
      */
-    public Vehiculo()
+    public MobibusEntity()
     {
 
     }
-    
+
     /**
      * Constructor de la clase (con argumentos)
      * @param id
-     * @param ubic
      */
-    public VehiculoEntity(int id, Ubicacion ubic)
+    public MobibusEntity(long id)
     {
-        this.id = id;
-        ubicacion = ubic;
-        
+        this.estado = "disponible";
     }
-     /**
-     * Devuelve el id del Vehiculo
-     * @return id Id del Vehiculo
+
+    //-----------------------------------------------------------
+    // Getters y setters
+    //-----------------------------------------------------------
+
+    /**
+     * Devuelve el id del Mobibus
+     * @return id Id del Mobibus
      */
-    public long getId()
+    public String getId()
     {
         return id;
     }
     
     /**
-     * Devuelve la capacidad del Vehiculo
-     * @return capacidad Capacidad del vehiculo
+     * Devuelve el estado del Mobibus
+     * @return estado Estado del Mobibus
      */
-    public int getCapacidad()
+    public String getEstado()
     {
-        return capacidad;
+        return estado;
     }
-
-    /**
-     * getter ubicacion
-     * @return ubicacion
-     */
-    public Ubicacion getUbicacion() {
-        return ubicacion;
-    }
-
-    
-
     
     /**
-     * Modifica la capacidad del Vehiculo
-     * @param cap La nueva capacidad del vehiculo
+     * Modifica el id del Mobibus
+     * @param id Nuevo id del Mobibus
      */
-    public void setCapacidad(int cap) {
-        capacidad= cap;
+    public void setId(String id) {
+        this.id = id;
     }
-
-    /**
-     * setter ubicacion
-     * @param ubicacion 
-     */
-    public void setUbicacion(Ubicacion ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-   
     
+    /**
+     * Modifica el estado del Mobibus
+     */
+    public void setEstado() {
+        if(this.estado.equalsIgnoreCase("disponible"))
+        {
+            this.estado = "reservado"; 
+        }
+        else
+        {
+            this.estado = "disponible";
+        }
+    }
 }
