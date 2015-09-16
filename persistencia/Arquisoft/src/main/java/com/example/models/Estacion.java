@@ -5,19 +5,25 @@
  */
 package com.example.models;
 
+import com.sun.istack.NotNull;
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * clase que representa una estación de vcubs
  * @author df.sabogal10
  */
 @Entity
-public class Estacion {
+public class Estacion implements Serializable {
     
      //-----------------------------------------------------------
     // Atributos
@@ -39,11 +45,15 @@ public class Estacion {
     /**
      * los vcubs guardados en la estación.
      */
+    @OneToMany
     private List<Vcub> vcubs;
     
     /**
      * la ubicacion de la estación de vcubs.
      */
+    @NotNull
+    @OneToOne( cascade= CascadeType.PERSIST, targetEntity = Ubicacion.class)
+    @JoinColumn(name="idUbicacion") 
     private Ubicacion ubicacion;
     
     
@@ -124,6 +134,7 @@ public class Estacion {
      * setter vcubs
      * @param vcubs 
      */
+    @OneToMany
     public void setVcubs(List<Vcub> vcubs) {
         this.vcubs = vcubs;
     }
@@ -132,6 +143,8 @@ public class Estacion {
      * setter ubicacion
      * @param ubicacion 
      */
+    @OneToOne( cascade= CascadeType.PERSIST, targetEntity = Ubicacion.class)
+    @JoinColumn(name="idUbicacion")
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
     }

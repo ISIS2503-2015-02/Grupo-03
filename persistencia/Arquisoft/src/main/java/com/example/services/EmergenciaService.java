@@ -61,7 +61,7 @@ public class EmergenciaService {
             entityManager.persist(vTmp);
             entityManager.getTransaction().commit();
             entityManager.refresh(vTmp);
-            rta.put("estacion_id", vTmp.getId());
+            rta.put("emergencia_id", vTmp.getId());
         } catch (Throwable t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
