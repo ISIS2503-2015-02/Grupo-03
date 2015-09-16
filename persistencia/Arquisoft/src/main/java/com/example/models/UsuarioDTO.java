@@ -58,9 +58,7 @@ public class UsuarioDTO
     private VcubDTO bicicleta;
     
     
-    @OneToOne
-        private Reserva reserva;
-    
+ 
     
     /**
      * Notificacion pendiente para el usuario

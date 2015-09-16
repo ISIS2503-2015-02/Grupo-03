@@ -9,7 +9,9 @@ import com.example.models.UsuarioDTO;
 import com.example.models.Usuario;
 import com.example.PersistenceManager;
 import com.example.models.Vcub;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -233,6 +235,70 @@ public class UsuarioService
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta).build();
     }
         }
+    
+    
+    @PUT
+    @Path("/reservar/idUsr/{idUsr}/idMobibus/{Mobibus}/fecha/{fecha}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response reservarMobibus(@PathParam("idUsr") String idUsr,@PathParam("idMobibus") String idMobibus, @PathParam("fecha") String fechaS) 
+    {
+
+         SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
+        Date fecha = null;
+        try 
+        {
+            fecha = formatoDeFecha.parse(fechaS);
+        } catch (Exception ex) {
+       throw  new NotAuthorizedException("error fecha");
+        }
+        
+        
+        
+        
+        JSONObject rta = new JSONObject();
+        
+        Query q = entityManager.createQuery("select u from Usuario u where u.documento = '"+ idUsr +"'");
+        List<Usuario> usuarios = q.getResultList();
+        
+               
+        
+        if (usuarios.isEmpty())
+        {
+       throw  new NotAuthorizedException("paila");
+
+        
+        }
+        else
+        {
+             Usuario jesus = usuarios.get(0);
+             
+             
+            Vcub mia =jesus.getBicicleta();
+
+        
+         try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(jesus);
+            entityManager.merge(mia);
+
+            entityManager.getTransaction().commit();
+            rta.put("Usted ha devuelto el vcub", jesus.getNombre());
+        } catch (Throwable t) {
+            t.printStackTrace();
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            jesus = null;
+            mia = null;
+        } finally {
+            entityManager.clear();
+            entityManager.close();
+        }
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta).build();
+    }
+        }
+    
+    
     
     
     

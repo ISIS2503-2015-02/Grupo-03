@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javax.persistence.CascadeType.ALL;
@@ -18,6 +19,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -48,14 +50,18 @@ public class Reserva
     /**
      * Usuarios en listade espera
      */
-   @OneToMany  (cascade=ALL, mappedBy="reserva")   
-   private ArrayList<Usuario> listaEspera;
+        @OneToMany
+   private List<Usuario> listaEspera;
   
+   
+ 
    
     
     /**
      * UsuarioDTO acargo de la reserva
      */
+    @OneToOne
+        
     private Usuario usuario;
     
     
@@ -204,7 +210,7 @@ return jesus;
         this.fecha = fecha;
     }
 
-    public ArrayList<Usuario> getListaEspera()
+    public List<Usuario> getListaEspera()
     {
         return listaEspera;
     }

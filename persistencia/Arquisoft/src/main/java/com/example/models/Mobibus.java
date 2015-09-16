@@ -6,10 +6,13 @@
 package com.example.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 /**
  *
  * @author dc.bonilla10
@@ -29,10 +32,19 @@ public class Mobibus implements Serializable
      */
     private String estado;
     
-
+    @OneToMany
+    private List<Reserva> reservas;
     //-----------------------------------------------------------
     // Constructores
     //-----------------------------------------------------------
+
+    public List<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
+    }
 
     /**
      * Constructor de la clase (sin argumentos)
@@ -45,6 +57,7 @@ public class Mobibus implements Serializable
     public Mobibus(String pEstado)
     {
         estado = pEstado;
+        reservas = new ArrayList<Reserva>();
     }
 
     //-----------------------------------------------------------
