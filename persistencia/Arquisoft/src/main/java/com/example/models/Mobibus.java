@@ -5,6 +5,7 @@
  */
 package com.example.models;
 
+import com.sun.istack.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class Mobibus implements Serializable
     /**
      * Estado del Mobibus
      */
+
     private String estado;
     
     @OneToMany
@@ -89,7 +91,7 @@ public class Mobibus implements Serializable
      * Modifica el estado del Mobibus
      */
     public void cambiarEstado() {
-        if(this.estado.equalsIgnoreCase("disponible"))
+        if(this.estado == null||this.estado.equalsIgnoreCase("disponible"))
         {
             this.estado = "reservado"; 
         }

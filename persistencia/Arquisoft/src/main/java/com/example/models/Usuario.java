@@ -74,8 +74,9 @@ public class Usuario implements Serializable
     @OneToOne
     private Vcub bicicleta;
     
-       
-    
+   
+
+  
     /**
      * Notificacion pendiente para el usuario
      */
@@ -211,6 +212,11 @@ public class Usuario implements Serializable
     {
         return documento;
     }
+    
+    
+    
+    
+    
 
     /**
      * Modifica el número de identificación del usuario

@@ -23,8 +23,7 @@ public class MobibusDTO
     /**
      * Estado del MobibusDTO
      */
-    private String estado;
-    
+private String estado;    
 
     //-----------------------------------------------------------
     // Constructores

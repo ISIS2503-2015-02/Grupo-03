@@ -41,12 +41,13 @@ public class Reserva
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
+    
+    
     /**
      * Fecha de la reserva
      */
-        @Temporal(TemporalType.DATE)
-
-    private Date fecha;  
+    @Temporal(TemporalType.DATE)
+private Date fecha;  
     /**
      * Usuarios en listade espera
      */
@@ -54,6 +55,8 @@ public class Reserva
    private List<Usuario> listaEspera;
   
    
+        @OneToOne
+        private Mobibus busAsociado;
  
    
     
@@ -83,24 +86,14 @@ public class Reserva
      * Constructor de la clase (con argumentos)
      * @param id
      */
-    public Reserva(long id ,String pfecha , ArrayList<MobibusDTO> pJesus)
+    public Reserva( Mobibus pbus, Date pfecha)
     {
-        /**
-         * this.id = id;
-        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
         
-        try 
-        {
-            fecha = formatoDeFecha.parse(pfecha);
-        } catch (ParseException ex) {
-System.out.print("error fecha");
-        }
-         */
         
-        listaEspera = new ArrayList<Usuario>();
+     listaEspera = new ArrayList<Usuario>();
     usuario = null;
-
-
+busAsociado = pbus;
+fecha = pfecha;
         
   
     }
@@ -134,7 +127,7 @@ return jesus;
         
        if ( verificarFecha(fecha))
        {
-       if (listaEspera.size() >0 || usuario != null)
+       if (listaEspera.size() !=0 || usuario != null)
        {
            listaEspera.add(jesus);
            
@@ -166,18 +159,18 @@ return jesus;
     Calendar calendar = Calendar.getInstance();
 	
       calendar.setTime(fechaActual); 	
-      calendar.add(Calendar.DAY_OF_YEAR, 7);
-      
-      
-    if (fechaActual.before(fechaVerficar) || calendar.before(fechaVerficar) )
+      calendar.add(Calendar.DAY_OF_YEAR, 8);
+     java.util.Date x = calendar.getTime();
+
+    if (fechaActual.before(fechaVerficar) || x.before(fechaVerficar) )
     {
-    return false;
+    return true;
     
     }
  else
     {
     
-    return true;
+    return false;
     
     }
     

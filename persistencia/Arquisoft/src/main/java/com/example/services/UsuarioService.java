@@ -8,6 +8,8 @@ package com.example.services;
 import com.example.models.UsuarioDTO;
 import com.example.models.Usuario;
 import com.example.PersistenceManager;
+import com.example.models.Mobibus;
+import com.example.models.Reserva;
 import com.example.models.Vcub;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -238,69 +240,133 @@ public class UsuarioService
     
     
     @PUT
-    @Path("/reservar/idUsr/{idUsr}/idMobibus/{Mobibus}/fecha/{fecha}")
+    @Path("/reservar/idUsr/{idUsr}/idMobibus/{idMobibus}/fecha/{fecha}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response reservarMobibus(@PathParam("idUsr") String idUsr,@PathParam("idMobibus") String idMobibus, @PathParam("fecha") String fechaS) 
     {
-
-         SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
-        Date fecha = null;
+fechaS = fechaS.replaceAll(" ", "/");
+       
+        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
+        Date maria = null;
         try 
         {
-            fecha = formatoDeFecha.parse(fechaS);
-        } catch (Exception ex) {
-       throw  new NotAuthorizedException("error fecha");
+            maria = formatoDeFecha.parse(fechaS);
+        }
+        catch (Exception ex) 
+        {
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Error en fecha").build();
         }
         
         
-        
-        
-        JSONObject rta = new JSONObject();
-        
+       
         Query q = entityManager.createQuery("select u from Usuario u where u.documento = '"+ idUsr +"'");
         List<Usuario> usuarios = q.getResultList();
         
-               
+        java.sql.Date fecha = new java.sql.Date(maria.getTime());
         
-        if (usuarios.isEmpty())
+        JSONObject rta = new JSONObject();
+
+      
+        
+        Query bus = entityManager.createQuery("select u from Mobibus u where u.id = '"+ idMobibus +"'");
+             List<Mobibus> buses = bus.getResultList();
+             
+
+ Query res = entityManager.createQuery("select u from Reserva u where u.fecha = '"+ fecha +"'");
+        List<Reserva> reservaCuestion = res.getResultList();
+
+        System.out.println("uSUARIOS"+usuarios.size());
+        System.out.println("MOVIBUSES"+buses.size());
+
+        
+        if (usuarios.isEmpty()|| buses.isEmpty() )
         {
-       throw  new NotAuthorizedException("paila");
+                                                           System.out.println("nokas");
+
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta).build();
 
         
         }
-        else
+        //Esta vacia la reserva, no existe
+        else if (reservaCuestion.size()== 0)
         {
+
              Usuario jesus = usuarios.get(0);
-             
-             
-            Vcub mia =jesus.getBicicleta();
+                          System.out.println("Brevas");
+
+             Mobibus cristo = buses.get(0);
+                  
+             cristo.cambiarEstado();
+             System.out.println("COPAS");
+
+             Reserva copas = new Reserva(cristo, fecha); 
+               String papitas = copas.reservar(jesus, fecha);
+                          jesus.setNotificacion(papitas);
 
         
          try {
             entityManager.getTransaction().begin();
-            entityManager.merge(jesus);
-            entityManager.merge(mia);
+                        entityManager.persist(copas);
+                        entityManager.merge(jesus);
+            entityManager.merge(cristo);
 
             entityManager.getTransaction().commit();
-            rta.put("Usted ha devuelto el vcub", jesus.getNombre());
+            rta.put("Se ha hecho la reserva para el: ", copas.getFecha());
         } catch (Throwable t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
             jesus = null;
-            mia = null;
+            cristo = null;
+            copas= null;
         } finally {
             entityManager.clear();
             entityManager.close();
         }
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta).build();
     }
+        else
+        {
+
+
+            Reserva copas =  reservaCuestion.get(0);
+            
+          Usuario jesus = usuarios.get(0);
+          copas.reservar(jesus, fecha);
+          
+
+        
+         try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(jesus);
+
+            entityManager.getTransaction().commit();
+            rta.put("Se ha hecho la reserva para el: ", copas.getFecha());
+        } catch (Throwable t) {
+            t.printStackTrace();
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            jesus = null;
+        } finally {
+            entityManager.clear();
+            entityManager.close();
         }
-    
-    
-    
-    
-    
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta).build();
+        
+        
+        }
+
+    }
     
 }
+
+    
+
+    
+    
+    
+    
+    
+    
