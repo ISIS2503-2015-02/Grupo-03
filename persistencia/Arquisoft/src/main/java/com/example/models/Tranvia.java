@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 /**
  *
  * @author je.camargo10
@@ -35,7 +36,6 @@ public class Tranvia implements Serializable
      */
     private int choque;
     
-    private int magnitudEmergencia;
     
     /**
      * Temperatura
@@ -57,6 +57,15 @@ public class Tranvia implements Serializable
      */
     @NotNull
     private String linea;
+    
+    
+    /**
+     * Reference a la emergencia
+     */
+        @OneToOne
+
+    private Emergencia emergencia;
+    
     /**
      * Kilometraje recorrido
      */

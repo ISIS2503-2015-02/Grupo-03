@@ -27,7 +27,7 @@ import org.json.simple.JSONObject;
  *
  * @author df.sabogal10
  */
-@Path("/estacion")
+@Path("/emergencia")
 @Produces(MediaType.APPLICATION_JSON)
 public class EmergenciaService {
     

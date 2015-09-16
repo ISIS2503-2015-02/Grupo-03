@@ -69,7 +69,6 @@ public class Emergencia {
     /**
      * vehiculos involucrados en la emergencia
      */
-    @OneToMany(cascade=ALL)
     private List<Vehiculo> VehiculosInvolucrados;
     
     /**
