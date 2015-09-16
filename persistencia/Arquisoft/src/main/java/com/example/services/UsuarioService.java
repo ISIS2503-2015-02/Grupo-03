@@ -5,9 +5,10 @@
  */
 package com.example.services;
 
-import com.example.models.TranviaDTO;
-import com.example.models.Tranvia;
+import com.example.models.UsuarioDTO;
+import com.example.models.Usuario;
 import com.example.PersistenceManager;
+import com.example.models.Vcub;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -31,9 +32,9 @@ import org.codehaus.jettison.json.JSONObject;
  * @author je.camargo10
  */
 @JsonIgnoreProperties(ignoreUnknown=true)  
-@Path("/tranvia")
+@Path("/usuario")
 @Produces(MediaType.APPLICATION_JSON)
-public class TranviaService 
+public class UsuarioService 
 {
     /**
      * Referencia al Ejb del tranvia encargada de realizar las operaciones del mismo.
@@ -44,7 +45,6 @@ public class TranviaService
     @PostConstruct
     public void init() {
         try {
-            System.out.println("Almenos");
 
             entityManager = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
         } catch (Exception e) {
@@ -54,27 +54,31 @@ public class TranviaService
     @POST
     @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createTranvia(TranviaDTO pTranvia)
+    public Response createUser(UsuarioDTO pUsuario)
     {
         JSONObject rta = new JSONObject();
-        Tranvia tranvia= new Tranvia();
-        tranvia.setId(pTranvia.getId());
-        tranvia.setCoordenada(pTranvia.getCoordenada());
-        tranvia.setKilometraje(pTranvia.getKilometraje());
-        tranvia.setLinea(pTranvia.getLinea());
-        tranvia.setTempatura(pTranvia.getTempatura());
+        Usuario usuario= new Usuario();
+        usuario.setNombre(pUsuario.getNombre());
+        usuario.setDocumento(pUsuario.getDocumento());
+        usuario.setTipoDocumento(pUsuario.getTipoDocumento());
+        usuario.setCorreo(pUsuario.getCorreo());
+        usuario.setDireccion(pUsuario.getDireccion());
+        usuario.setTelefono(pUsuario.getTelefono());
+        usuario.setTarjeta(pUsuario.getTarjeta());
+
+
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(tranvia);
+            entityManager.persist(usuario);
             entityManager.getTransaction().commit();
-            entityManager.refresh(tranvia);
-            rta.put("Se ha creado el tranvia", tranvia.getId());
+            entityManager.refresh(usuario);
+            rta.put("Se ha creado el usuario", usuario.getNombre());
         } catch (Throwable t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            tranvia = null;
+            usuario = null;
         } finally {
             entityManager.clear();
             entityManager.close();
@@ -83,99 +87,69 @@ public class TranviaService
     }
     
     @GET
-    @Path("/tranvias")
+    @Path("/usuarios")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
-        Query q = entityManager.createQuery("select u from Tranvia u");
-        List<Tranvia> tranvias = q.getResultList();
+        Query q = entityManager.createQuery("select u from Usuario u");
+        List<Usuario> tranvias = q.getResultList();
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(tranvias).build();
     } 
     
-    @PUT
-    @Path("/chocado/idTranvia/{idTranvia}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response accidente(@PathParam("idTranvia") String idTranvia) 
-    {
-
-        JSONObject rta = new JSONObject();
-        
-        Query q = entityManager.createQuery("select u from Tranvia u where u.id = '"+ idTranvia +"'");
-        List<Tranvia> tranvias = q.getResultList();
-        if (tranvias.isEmpty())
-        {
-       throw  new NotAuthorizedException("paila");
-
-        
-        }
-        else
-        {
-             Tranvia jesus = tranvias.get(0);
-             jesus.setchocado();
-        
-         try {
-            entityManager.getTransaction().begin();
-            entityManager.merge(jesus);
-            entityManager.getTransaction().commit();
-            rta.put("Se ha actualizado el tranvia", jesus.getId());
-        } catch (Throwable t) {
-            t.printStackTrace();
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            jesus = null;
-        } finally {
-            entityManager.clear();
-            entityManager.close();
-        }
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta).build();
-    } 
-    } 
+     
    @PUT
     @Path("/actualizar")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(TranviaDTO pTranvia) 
+    public Response update(UsuarioDTO pUsuario) 
     {
-        System.out.println("COpas");
 
         
-        JSONObject rta = new JSONObject();
-        Tranvia tranvia= new Tranvia();
-        tranvia.setId(pTranvia.getId());
-        tranvia.setCoordenada(pTranvia.getCoordenada());
-        tranvia.setKilometraje(pTranvia.getKilometraje());
-        tranvia.setLinea(pTranvia.getLinea());
-        tranvia.setTempatura(pTranvia.getTempatura());
-       if(pTranvia.getPanico()){ tranvia.setPanico();}
-       if(pTranvia.getChoque()){tranvia.setchocado();}
+         JSONObject rta = new JSONObject();
+        Usuario usuario= new Usuario();
+        usuario.setNombre(pUsuario.getNombre());
+        usuario.setDocumento(pUsuario.getDocumento());
+        usuario.setTipoDocumento(pUsuario.getTipoDocumento());
+        usuario.setCorreo(pUsuario.getCorreo());
+        usuario.setDireccion(pUsuario.getDireccion());
+        usuario.setTelefono(pUsuario.getTelefono());
+        usuario.setTarjeta(pUsuario.getTarjeta());
+
 
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(tranvia);
+            entityManager.persist(usuario);
             entityManager.getTransaction().commit();
-            rta.put("Se ha actualizado el tranvia", tranvia.getId());
+            entityManager.refresh(usuario);
+            rta.put("Se ha creado el usuario", usuario.getNombre());
         } catch (Throwable t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            tranvia = null;
+            usuario = null;
         } finally {
             entityManager.clear();
             entityManager.close();
         }
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta).build();
     }
+    
+   
+    
     @PUT
-    @Path("/panico/idTranvia/{idTranvia}")
+    @Path("/alquilar/idUsr/{idUsr}/idVcub/{idVcub}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response emergencia(@PathParam("idTranvia") String idTranvia) 
+    public Response alquilar(@PathParam("idUsr") String idUsr,@PathParam("idVcub") String idVcub) 
     {
 
         JSONObject rta = new JSONObject();
         
-        Query q = entityManager.createQuery("select u from Tranvia u where u.id = '"+ idTranvia +"'");
-        List<Tranvia> tranvias = q.getResultList();
-        if (tranvias.isEmpty())
+        Query q = entityManager.createQuery("select u from Usuario u where u.documento = '"+ idUsr +"'");
+        List<Usuario> usuarios = q.getResultList();
+        
+        Query cristo = entityManager.createQuery("select u from Vcub u where u.id = '"+ idVcub +"'");
+        List<Vcub> vcubs = cristo.getResultList();
+        
+        if (usuarios.isEmpty()|| vcubs.isEmpty())
         {
        throw  new NotAuthorizedException("paila");
 
@@ -183,27 +157,82 @@ public class TranviaService
         }
         else
         {
-             Tranvia jesus = tranvias.get(0);
-             jesus.setPanico();
+             Usuario jesus = usuarios.get(0);
+             Vcub mia = vcubs.get(0);
+             
+             jesus.prestarVicicleta(mia);
+             mia.cambiarEstado();
         
          try {
             entityManager.getTransaction().begin();
             entityManager.merge(jesus);
+            entityManager.merge(mia);
+
             entityManager.getTransaction().commit();
-            rta.put("Se ha actualizado el tranvia", jesus.getId());
+            rta.put("Usted ha alquilado un vcub", jesus.getNombre());
         } catch (Throwable t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
             jesus = null;
+            mia = null;
         } finally {
             entityManager.clear();
             entityManager.close();
         }
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta).build();
-    } 
-    } 
+    }
+        }
+   
+    
+    @PUT
+    @Path("/devolver/idUsr/{idUsr}/idVcub/{idVcub}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response devolver(@PathParam("idUsr") String idUsr,@PathParam("idVcub") String idVcub) 
+    {
+
+        JSONObject rta = new JSONObject();
+        
+        Query q = entityManager.createQuery("select u from Usuario u where u.documento = '"+ idUsr +"'");
+        List<Usuario> usuarios = q.getResultList();
+        
+        
+        
+        if (usuarios.isEmpty())
+        {
+       throw  new NotAuthorizedException("paila");
+
+        
+        }
+        else
+        {
+             Usuario jesus = usuarios.get(0);
+             
+            Vcub mia =jesus.getBicicleta();
+
+        
+         try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(jesus);
+            entityManager.merge(mia);
+
+            entityManager.getTransaction().commit();
+            rta.put("Usted ha devuelto el vcub", jesus.getNombre());
+        } catch (Throwable t) {
+            t.printStackTrace();
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            jesus = null;
+            mia = null;
+        } finally {
+            entityManager.clear();
+            entityManager.close();
+        }
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta).build();
+    }
+        }
     
     
     

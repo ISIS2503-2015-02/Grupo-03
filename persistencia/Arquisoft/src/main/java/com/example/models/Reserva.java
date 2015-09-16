@@ -8,15 +8,25 @@ package com.example.models;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javax.persistence.CascadeType.ALL;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author je.camargo10
  */
-public class ReservasDTO
+@Entity
+public class Reserva
 {
   //-----------------------------------------------------------
     // Atributos
@@ -25,23 +35,22 @@ public class ReservasDTO
     /**
      * ID de la reserva
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
     /**
      * Fecha de la reserva
      */
+        @Temporal(TemporalType.DATE)
+
     private Date fecha;  
     /**
      * Usuarios en listade espera
      */
+   @OneToMany  (cascade=ALL, mappedBy="reserva")   
    private ArrayList<Usuario> listaEspera;
-   /**
-     * Buses disponibles para reserva
-     */
-   private ArrayList<MobibusDTO> mobibuses;
-
-    
-   
+  
    
     
     /**
@@ -59,7 +68,7 @@ public class ReservasDTO
     /**
      * Constructor de la clase (sin argumentos)
      */
-    public ReservasDTO()
+    public Reserva()
     {
 
     }
@@ -68,21 +77,23 @@ public class ReservasDTO
      * Constructor de la clase (con argumentos)
      * @param id
      */
-    public ReservasDTO(long id ,String pfecha , ArrayList<MobibusDTO> pJesus)
+    public Reserva(long id ,String pfecha , ArrayList<MobibusDTO> pJesus)
     {
-        this.id = id;
+        /**
+         * this.id = id;
         SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
         
-        try {
+        try 
+        {
             fecha = formatoDeFecha.parse(pfecha);
         } catch (ParseException ex) {
 System.out.print("error fecha");
         }
+         */
         
         listaEspera = new ArrayList<Usuario>();
     usuario = null;
-    mobibuses = new ArrayList<MobibusDTO> ();
-    mobibuses = pJesus;
+
 
         
   
@@ -92,38 +103,82 @@ System.out.print("error fecha");
     // Getters y setters
     //-----------------------------------------------------------
 
-    public void soltarReserva()
+    /**
+     * Un usuario suelta la reserva
+     */
+    public Usuario soltarReserva()
     {
+         Usuario jesus = null;
     if (listaEspera.size()!= 0)
     {
-    Usuario jesus = listaEspera.get(0);
+    jesus = listaEspera.get(0);
     jesus.setNotificacion("se ha liberado un Mobibus, usted queda con la reserva");
     listaEspera.remove(0);
+    return jesus;
     }
     else
     {
     listaEspera = new ArrayList<Usuario>();
-    usuario = null;
+return jesus;
     }
     }
     
-    public void verificarFecha()
+    public String reservar(Usuario jesus, Date fecha)
+    {
+        
+       if ( verificarFecha(fecha))
+       {
+       if (listaEspera.size() >0 || usuario != null)
+       {
+           listaEspera.add(jesus);
+           
+           return "Se ingreso a la lista de espera";
+       }
+       else
+       {
+           usuario = jesus;
+           return "Reserva Exitosa";
+       }
+       
+       
+       }
+       else
+       {
+           
+           return "Cambie la fecha";
+           
+       }
+
+    
+    
+    
+    }
+    
+    public boolean verificarFecha(Date fechaVerficar)
     {
     java.util.Date fechaActual = new Date();
-    if (fechaActual.before(fecha))
+    Calendar calendar = Calendar.getInstance();
+	
+      calendar.setTime(fechaActual); 	
+      calendar.add(Calendar.DAY_OF_YEAR, 7);
+      
+      
+    if (fechaActual.before(fechaVerficar) || calendar.before(fechaVerficar) )
     {
-        for (int i = 0; listaEspera.size() > i; i++)
-        {
-         Usuario jesus =  listaEspera.get(i);
-         jesus.setNotificacion("No se pudo generar el servicio");
-              
-        }
- 
+    return false;
+    
+    }
+ else
+    {
+    
+    return true;
+    
+    }
     
     }
 
     
-    }
+    
     /**
      * Devuelve el id de la Reserva
      * @return id Id de la Reserva
@@ -133,13 +188,7 @@ System.out.print("error fecha");
         return id;
     }
     
-       public ArrayList<MobibusDTO> getMobibuses() {
-        return mobibuses;
-    }
-
-    public void setMobibuses(ArrayList<MobibusDTO> mobibuses) {
-        this.mobibuses = mobibuses;
-    }
+  
     /**
      * Modifica el id de la Reserva
      * @param id Nuevo id de la Reserva

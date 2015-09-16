@@ -36,6 +36,7 @@ public class TranviaDTO
     */
    private int panico; 
     
+   
     /**
      * String coordenada
      */

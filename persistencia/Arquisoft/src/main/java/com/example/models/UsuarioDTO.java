@@ -1,47 +1,33 @@
 package com.example.models;
 
-import com.sun.istack.NotNull;
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
  * Clase que representa un usuario de tbc
  * @author je.camargo10
  */
-@Entity
-public class Usuario implements Serializable
+public class UsuarioDTO
 {
-  //-----------------------------------------------------------
+
+    //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
-    private static final long serialVersionUID = 1L;
 
 
 
     /**
      * Nombres y apellidos del usuario
      */
-        @NotNull
-
     private String nombre;
 
      /**
      * Número de documento de identidad
      */
-     /**
-     * ID del TranviaDTO
-     */
-    @Id
     private long documento;
 
     /**
      * Tipo de documento
      */
-        @NotNull
-
     private String tipoDocumento;
 
     /**
@@ -58,8 +44,6 @@ public class Usuario implements Serializable
     /**
      * Correo electrónico del usuario
      */
-    @NotNull
-
     private String correo;
 
     /**
@@ -71,10 +55,12 @@ public class Usuario implements Serializable
     /**
      * Bicicleta alquilada por el usuario
      */
-    @OneToOne
-    private Vcub bicicleta;
+    private VcubDTO bicicleta;
     
-       
+    
+    @OneToOne
+        private Reserva reserva;
+    
     
     /**
      * Notificacion pendiente para el usuario
@@ -96,26 +82,12 @@ public class Usuario implements Serializable
     /**
      * Constructor de la clase sin argumentos
      */
-    public Usuario()
+    public UsuarioDTO()
     {
 
     }
 
-    /**
-     * Constructor de la clase con argumentos
-     * @param nombre Nombre del usuario
-     * @param contraseña Constraseña del usuario
-     * @param tipo Tipo de usuario
-     */
-    public Usuario(String pNombre, long pDocumento, String ptipoDocumento,long pTelefono)
-    {
-        this.nombre = pNombre;
-        this.documento = pDocumento;
-        this.tipoDocumento = ptipoDocumento;
-        this.telefono = pTelefono;
-        notificacion = "";
-    
-    }
+  
 
     //-----------------------------------------------------------
     // Getters y setters
@@ -242,16 +214,12 @@ public class Usuario implements Serializable
     }
 
     
-    public Vcub getBicicleta() {
+    public VcubDTO getBicicleta() {
         return bicicleta;
     }
 
-    public void prestarVicicleta(Vcub bicicleta) {
+    public void prestarVicicleta(VcubDTO bicicleta) {
         this.bicicleta = bicicleta;
-    }
-    
-    public void devolverVcub() {
-        this.bicicleta = null;
     }
 
 

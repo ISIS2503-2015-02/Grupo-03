@@ -35,6 +35,7 @@ public class Tranvia implements Serializable
      */
     private int choque;
     
+    private int magnitudEmergencia;
     
     /**
      * Temperatura
