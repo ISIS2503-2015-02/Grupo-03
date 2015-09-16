@@ -16,10 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.ws.rs.GET;
-<<<<<<< HEAD
-=======
 import javax.ws.rs.NotAuthorizedException;
->>>>>>> d8ce2e1fe59c96a305dd18505c9e7671b1665fc3
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
