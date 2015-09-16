@@ -54,7 +54,7 @@ aplicacionMundial.directive('toolbar', function(){
     
     aplicacionMundial.controller("vcubCtrl", function($http, $scope) {
  
-        $scope.addCompetitor=function(){
+        $scope.addVcub=function(){
             console.log('estado');
             $http.post('http://localhost:8080/vcub/add', JSON.stringify($scope.vcub)).success(function(data,headers){
                 $scope.vcub={};
