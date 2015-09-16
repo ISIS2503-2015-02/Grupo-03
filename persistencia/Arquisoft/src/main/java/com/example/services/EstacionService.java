@@ -7,6 +7,8 @@ package com.example.services;
 import com.example.PersistenceManager;
 import com.example.models.Estacion;
 import com.example.models.EstacionDTO;
+import com.example.models.Vcub;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -51,7 +53,7 @@ public class EstacionService {
         Estacion vTmp= new Estacion();
         vTmp.setCapacidad(ub.getCapacidad());
         vTmp.setUbicacion(ub.getUbicacion());
-        vTmp.setVcubs(ub.getVcubs());
+        vTmp.setVcubs(new ArrayList<Vcub>());
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(vTmp);
@@ -101,6 +103,33 @@ public class EstacionService {
     {
         Estacion e = entityManager.find(Estacion.class,idEstacion );
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(e).build();
+    }
+      
+    @PUT
+    @Path("/addVcub/{id}/{idVcub}")
+    public void agregarVcub( @PathParam("id") int idEstacion, @PathParam("idVcub") Long idVcub) 
+    {
+
+        Estacion e= entityManager.find(Estacion.class, idEstacion);
+        Vcub v= entityManager.find(Vcub.class, idVcub);
+        entityManager.getTransaction().begin();
+        List <Vcub> l=e.getVcubs();
+        l.add(v);
+        e.setVcubs(l);
+        entityManager.getTransaction().commit();   
+    }
+    
+    @PUT
+    @Path("/removeVcub/{id}/{idVcub}")
+    public void eliminarVcub( @PathParam("id") int idEstacion, @PathParam("idVcub") Long idVcub) 
+    {
+        Estacion e= entityManager.find(Estacion.class, idEstacion);
+        Vcub v= entityManager.find(Vcub.class, idVcub);
+        entityManager.getTransaction().begin();
+        List <Vcub> l=e.getVcubs();
+        l.remove(v);
+        e.setVcubs(l);
+        entityManager.getTransaction().commit();   
     }
 
     

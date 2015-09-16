@@ -46,6 +46,7 @@ public class Estacion implements Serializable {
      * los vcubs guardados en la estación.
      */
     @OneToMany
+    @JoinColumn(name="idVcub")
     private List<Vcub> vcubs;
     
     /**

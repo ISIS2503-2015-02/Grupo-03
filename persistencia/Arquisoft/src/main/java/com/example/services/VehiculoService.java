@@ -4,33 +4,35 @@
  * and open the template in the editor.
  */
 package com.example.services;
-
+import com.example.models.Ubicacion;
+import com.example.models.UbicacionDTO;
 import com.example.PersistenceManager;
-import com.example.models.Estacion;
-import com.example.models.Reporte;
-import com.example.models.ReporteDTO;
 import com.example.models.Vehiculo;
+import com.example.models.VehiculoDTO;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.json.simple.JSONObject;
+import javax.ws.rs.PathParam;
 
 /**
  *
  * @author df.sabogal10
  */
-@Path("/reporte")
+@Path("/vehiculo")
 @Produces(MediaType.APPLICATION_JSON)
-public class ReporteService {
+public class VehiculoService {
     
     @PersistenceContext(unitName = "tbcPU")
     EntityManager entityManager;
@@ -45,21 +47,20 @@ public class ReporteService {
     }
     
     @POST
-    @Path("/add/{id}")
+    @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createReporte(ReporteDTO ub, @PathParam("id") int idVehiculo) {
+    public Response createVehicle(VehiculoDTO ub) {
 
         JSONObject rta = new JSONObject();
-        Reporte vTmp= new Reporte();
-        vTmp.setFecha(ub.getFecha());
+        Vehiculo vTmp= new Vehiculo();
+        vTmp.setCapacidad(ub.getCapacidad());
+        vTmp.setUbicacion(ub.getUbicacion());
         try {
             entityManager.getTransaction().begin();
-            Vehiculo v=entityManager.find(Vehiculo.class, idVehiculo);
-            vTmp.setVehiculo(v);
             entityManager.persist(vTmp);
             entityManager.getTransaction().commit();
             entityManager.refresh(vTmp);
-            rta.put("reporte_id", vTmp.getId());
+            rta.put("vehiculo_id", vTmp.getId());
         } catch (Throwable t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
@@ -72,14 +73,29 @@ public class ReporteService {
         }
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta).build();
     }
-     @GET
+    
+    @GET
     @Path("/get")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
-        Query q = entityManager.createQuery("select u from Reporte u");
-        List<Estacion> reportes = q.getResultList();
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(reportes).build();
+        Query q = entityManager.createQuery("select u from Vehiculo u");
+        List<Vehiculo> ubs = q.getResultList();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(ubs).build();
     }
+    
+    @PUT
+    @Path("{id}")
+    public void actulizarUbicacionVehiculo(UbicacionDTO ub, @PathParam("id") int idVehiculo) 
+    {
 
+        Vehiculo v= entityManager.find(Vehiculo.class, idVehiculo);
+        Long  idUbicacion=v.getUbicacion().getId();
+        Ubicacion u = entityManager.find(Ubicacion.class, idUbicacion);
+        entityManager.getTransaction().begin();
+        u.setLatitud(ub.getLatitud());
+        u.setLongitud(ub.getLongitud());
+        entityManager.getTransaction().commit();
+        
+    }
     
 }
