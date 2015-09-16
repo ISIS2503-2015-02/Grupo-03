@@ -28,23 +28,23 @@ public class Tranvia implements Serializable
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
     
     /**
      * Estado del TranviaDTO
      */
-    private boolean choque;
+    private int choque;
     
     
     /**
      * Temperatura
      */
-   private long tempatura;
+   private int tempatura;
    
    /**
     * Boolean con referencia al boton de paanico para situacion de emergencia
     */
-    private boolean panico; 
+    private int panico; 
     
     /**
      * String coordenada
@@ -59,7 +59,7 @@ public class Tranvia implements Serializable
     /**
      * Kilometraje recorrido
      */
-    private long kilometraje ;
+    private int kilometraje ;
     //-----------------------------------------------------------
     // Constructores
     //-----------------------------------------------------------
@@ -78,14 +78,14 @@ public class Tranvia implements Serializable
      * Constructor de la clase (con argumentos)
      * @param id
      */
-    public Tranvia(long id ,String plinea, String coordenadaInic, long pkilometraje)
+    public Tranvia(int id ,String plinea, String coordenadaInic, int pkilometraje)
     {
         this.id = id;
         this.linea= plinea;
         this.tempatura = 0;
         this.coordenada = coordenadaInic;
-        this.panico= false;
-        this.choque=false;
+        this.panico= 0;
+        this.choque=0;
     }
 
     //-----------------------------------------------------------
@@ -96,7 +96,7 @@ public class Tranvia implements Serializable
      * Devuelve el id del TranviaDTO
      * @return id Id del TranviaDTO
      */
-    public long getId()
+    public int getId()
     {
         return id;
     }
@@ -107,7 +107,7 @@ public class Tranvia implements Serializable
      */
     public boolean getChoque()
     {
-        return choque;
+        return choque>0;
     }
     
     /**
@@ -121,19 +121,19 @@ public class Tranvia implements Serializable
     /**
      * Indica que ha sufrido un choque
      */
-    public void chocado()
+    public void setchocado()
     {
-     choque = true;
+     this.choque =1;
     }
-      public long getKilometraje() {
+      public int getKilometraje() {
         return kilometraje;
     }
 
-    public void setKilometraje(long kilometraje) {
+    public void setKilometraje(int kilometraje) {
         this.kilometraje = kilometraje;
     }
 
-    public long getTempatura() {
+    public int getTempatura() {
         return tempatura;
     }
 
@@ -141,12 +141,12 @@ public class Tranvia implements Serializable
         this.tempatura = tempatura;
     }
 
-    public boolean isPanico() {
-        return panico;
+    public boolean getPanico() {
+        return panico>0;
     }
 
     public void setPanico() {
-        this.panico = true;
+        this.panico = 1;
     }
 
     public String getCoordenada() {

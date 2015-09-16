@@ -4,20 +4,11 @@
  * and open the template in the editor.
  */
 package com.example.models;
-
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import com.sun.istack.NotNull;
-
-import javax.persistence.Id;
-
 /**
  *
  * @author je.camargo10
  */
-public class TranviaDTO implements Serializable
+public class TranviaDTO 
 {
   //-----------------------------------------------------------
     // Atributos
@@ -27,23 +18,23 @@ public class TranviaDTO implements Serializable
      * ID del TranviaDTO
      */
    
-    private long id;
+    private int id;
     
     /**
      * Estado del TranviaDTO
      */
-    private boolean choque;
+    private int choque;
     
     
     /**
      * Temperatura
      */
-   private long tempatura;
+   private int tempatura;
    
    /**
     * Boolean con referencia al boton de paanico para situacion de emergencia
     */
-    private boolean panico; 
+   private int panico; 
     
     /**
      * String coordenada
@@ -57,7 +48,7 @@ public class TranviaDTO implements Serializable
     /**
      * Kilometraje recorrido
      */
-    private long kilometraje ;
+    private int kilometraje ;
     //-----------------------------------------------------------
     // Constructores
     //-----------------------------------------------------------
@@ -71,21 +62,6 @@ public class TranviaDTO implements Serializable
     {
 
     }
-
-    /**
-     * Constructor de la clase (con argumentos)
-     * @param id
-     */
-    public TranviaDTO(long id ,String plinea, String coordenadaInic, long pkilometraje)
-    {
-        this.id = id;
-        this.linea= plinea;
-        this.tempatura = 0;
-        this.coordenada = coordenadaInic;
-        this.panico= false;
-        this.choque=false;
-    }
-
     //-----------------------------------------------------------
     // Getters y setters
     //-----------------------------------------------------------
@@ -94,7 +70,7 @@ public class TranviaDTO implements Serializable
      * Devuelve el id del TranviaDTO
      * @return id Id del TranviaDTO
      */
-    public long getId()
+    public int getId()
     {
         return id;
     }
@@ -105,7 +81,7 @@ public class TranviaDTO implements Serializable
      */
     public boolean getChoque()
     {
-        return choque;
+        return choque >= 1 ;
     }
     
     /**
@@ -119,19 +95,19 @@ public class TranviaDTO implements Serializable
     /**
      * Indica que ha sufrido un choque
      */
-    public void chocado()
+    public void setChocado()
     {
-     choque = true;
+     this.choque = 1;
     }
-      public long getKilometraje() {
+      public int getKilometraje() {
         return kilometraje;
     }
 
-    public void setKilometraje(long kilometraje) {
+    public void setKilometraje(int kilometraje) {
         this.kilometraje = kilometraje;
     }
 
-    public long getTempatura() {
+    public int getTempatura() {
         return tempatura;
     }
 
@@ -139,12 +115,12 @@ public class TranviaDTO implements Serializable
         this.tempatura = tempatura;
     }
 
-    public boolean isPanico() {
-        return panico;
+    public boolean getPanico() {
+        return panico >=1;
     }
 
     public void setPanico() {
-        this.panico = true;
+        this.panico = 1;
     }
 
     public String getCoordenada() {

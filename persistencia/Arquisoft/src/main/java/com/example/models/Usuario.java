@@ -4,7 +4,7 @@ package com.example.models;
  * Clase que representa un usuario de tbc
  * @author je.camargo10
  */
-public class UsuarioDTO
+public class Usuario
 {
 
     //-----------------------------------------------------------
@@ -75,7 +75,7 @@ public class UsuarioDTO
     /**
      * Constructor de la clase sin argumentos
      */
-    public UsuarioDTO()
+    public Usuario()
     {
 
     }
@@ -86,7 +86,7 @@ public class UsuarioDTO
      * @param contraseña Constraseña del usuario
      * @param tipo Tipo de usuario
      */
-    public UsuarioDTO(String pNombre, long pDocumento, String ptipoDocumento,long pTelefono)
+    public Usuario(String pNombre, long pDocumento, String ptipoDocumento,long pTelefono)
     {
         this.nombre = pNombre;
         this.documento = pDocumento;

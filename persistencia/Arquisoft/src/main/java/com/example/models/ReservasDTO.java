@@ -34,7 +34,7 @@ public class ReservasDTO
     /**
      * Usuarios en listade espera
      */
-   private ArrayList<UsuarioDTO> listaEspera;
+   private ArrayList<Usuario> listaEspera;
    /**
      * Buses disponibles para reserva
      */
@@ -47,7 +47,7 @@ public class ReservasDTO
     /**
      * UsuarioDTO acargo de la reserva
      */
-    private UsuarioDTO usuario;
+    private Usuario usuario;
     
     
     //-----------------------------------------------------------
@@ -79,7 +79,7 @@ public class ReservasDTO
 System.out.print("error fecha");
         }
         
-        listaEspera = new ArrayList<UsuarioDTO>();
+        listaEspera = new ArrayList<Usuario>();
     usuario = null;
     mobibuses = new ArrayList<MobibusDTO> ();
     mobibuses = pJesus;
@@ -96,13 +96,13 @@ System.out.print("error fecha");
     {
     if (listaEspera.size()!= 0)
     {
-    UsuarioDTO jesus = listaEspera.get(0);
+    Usuario jesus = listaEspera.get(0);
     jesus.setNotificacion("se ha liberado un Mobibus, usted queda con la reserva");
     listaEspera.remove(0);
     }
     else
     {
-    listaEspera = new ArrayList<UsuarioDTO>();
+    listaEspera = new ArrayList<Usuario>();
     usuario = null;
     }
     }
@@ -114,7 +114,7 @@ System.out.print("error fecha");
     {
         for (int i = 0; listaEspera.size() > i; i++)
         {
-         UsuarioDTO jesus =  listaEspera.get(i);
+         Usuario jesus =  listaEspera.get(i);
          jesus.setNotificacion("No se pudo generar el servicio");
               
         }
@@ -155,22 +155,22 @@ System.out.print("error fecha");
         this.fecha = fecha;
     }
 
-    public ArrayList<UsuarioDTO> getListaEspera()
+    public ArrayList<Usuario> getListaEspera()
     {
         return listaEspera;
     }
 
-    public void setListaEspera(ArrayList<UsuarioDTO> listaEspera) {
+    public void setListaEspera(ArrayList<Usuario> listaEspera) {
         this.listaEspera = listaEspera;
     }
 
   
 
-    public UsuarioDTO getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UsuarioDTO usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     } 
 }
