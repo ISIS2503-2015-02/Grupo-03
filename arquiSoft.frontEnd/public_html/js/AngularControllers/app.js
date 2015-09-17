@@ -219,6 +219,16 @@ aplicacionMundial.directive('competitorInfo', function(){
                 $scope.toolbar.selectTab(8);
             });
         };
+        
+        
+        
+        $scope.alquilar=function(){
+            $http.put('http://localhost:8080/usuario/alquilar/idUsr/'+$scope.usuario.documento + '/idVcub/'+$scope.usuario.vcubAL).success(function(data,headers){
+                $scope.tranvia={};
+                $scope.toolbar.selectTab(10);
+            });
+        };
+        
     }); 
     
     
