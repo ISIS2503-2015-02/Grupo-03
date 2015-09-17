@@ -165,6 +165,22 @@ public class PanelMenu extends JPanel implements ActionListener
 
 	public void actualizar()
 	{
+		URL zz = null;
+
+		try
+		{
+			zz = new URL("http://static.blogo.it/ecologiablog/ecologiablog_bicing_barcelona.jpg");
+		} 
+		catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if(zz!=null)
+		{
+			ImageIcon icono = new ImageIcon(zz);
+			label.setIcon(icono);
+		}
 		this.revalidate();
 		this.repaint();
 	}

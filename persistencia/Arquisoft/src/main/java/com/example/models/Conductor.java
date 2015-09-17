@@ -5,22 +5,31 @@
  */
 package com.example.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author dc.bonilla10
  */
-public class ConductorDTO
+@Entity
+public class Conductor implements Serializable
 {
+    
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
-
-    /**
-     * CC del ConductorDTO
-     */
-    private long cc;
+    @Id
+    @Column(name="ccConductor")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long cc;
     
     /**
      * Nombre del ConductorDTO
@@ -30,12 +39,19 @@ public class ConductorDTO
     /**
      * Vehiculo que conduce
      */
-    private MobibusDTO mobibus;
+    @OneToOne
+    @JoinColumn(name="idMobibus")
+    private Mobibus mobibus;
+    
+    @OneToOne
+    @JoinColumn(name="idTtranvia")
     private Tranvia tranvia;
     
     /**
      * Tipó de ruta que cubre
      */
+    @OneToOne
+    @JoinColumn(name="idRuta")
     private Ruta ruta;
     
     /**
@@ -51,15 +67,12 @@ public class ConductorDTO
     
     
     
-    
 
     //-----------------------------------------------------------
     // Constructores
-    
     //-----------------------------------------------------------
 
-
-    /**
+ /**
      * Constructor de la clase 
      * @param cc
      * @param nombre
@@ -69,7 +82,7 @@ public class ConductorDTO
      * @param tiempos
      * @param prom
      */
-    public ConductorDTO(long cc, String nombre, MobibusDTO movi, Tranvia tran, Ruta tipoRuta, ArrayList tiempos, Double prom)
+    public Conductor(long cc, String nombre, Mobibus movi, Tranvia tran, Ruta tipoRuta, ArrayList tiempos, Double prom)
     {
         this.cc = cc;
         this.nombre = nombre;
@@ -79,6 +92,11 @@ public class ConductorDTO
         this.tiempos = new ArrayList();
         this.promedio = 0.0;
 
+    }
+    
+    public Conductor()
+    {
+        
     }
 
     public long getCc() {
@@ -97,19 +115,23 @@ public class ConductorDTO
         this.nombre = nombre;
     }
 
-    public MobibusDTO getMobibus() {
+    public Mobibus getMobibus() {
         return mobibus;
     }
 
-    public void setMobibus(MobibusDTO mobibus) {
+    public void setMobibus(Mobibus mobibus) {
+        if(tranvia == null)
         this.mobibus = mobibus;
     }
 
     public Tranvia getTranvia() {
+        
         return tranvia;
     }
 
     public void setTranvia(Tranvia tranvia) {
+        
+        if(mobibus==null)
         this.tranvia = tranvia;
     }
 
@@ -145,9 +167,3 @@ public class ConductorDTO
         
     }
 }
-
-    //-----------------------------------------------------------
-    // Getters y setters
-    //-----------------------------------------------------------
-
-    

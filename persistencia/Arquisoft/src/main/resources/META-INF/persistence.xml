@@ -3,15 +3,17 @@
   <persistence-unit name="tbcPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.example.models.Ubicacion</class>
+    <class>com.example.models.Vcub</class>
     <class>com.example.models.Tranvia</class>
-    <class>com.example.models.Usuario</class>
-    <class>com.example.models.Reserva</class>
+    <class>com.example.models.Conductor</class>
     <class>com.example.models.Mobibus</class>
+    <class>com.example.models.Ruta</class>
     <class>com.example.models.Emergencia</class>
     <class>com.example.models.Estacion</class>
     <class>com.example.models.Reporte</class>
+    <class>com.example.models.Reserva</class>
+    <class>com.example.models.Usuario</class>
     <class>com.example.models.Vehiculo</class>
-    <class>com.example.models.Vcub</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
       <property name="javax.persistence.jdbc.user" value="app"/>

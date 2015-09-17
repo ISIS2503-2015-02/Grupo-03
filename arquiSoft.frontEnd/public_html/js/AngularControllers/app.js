@@ -101,6 +101,24 @@ aplicacionMundial.directive('toolbar', function(){
             });
         };
     });    
+    
+    aplicacionMundial.directive('rankingConductores', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/mejorConductor.html',
+            controller: 'getRank'
+        };
+    });
+    
+    aplicacionMundial.controller("getRank", function($http, $scope) {
+    $http.get('http://localhost:8080/conductor/rank').
+      success(function(data, status, headers, config) {
+        $scope.rank = data;
+      }).
+      error(function(data, status, headers, config) {
+        // log error
+      });
+    });
 
 aplicacionMundial.directive('competitorInfo', function(){
         return{

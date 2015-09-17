@@ -5,8 +5,8 @@
  */
 package com.example.services;
 
-import com.example.models.MobibusDTO;
-import com.example.models.Mobibus;
+import com.example.models.ConductorDTO;
+import com.example.models.Conductor;
 import com.example.PersistenceManager;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -26,11 +26,11 @@ import org.json.simple.JSONObject;
 
 /**
  *
- * @author dc.bonilla10
+ * @author ja.silva11
  */
-@Path("/mobibus")
+@Path("/conductor")
 @Produces(MediaType.APPLICATION_JSON)
-public class MobibusService 
+public class ConductorService 
 {
     /**
      * Referencia al Ejb del mobibus encargada de realizar las operaciones del mismo.
@@ -50,23 +50,22 @@ public class MobibusService
     @POST
     @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createCompetitor(MobibusDTO mobibus) {
+    public Response createCompetitor(ConductorDTO conductor) {
 
         JSONObject rta = new JSONObject();
-        Mobibus mobiTmp= new Mobibus();
-        mobiTmp.setEstado(mobibus.getEstado());
+        Conductor condTmp= new Conductor();
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(mobiTmp);
+            entityManager.persist(condTmp);
             entityManager.getTransaction().commit();
-            entityManager.refresh(mobiTmp);
-            rta.put("mobibus_id", mobiTmp.getId());
+            entityManager.refresh(condTmp);
+            rta.put("conductor_id", condTmp.getCc());
         } catch (Throwable t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
-            mobiTmp = null;
+            condTmp = null;
         } finally {
             entityManager.clear();
             entityManager.close();
@@ -78,28 +77,17 @@ public class MobibusService
     @Path("/get")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
-        Query q = entityManager.createQuery("select u from Mobibus u");
-        List<Mobibus> mobibuses = q.getResultList();
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(mobibuses).build();
+        Query q = entityManager.createQuery("select u from Conductor u");
+        List<Conductor> conductores = q.getResultList();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(conductores).build();
     } 
     
     @GET
-    @Path("/disponibles")
+    @Path("/rank")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllDisp() {
-
-        Query q = entityManager.createQuery("select u from Mobibus u where u.estado = 'disponible'");
-        List<Mobibus> mobibuses = q.getResultList();
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(mobibuses).build();
-    }
-    
-    @GET
-    @Path("/reservados")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllAlqui() {
-
-        Query q = entityManager.createQuery("select u from Mobibus u where u.estado = 'reservado'");
-        List<Mobibus> mobibuses = q.getResultList();
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(mobibuses).build();
-    }
+    public Response getRank() {
+        Query q = entityManager.createQuery("select u from Conductor u order by u.promedio DSC");
+        List<Conductor> conductores = q.getResultList();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(conductores).build();
+    }   
 }
