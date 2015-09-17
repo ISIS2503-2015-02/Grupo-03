@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class PanelCrearEmergencia extends JPanel {
+	
 	private PanelPrincipal principal;
 	private JTextField Descripción;
 	private JRadioButton rdbtnTranviaFueraDe;
@@ -40,6 +41,7 @@ public class PanelCrearEmergencia extends JPanel {
 		Descripción.setBounds(127, 73, 290, 58);
 		add(Descripción);
 		Descripción.setColumns(10);
+		Descripción.setVisible(true);
 		
 		JLabel lblMagnitud = new JLabel("Magnitud");
 		lblMagnitud.setBounds(32, 162, 91, 50);
@@ -78,6 +80,37 @@ public class PanelCrearEmergencia extends JPanel {
 		JButton btnNewButton = new JButton("Crear");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(rdbtnTranviaSigueFuncionando.isSelected())
+				{
+					if(rdbtnLeve.isSelected())
+					{
+						principal.crearEmergencia(Descripción.getText(), "leve", "sigue");
+					}
+					else if(rdbtnModerada.isSelected())
+					{
+						principal.crearEmergencia(Descripción.getText(), "moderada","sigue");
+					}
+					else
+					{
+						principal.crearEmergencia(Descripción.getText(), "grave","sigue");
+					}
+				}
+				else
+				{
+					if(rdbtnLeve.isSelected())
+					{
+						principal.crearEmergencia(Descripción.getText(), "leve","ko");
+
+					}
+					else if(rdbtnModerada.isSelected())
+					{
+						principal.crearEmergencia(Descripción.getText(), "moderada","ko");
+					}
+					else
+					{
+						principal.crearEmergencia(Descripción.getText(), "grave","ko");
+					}
+				}
 			}
 		});
 		btnNewButton.setBounds(127, 362, 89, 23);
@@ -86,7 +119,8 @@ public class PanelCrearEmergencia extends JPanel {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
+				principal.mostrarPanel();
+				}
 		});
 		btnCancelar.setBounds(226, 362, 89, 23);
 		add(btnCancelar);

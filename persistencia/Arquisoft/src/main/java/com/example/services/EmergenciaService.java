@@ -8,6 +8,7 @@ import com.example.PersistenceManager;
 import com.example.excepciones.OperacionInvalidaException;
 import com.example.models.Emergencia;
 import com.example.models.EmergenciaDTO;
+import com.example.models.Vehiculo;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -44,9 +45,9 @@ public class EmergenciaService {
     }
     
     @POST
-    @Path("/add")
+    @Path("/add/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createEmergencia(EmergenciaDTO ub) throws OperacionInvalidaException {
+    public Response createEmergencia(EmergenciaDTO ub, @PathParam("id") int idVehiculo) throws OperacionInvalidaException {
 
         JSONObject rta = new JSONObject();
         Emergencia vTmp= new Emergencia();
@@ -55,7 +56,10 @@ public class EmergenciaService {
         vTmp.setFecha(ub.getFecha());
         vTmp.setMagnitud(ub.getMagnitud());
         vTmp.setUbicacion(ub.getUbicacion());
-        vTmp.setVehiculosInvolucrados(ub.getVehiculosInvolucrados());
+        Vehiculo v=entityManager.find(Vehiculo.class, idVehiculo);
+        List <Vehiculo> l= ub.getVehiculosInvolucrados();
+        l.add(v);
+        vTmp.setVehiculosInvolucrados(l);
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(vTmp);

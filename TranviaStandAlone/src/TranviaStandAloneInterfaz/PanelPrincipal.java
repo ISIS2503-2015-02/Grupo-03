@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -17,14 +18,28 @@ import javax.swing.border.TitledBorder;
 import TranviaStandAloneMundo.Mundo;
 import TranviaStandAloneMundo.Tranvia;
 
+import javax.swing.JLabel;
+
+import java.awt.Font;
+
+import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+
+import javax.swing.UIManager;
+
+import java.awt.Panel;
+
 public class PanelPrincipal extends JPanel {
 
 	private Mundo mundo;
-
-	private PanelBotones botones;
-	
+	private JButton btnCrearEmergencia;
+	private JButton btnPnico;
+	private Panel panel;
 	private PanelCrearEmergencia emergencia;
-
+	private PanelLogIn login;
 	//
 	//	private PanelCambiarCodigoPostal postal;
 	//
@@ -38,129 +53,85 @@ public class PanelPrincipal extends JPanel {
 		n.setVisible(true);
 		PanelPrincipal nuevo = new PanelPrincipal(new Mundo());
 		nuevo.setVisible(true);
-		n.getContentPane().add(nuevo); 
+		n.getContentPane().add(nuevo);
 	}
 
 	/**
 	 * Create the panel.
 	 */
 	public PanelPrincipal(Mundo x)
-	{    	
+	{
+		setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblTranvia = new JLabel("\t\t\t\t\t\t\tTranvia");
+		lblTranvia.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		add(lblTranvia, BorderLayout.NORTH);
+		
+		login = new PanelLogIn(this);
+		add(login);
+		login.setLayout(null);
+		panel = new Panel();
+		
+		btnPnico = new JButton("\u00A1Ayuda!");
+		btnPnico.setBounds(164, 118, 109, 31);
+		panel.add(btnPnico);
+		btnPnico.setForeground(Color.RED);
+		btnPnico.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		btnPnico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mundo.Panico();
+				
+			}
+		});
+		
+		btnCrearEmergencia = new JButton("Crear Emergencia");
+		btnCrearEmergencia.setBounds(164, 45, 117, 23);
+		panel.add(btnCrearEmergencia);
+		btnCrearEmergencia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mostrarEmergencia();
+			}
+		});
 		mundo = x;
-		//Creación de los paneles aquí
+		emergencia = new PanelCrearEmergencia(this);
+		
 
-		botones = new PanelBotones( this );
-		add( botones, BorderLayout.CENTER);		
-		botones.setVisible(true);
-
-		botones.actualizar();
 		this.revalidate();
 	}
 
-	public void mostrarCambiar() 
+	public void mostrarPanel()
+	{
+		add(panel, BorderLayout.CENTER);
+		panel.setVisible( true );
+		login.setVisible(false);
+		emergencia.setVisible(false);
+		this.revalidate();
+	}
+	public void mostrarEmergencia() 
 	{	
-		botones.setVisible(false);
-		emergencia = new PanelCrearEmergencia(this); 
 		add(emergencia, BorderLayout.CENTER);
 		emergencia.setVisible( true );
+		panel.setVisible(false);
+		this.revalidate();
 		
 	}
-//
-//	public Vcub[] darDisponibles()
-//	{
-//		mundo.disponibles();
-//
-//		ArrayList<Vcub> x = mundo.darDisponibles();
-//		Vcub[] vcubs = new Vcub[x.size()];
-//		for(int i=0; i<x.size();i++)
-//		{
-//			vcubs[i]=x.get(i);
-//		}
-//		Vcub y = new Vcub(Long.valueOf("12"),"disponible");
-//		System.out.println(mundo.darDisponibles().size());
-//		System.out.println(((Vcub) mundo.darDisponibles().get(0)).getId());
-//		System.out.println(((Vcub) mundo.darDisponibles().get(0)).getEstado());
-//		return vcubs;
-//	}
+
+	public void crearEmergencia(String descripcion, String magnitud, String consecuencia ) 
+	{
+		try {
+			mundo.crearEmergencia(descripcion, consecuencia, magnitud);
+		} catch (ParseException e) {
+			System.out.println(e);
+		}
+	}
 
 	public void mostrarBotones() 
 	{	
 		emergencia.setVisible(false);
-		botones = new PanelBotones(this);
-		add(botones, BorderLayout.CENTER);
-		botones.setVisible( true );
-		botones.actualizar();
+
 	}
-	//
-	//	public void mostrarBotones2() 
-	//	{	
-	//		opciones.setVisible(false);
-	//		botones = new PanelBotones(this);
-	//		add(botones, BorderLayout.CENTER);
-	//		botones.setVisible( true );
-	//		botones.actualizar();
-	//	}
-	//
-	//	public void mostrarBotones3() 
-	//	{	
-	//		postal.setVisible(false);
-	//		botones = new PanelBotones(this);
-	//		add(botones, BorderLayout.CENTER);
-	//		botones.setVisible( true );
-	//		botones.actualizar();
-	//	}
-	//
-	//	public void mostrarBotones4() 
-	//	{	
-	//		ciudad.setVisible(false);
-	//		botones = new PanelBotones(this);
-	//		add(botones, BorderLayout.CENTER);
-	//		botones.setVisible( true );
-	//		botones.actualizar();
-	//	}
-	//
-	//	public void mostrarOpciones()
-	//	{
-	//		botones.setVisible(false);
-	//		opciones = new PanelOpciones(this); 
-	//		add(opciones, BorderLayout.CENTER);
-	//		opciones.setVisible( true );
-	//	}
-	//
-	//	public void mostrarCodigoPostal()
-	//	{
-	//		opciones.setVisible(false);
-	//		postal = new PanelCambiarCodigoPostal(this); 
-	//		add(postal, BorderLayout.CENTER);
-	//		postal.setVisible( true );
-	//	}
-	//
-	//	public void mostrarCiudad()
-	//	{
-	//		opciones.setVisible(false);
-	//		ciudad = new PanelCambiarCiudad(this); 
-	//		add(ciudad, BorderLayout.CENTER);
-	//		ciudad.setVisible( true );
-	//	}
-	//
-	//	public void cambiar(String cod, String lat, String lon, String ciu)
-	//	{
-	//		if(darUsuario()!=null)
-	//		{
-	//			if((lat != "" && lon != "")|| cod != "" || ciu != "")
-	//			{
-	//				darUsuario().cambiarUbicacionActual(cod, lat, lon, ciu);
-	//			}
-	//		}
-	//	}
-	//
-	//	public Usuario darUsuario()
-	//	{
-	//		return cupihotel.darUsuario();
-	//	}
-	//
-	//	public String URL()
-	//	{
-	//		return cupihotel.generarMapa();
-	//	}
+
+	public void getTranvia(String string) {
+		mundo.getTranvia(string);
+	}
 }

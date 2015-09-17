@@ -58,7 +58,7 @@ public class Emergencia {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="idEstacion")
+    @Column(name="idEmergencia")
     private int id;
     
     /**
@@ -69,6 +69,8 @@ public class Emergencia {
     /**
      * vehiculos involucrados en la emergencia
      */
+    @OneToMany
+    @JoinColumn(name="idVehiculo")
     private List<Vehiculo> VehiculosInvolucrados;
     
     /**
