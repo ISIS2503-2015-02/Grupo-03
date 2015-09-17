@@ -283,6 +283,44 @@ aplicacionMundial.directive('competitorInfo', function(){
     
     
     
+    aplicacionMundial.directive('mobibusInfo', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/mobibus-info.html',
+            controller: 'getMobibuses'
+        };
+    });
+ 
+    aplicacionMundial.controller("getMobibuses", function($http, $scope) {
+    $http.get('http://localhost:8080/mobibus/get').
+      success(function(data, status, headers, config) {
+        $scope.competitors = data;
+      }).
+      error(function(data, status, headers, config) {
+        // log error
+      });
+    });
+    
+    
+    
+     aplicacionMundial.directive('mobibusForm', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/mobibus-form.html',
+            controller: 'mobibusCtrl'
+        };
+    });
+ 
+    aplicacionMundial.controller("mobibusCtrl", function($http, $scope) {
+ 
+        $scope.addMobibus=function(){
+            console.log('id');
+            $http.post('http://localhost:8080/mobibus/add', JSON.stringify($scope.competitor)).success(function(data,headers){
+                $scope.competitor={};
+                $scope.toolbar.selectTab(13);
+            });
+        };
+    }); 
     
     
     

@@ -1,0 +1,24 @@
+<h2 class="form-title">Lista de todos los mobibuses</h2>
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Mobibuses</div>
+    <!-- Table -->
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Estado</th>
+            <th>Ubicacion</th>
+            <th>Reservas</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="mobibus in Mobibuses | orderBy: 'id'">
+            <td>{{mobibus.id}}</td>
+            <td>{{mobibus.estado}}</td>
+            <td>{{mobibus.ubicacion}}</td>
+            <td>{{mobibus.reservas}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div> 

@@ -65,6 +65,8 @@ public class Mobibus implements Serializable
         this.id = id;
         reservas = new ArrayList<Reserva>();
         estado = "disponible";
+        Ubicacion w = new Ubicacion( 4.60, -74.07);
+        this.ubic = w;
     }
 
     //-----------------------------------------------------------
