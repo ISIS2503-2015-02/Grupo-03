@@ -12,6 +12,8 @@ public class Mobibus
      */
     private String estado;
     
+    private Ubicacion ubic;
+    
 
     //-----------------------------------------------------------
     // Constructores
@@ -25,10 +27,10 @@ public class Mobibus
         
     }
     
-    public Mobibus(Long pId, String pEstado)
+    public Mobibus(Long pId)
     {
     	id= pId;
-        estado = pEstado;
+        estado = "disponible";
     }
 
     //-----------------------------------------------------------
@@ -55,6 +57,13 @@ public class Mobibus
     public void setId(Long id) {
         this.id = id;
     }
+    public Ubicacion getUbicacion() {
+        return ubic;
+    }
+
+    public void setUbicacion(Ubicacion ubic) {
+        this.ubic = ubic;
+    }
             
     /**
      * Modifica el estado del Mobibus
@@ -64,10 +73,12 @@ public class Mobibus
         {
             this.estado = "reservado"; 
         }
-        else
+        else if(this.estado.equals(null))
         {
             this.estado = "disponible";
         }
+        else
+        	this.estado = "disponible";
     }
     
     public String toString()

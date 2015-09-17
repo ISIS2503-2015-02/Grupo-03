@@ -25,6 +25,11 @@ public class MobibusDTO
      */
 private String estado;    
 
+    /**
+     * Ubicacion del mobibus
+     */
+     private Ubicacion ubic;
+
     //-----------------------------------------------------------
     // Constructores
     //-----------------------------------------------------------
@@ -45,6 +50,7 @@ private String estado;
     {
         this.id = id;
         this.estado = "disponible";
+     
     }
 
     //-----------------------------------------------------------
@@ -76,6 +82,21 @@ private String estado;
     public void setId(int id) {
         this.id = id;
     }
+    /**
+     * Modifica la ubicacion del MobibusDTO
+     * @param ubic Nuevo id del MobibusDTO
+     */
+    public void setUbicacion(Ubicacion ubic) {
+        this.ubic = ubic;
+    }
+    
+     /**
+     * Retorna la ubicacion del MobibusDTO
+     */
+    public Ubicacion getUbicacion() {
+        return ubic;
+    }
+    
     
     /**
      * Modifica el estado del MobibusDTO

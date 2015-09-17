@@ -15,19 +15,18 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import MobibusStandAloneMundo.Mundo;
+import MobibusStandAloneMundo.Ubicacion;
 import MobibusStandAloneMundo.Mobibus;
 
 public class PanelPrincipal extends JPanel {
 
 	private Mundo mundo;
 
-	private PanelBotones botones;
+	private PanelMenu botones;
 
-	private PanelReservas Mobibus;
-	//
-	//	private PanelCambiarCodigoPostal postal;
-	//
-	//	private PanelCambiarCiudad ciudad;
+
+	private PanelMobibus estaciones;
+
 
 	public static void main(String[] args) 
 	{
@@ -48,7 +47,7 @@ public class PanelPrincipal extends JPanel {
 		mundo = x;
 		//Creación de los paneles aquí
 
-		botones = new PanelBotones( this );
+		botones = new PanelMenu( this );
 		add( botones, BorderLayout.CENTER);		
 		botones.setVisible(true);
 
@@ -56,39 +55,66 @@ public class PanelPrincipal extends JPanel {
 		this.revalidate();
 	}
 
-	public void mostrarCambiar() 
-	{	
-		botones.setVisible(false);
-		Mobibus = new PanelReservas(this); 
-		add(Mobibus, BorderLayout.CENTER);
-		Mobibus.setVisible( true );
-		Mobibus.actualizarLista(darDisponibles());
-	}
 
 	public Mobibus[] darDisponibles()
 	{
 		mundo.disponibles();
 
 		ArrayList<Mobibus> x = mundo.darDisponibles();
-		Mobibus[] Mobibus = new Mobibus[x.size()];
+		Mobibus[] Mobibuses = new Mobibus[x.size()];
 		for(int i=0; i<x.size();i++)
 		{
-			Mobibus[i]=x.get(i);
+			Mobibuses[i]=x.get(i);
 		}
-		Mobibus y = new Mobibus(Long.valueOf("12"),"disponible");
+		Mobibus y = new Mobibus(Long.valueOf("12"));
 		System.out.println(mundo.darDisponibles().size());
-		System.out.println(((Mobibus) mundo.darDisponibles().get(0)).getId());
 		System.out.println(((Mobibus) mundo.darDisponibles().get(0)).getEstado());
-		return Mobibus;
+		return Mobibuses;
 	}
 
-	public void mostrarBotones() 
+	
+	public String generarMapa(Ubicacion x)
+	{
+		return mundo.generarMapa(x);
+	}
+
+
+
+	public void mostrarBotones2() 
 	{	
-		Mobibus.setVisible(false);
-		botones = new PanelBotones(this);
+		estaciones.setVisible(false);
+		botones = new PanelMenu(this);
 		add(botones, BorderLayout.CENTER);
 		botones.setVisible( true );
 		botones.actualizar();
+	}
+	
+
+
+	public void mostrarEstaciones() 
+	{	
+		botones.setVisible(false);
+		estaciones = new PanelMobibus(this);
+		add(estaciones, BorderLayout.CENTER);
+		estaciones.setVisible( true );
+		estaciones.actualizar();
+		estaciones.actualizarLista(darDisponibles());
+	}
+	
+	
+	
+	public void mostrarEstaciones2() 
+	{	
+		estaciones = new PanelMobibus(this);
+		add(estaciones, BorderLayout.CENTER);
+		estaciones.setVisible( true );
+		estaciones.actualizar();
+		estaciones.actualizarLista(darDisponibles());
+	}
+	
+	public void cambiarEstadoMobi(Mobibus mobi)
+	{
+		mundo.cambiarEstado(mobi);
 	}
 	//
 	//	public void mostrarBotones2() 

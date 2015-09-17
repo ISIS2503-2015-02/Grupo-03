@@ -18,7 +18,7 @@ import java.awt.Color;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class PanelBotones extends JPanel implements ActionListener
+public class PanelMenu extends JPanel implements ActionListener
 {
 	private PanelPrincipal principal;
 	private JLabel label;
@@ -36,7 +36,7 @@ public class PanelBotones extends JPanel implements ActionListener
 	/**
 	 * Create the panel.
 	 */
-	public PanelBotones(PanelPrincipal ventana)
+	public PanelMenu(PanelPrincipal ventana)
 	{
 		principal = ventana;
 
@@ -57,19 +57,17 @@ public class PanelBotones extends JPanel implements ActionListener
 		gbc_label.gridy = 1;
 		add(label, gbc_label);
 		
-	
+		JButton btnCambiarUbicacionActual = new JButton("Ver Mobibuses");
+		btnCambiarUbicacionActual.setActionCommand("CAMBIO1");
+		btnCambiarUbicacionActual.addActionListener(this);
 		
 		GridBagConstraints gbc_btnCambiarUbicacionActual = new GridBagConstraints();
 		gbc_btnCambiarUbicacionActual.insets = new Insets(0, 0, 5, 5);
 		gbc_btnCambiarUbicacionActual.gridx = 2;
 		gbc_btnCambiarUbicacionActual.gridy = 3;
+		add(btnCambiarUbicacionActual, gbc_btnCambiarUbicacionActual);
 		
-		gbc_btnCambiarUbicacionActual.gridx = 2;
-		gbc_btnCambiarUbicacionActual.gridy = 5;
-		JButton btn2 = new JButton("Ver Mobibus Disponibles");
-		btn2.setActionCommand("CAMBIO");
-		btn2.addActionListener(this);
-		add(btn2, gbc_btnCambiarUbicacionActual);
+		
 
 //		panel = new JPanel();
 //		panel.setPreferredSize(new Dimension(200, 200));
@@ -162,6 +160,22 @@ public class PanelBotones extends JPanel implements ActionListener
 
 	public void actualizar()
 	{
+		URL zz = null;
+
+		try
+		{
+			zz = new URL("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ7RqeQ93yAGmWy-qow58NQ4BR-YaknJs-TKpOUmx_-KeNdKq4X");
+		} 
+		catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if(zz!=null)
+		{
+			ImageIcon icono = new ImageIcon(zz);
+			label.setIcon(icono);
+		}
 		this.revalidate();
 		this.repaint();
 	}
@@ -171,9 +185,9 @@ public class PanelBotones extends JPanel implements ActionListener
 	{
 		// TODO Auto-generated method stub
 		String x = arg0.getActionCommand();
-		if(x.equals("CAMBIO"))
+		if(x.equals("CAMBIO1"))
 		{
-			principal.mostrarCambiar();;
+			principal.mostrarEstaciones();
 		}
 	}
 }

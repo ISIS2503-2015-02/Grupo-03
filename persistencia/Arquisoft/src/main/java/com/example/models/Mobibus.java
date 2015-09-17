@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 /**
  *
  * @author dc.bonilla10
@@ -33,6 +34,9 @@ public class Mobibus implements Serializable
      */
 
     private String estado;
+    
+    @OneToOne
+    private Ubicacion ubic;
     
     @OneToMany
     private List<Reserva> reservas;
@@ -56,10 +60,11 @@ public class Mobibus implements Serializable
         
     }
     
-    public Mobibus(String pEstado)
+    public Mobibus(long id)
     {
-        estado = pEstado;
+        this.id = id;
         reservas = new ArrayList<Reserva>();
+        estado = "disponible";
     }
 
     //-----------------------------------------------------------
@@ -87,6 +92,14 @@ public class Mobibus implements Serializable
         this.id = id;
     }
             
+    
+    public Ubicacion getUbicacion() {
+        return ubic;
+    }
+
+    public void setUbicacion(Ubicacion ubic) {
+        this.ubic = ubic;
+    }
     /**
      * Modifica el estado del Mobibus
      */
