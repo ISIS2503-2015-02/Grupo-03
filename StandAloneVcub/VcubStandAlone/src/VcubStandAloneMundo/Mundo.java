@@ -12,12 +12,14 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class Mundo 
 {
 	private ArrayList<Vcub> disponibles;
+	private ArrayList<EstacionVcub> estaciones;
 
 	public Mundo()
 	{
@@ -44,18 +46,24 @@ public class Mundo
 
 			String output;
 			System.out.println("Output from Server .... \n");
-			output = br.readLine();
-			System.out.println(output);
-			String array[] = output.split(",");
-			System.out.println(array[0]);
-			for(int i=0;i+1<array.length;i=i+2)
+			while((output = br.readLine())!=null)
 			{
-				array[i].replaceAll("\"", "");
-				String y[]=array[i].split(":");
-				Long pId = Long.valueOf(y[1]);
-				Vcub agregar=new Vcub(pId, "disponible");
-				disponibles.add(agregar);
-
+				JsonParser parser = new JsonParser();
+				JsonElement arrayElement = parser.parse(output);
+				System.out.println(arrayElement.getAsJsonArray().size());
+				System.out.println(output);
+				agregarVcubs(arrayElement.getAsJsonArray(), disponibles);
+				//				String array[] = output.split(",");
+				//				System.out.println(array[0]);
+				//				for(int i=0;i+1<array.length;i=i+2)
+				//				{
+				//					array[i].replaceAll("\"", "");
+				//					String y[]=array[i].split(":");
+				//					Long pId = Long.valueOf(y[1]);
+				//					Vcub agregar=new Vcub(pId, "disponible");
+				//					disponibles.add(agregar);
+				//
+				//				}
 			}
 			//			while ((output = br.readLine()) != null) 
 			//			{
@@ -65,6 +73,71 @@ public class Mundo
 
 			conn.disconnect();
 
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+	}
+
+	public String generarMapa(Ubicacion x)
+	{
+		String y = String.valueOf(x.getLatitud());
+		String z = String.valueOf(x.getLongitud());
+		String URL = "http://maps.googleapis.com/maps/api/staticmap?&zoom=13&size=300x300&maptype=roadmap&markers=color:red%7Clabel:U%7C" + y + "," + z;
+		return URL;
+	}
+
+	public void estaciones()
+	{
+		try {
+			estaciones = new ArrayList<EstacionVcub>();
+
+			URL url = new URL("http://localhost:8080/estacion/get");
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Accept", "application/json");
+
+			if (conn.getResponseCode() != 200) {
+				throw new RuntimeException("Failed : HTTP error code : "
+						+ conn.getResponseCode());
+			}
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(conn.getInputStream())));
+
+			String output;
+			System.out.println("Output from Server .... \n");
+			while((output = br.readLine())!=null)
+			{
+				JsonParser parser = new JsonParser();
+				JsonElement arrayElement = parser.parse(output);
+				System.out.println(arrayElement.getAsJsonArray().size());
+				System.out.println(output);
+				for(int i=0;i<arrayElement.getAsJsonArray().size();i++)
+				{
+					if(arrayElement.getAsJsonArray().get(i)!=null)
+					{
+						int tempId = arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("id").getAsInt();
+						int tempCap = arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("capacidad").getAsInt();
+						Long tempId2 = arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("ubicacion").getAsJsonObject().get("id").getAsLong();
+						int tempLatitud = arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("ubicacion").getAsJsonObject().get("latitud").getAsInt();
+						int tempLongitud = arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("ubicacion").getAsJsonObject().get("longitud").getAsInt();
+						Ubicacion tempUb = new Ubicacion(tempId2, tempLatitud, tempLongitud);
+						JsonArray vcubsEst = arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("vcubs").getAsJsonArray();
+						ArrayList<Vcub> agregar = new ArrayList<Vcub>();
+						agregarVcubs(vcubsEst, agregar);
+						EstacionVcub tempEst = new EstacionVcub(tempId, tempCap, agregar, tempUb);
+						estaciones.add(tempEst);
+					}
+				}
+
+				conn.disconnect();
+			}
 		} catch (MalformedURLException e) {
 
 			e.printStackTrace();
@@ -115,31 +188,30 @@ public class Mundo
 	//		return disponibles;
 	//	}
 
-	public void convertir(String json, ArrayList arrayV )
+	public void agregarVcubs(JsonArray jsonArray, ArrayList res)
 	{
-
-		JsonParser parser = new JsonParser();
-
-
-		JsonArray array = parser.parse(json).getAsJsonArray();
-
-		for(int i=0;i<array.size();i++)
+		for(int i=0;i<jsonArray.size();i++)
 		{
-			String blog = String.valueOf(((JsonObject) array.get(i)).get("id"));
-			Long id = Long.valueOf(blog);
-			System.out.println(id);
-
-			String estado = String.valueOf(("estado"));	
-			System.out.println(estado);
-
-			Vcub temp = new Vcub(id, estado);
-			arrayV.add(temp);
+			if(jsonArray.get(i)!=null)
+			{
+				Long tempId = jsonArray.getAsJsonArray().get(i).getAsJsonObject().get("id").getAsLong();
+				String estado = jsonArray.getAsJsonArray().get(i).getAsJsonObject().get("estado").getAsString();
+				Vcub temp = new Vcub(tempId, estado);
+				res.add(temp);
+			}
 		}
 	}
+
 
 	public ArrayList darDisponibles()
 	{
 
 		return disponibles;
+	}
+
+	public ArrayList darEstaciones()
+	{
+
+		return estaciones;
 	}
 }

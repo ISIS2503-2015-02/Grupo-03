@@ -14,20 +14,22 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import VcubStandAloneMundo.EstacionVcub;
 import VcubStandAloneMundo.Mundo;
+import VcubStandAloneMundo.Ubicacion;
 import VcubStandAloneMundo.Vcub;
 
 public class PanelPrincipal extends JPanel {
 
 	private Mundo mundo;
 
-	private PanelBotones botones;
+	private PanelMenu botones;
 
-	private PanelReservas vcubs;
-	//
-	//	private PanelCambiarCodigoPostal postal;
-	//
-	//	private PanelCambiarCiudad ciudad;
+	private PanelVcubs vcubs;
+
+	private PanelEstaciones estaciones;
+
+	private PanelInfo info;
 
 	public static void main(String[] args) 
 	{
@@ -48,7 +50,7 @@ public class PanelPrincipal extends JPanel {
 		mundo = x;
 		//Creación de los paneles aquí
 
-		botones = new PanelBotones( this );
+		botones = new PanelMenu( this );
 		add( botones, BorderLayout.CENTER);		
 		botones.setVisible(true);
 
@@ -59,7 +61,7 @@ public class PanelPrincipal extends JPanel {
 	public void mostrarCambiar() 
 	{	
 		botones.setVisible(false);
-		vcubs = new PanelReservas(this); 
+		vcubs = new PanelVcubs(this); 
 		add(vcubs, BorderLayout.CENTER);
 		vcubs.setVisible( true );
 		vcubs.actualizarLista(darDisponibles());
@@ -77,18 +79,83 @@ public class PanelPrincipal extends JPanel {
 		}
 		Vcub y = new Vcub(Long.valueOf("12"),"disponible");
 		System.out.println(mundo.darDisponibles().size());
-		System.out.println(((Vcub) mundo.darDisponibles().get(0)).getId());
 		System.out.println(((Vcub) mundo.darDisponibles().get(0)).getEstado());
 		return vcubs;
+	}
+
+	public EstacionVcub[] darEstaciones()
+	{
+		mundo.estaciones();
+
+		ArrayList<EstacionVcub> x = mundo.darEstaciones();
+		EstacionVcub[] estacionesVcub = new EstacionVcub[x.size()];
+		for(int i=0; i<x.size();i++)
+		{
+			estacionesVcub[i]=x.get(i);
+		}
+		System.out.println(mundo.darEstaciones().size());
+		return estacionesVcub;
+	}
+
+	public String generarMapa(Ubicacion x)
+	{
+		return mundo.generarMapa(x);
 	}
 
 	public void mostrarBotones() 
 	{	
 		vcubs.setVisible(false);
-		botones = new PanelBotones(this);
+		botones = new PanelMenu(this);
 		add(botones, BorderLayout.CENTER);
 		botones.setVisible( true );
 		botones.actualizar();
+	}
+
+	public void mostrarBotones2() 
+	{	
+		estaciones.setVisible(false);
+		botones = new PanelMenu(this);
+		add(botones, BorderLayout.CENTER);
+		botones.setVisible( true );
+		botones.actualizar();
+	}
+	
+	public void mostrarBotones3() 
+	{	
+		info.setVisible(false);
+		botones = new PanelMenu(this);
+		add(botones, BorderLayout.CENTER);
+		botones.setVisible( true );
+		botones.actualizar();
+	}
+
+	public void mostrarEstaciones() 
+	{	
+		botones.setVisible(false);
+		estaciones = new PanelEstaciones(this);
+		add(estaciones, BorderLayout.CENTER);
+		estaciones.setVisible( true );
+		estaciones.actualizar();
+		estaciones.actualizarLista(darEstaciones());
+	}
+	
+	public void mostrarInfo(EstacionVcub x) 
+	{	
+		estaciones.setVisible(false);
+		info = new PanelInfo(this);
+		add(info, BorderLayout.CENTER);
+		info.setVisible( true );
+		info.actualizar(x);
+	}
+	
+	public void mostrarEstaciones2() 
+	{	
+		info.setVisible(false);
+		estaciones = new PanelEstaciones(this);
+		add(estaciones, BorderLayout.CENTER);
+		estaciones.setVisible( true );
+		estaciones.actualizar();
+		estaciones.actualizarLista(darEstaciones());
 	}
 	//
 	//	public void mostrarBotones2() 

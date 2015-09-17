@@ -20,7 +20,7 @@ import javax.swing.event.ListSelectionListener;
 
 import VcubStandAloneMundo.Vcub;
 
-public class PanelReservas extends JPanel implements ListSelectionListener, ActionListener
+public class PanelVcubs extends JPanel implements ListSelectionListener, ActionListener
 {
 	// -----------------------------------------------------------------
 	// Atributos de la Interfaz
@@ -49,7 +49,7 @@ public class PanelReservas extends JPanel implements ListSelectionListener, Acti
 	/**
 	 * Create the panel.
 	 */
-	public PanelReservas(PanelPrincipal ventana) 
+	public PanelVcubs(PanelPrincipal ventana) 
 	{
 		principal = ventana;
 		

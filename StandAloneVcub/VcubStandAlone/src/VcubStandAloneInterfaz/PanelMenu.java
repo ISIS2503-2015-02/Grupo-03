@@ -18,7 +18,7 @@ import java.awt.Color;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class PanelBotones extends JPanel implements ActionListener
+public class PanelMenu extends JPanel implements ActionListener
 {
 	private PanelPrincipal principal;
 	private JLabel label;
@@ -36,7 +36,7 @@ public class PanelBotones extends JPanel implements ActionListener
 	/**
 	 * Create the panel.
 	 */
-	public PanelBotones(PanelPrincipal ventana)
+	public PanelMenu(PanelPrincipal ventana)
 	{
 		principal = ventana;
 
@@ -176,7 +176,11 @@ public class PanelBotones extends JPanel implements ActionListener
 		String x = arg0.getActionCommand();
 		if(x.equals("CAMBIO"))
 		{
-			principal.mostrarCambiar();;
+			principal.mostrarCambiar();
+		}
+		else if(x.equals("CAMBIO1"))
+		{
+			principal.mostrarEstaciones();
 		}
 	}
 }

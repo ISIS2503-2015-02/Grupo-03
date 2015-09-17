@@ -117,4 +117,9 @@ public class EstacionVcub
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
     }
+    
+    public String toString()
+    {
+    	return "Estacion #" + id;
+    }
 }
