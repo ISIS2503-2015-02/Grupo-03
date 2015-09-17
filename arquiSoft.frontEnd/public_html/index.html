@@ -26,8 +26,11 @@
             <hr>
          <toolbar></toolbar>
             <div ng-if="toolbar.isSelected(1)">
-                <vcub-form vcubInfo></vcub-form>
+               <vcub-form vcubInfo></vcub-form>
             </div>
+         <div ng-if="toolbar.isSelected(2)">
+              <tranvia-form tranviaInfo></tranvia-form>
+             </div>
             <div ng-if="toolbar.isSelected(5)">
                 <vcub-info></vcub-info>
             </div>
@@ -37,6 +40,16 @@
             <div ng-if="toolbar.isSelected(7)">
                 <ubicacion-info></ubicacion-info>
             </div>
+         <div ng-if="toolbar.isSelected(8)">
+                    <tranvia-info></tranvia-info>
+            </div>
+         <div ng-if="toolbar.isSelected(9)">
+               <usuario-form usuarioInfo></usuario-form>
+            </div>
+         <div ng-if="toolbar.isSelected(10)">
+              <usuario-info></usuario-info>
+             </div>
+         
 			<!-- Header -->
 				<div id="header-wrapper" class="wrapper">
 					<div id="header">

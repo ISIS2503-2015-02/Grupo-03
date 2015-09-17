@@ -169,6 +169,117 @@ aplicacionMundial.directive('competitorInfo', function(){
     });
     
     
+    aplicacionMundial.directive('tranviaInfo', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/tranvia-info.html',
+            controller: 'getTranvias'
+        };
+    });
+    
+    aplicacionMundial.controller("getTranvias", function($http, $scope) {
+    $http.get('http://localhost:8080/tranvia/tranvias').
+      success(function(data, status, headers, config) {
+        $scope.tranvias = data;
+      }).
+      error(function(data, status, headers, config) {
+        // log error
+      });
+    });
+    aplicacionMundial.directive('tranviaForm', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/tranvia-form.html',
+            controller: 'tranviaCtrl'
+        };
+    });
+    aplicacionMundial.controller("tranviaCtrl", function($http, $scope) {
+ 
+        $scope.addTranvia=function(){
+            $http.post('http://localhost:8080/tranvia/add', JSON.stringify($scope.tranvia)).success(function(data,headers){
+                $scope.tranvia={};
+                $scope.toolbar.selectTab(8);
+            });
+        };
+    }); 
+    
+    
+    
+    
+    
+    
+    aplicacionMundial.directive('usuarioInfo', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/usuario-info.html',
+            controller: 'getUsuarios'
+        };
+    });
+    
+    aplicacionMundial.controller("getUsuarios", function($http, $scope) {
+    $http.get('http://localhost:8080/usuario/usuarios').
+      success(function(data, status, headers, config) {
+        $scope.usuarios = data;
+      }).
+      error(function(data, status, headers, config) {
+        // log error
+      });
+    });
+    
+    
+     
+    
+    
+    
+    
+    
+    
+    
+    
+    aplicacionMundial.directive('usuarioForm', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/usuario-form.html',
+            controller: 'usuarioCtrl'
+        };
+    });
+    aplicacionMundial.controller("usuarioCtrl", function($http, $scope) {
+ 
+        $scope.addUsuario=function(){
+            $http.post('http://localhost:8080/usuario/add', JSON.stringify($scope.usuario)).success(function(data,headers){
+                $scope.usuario={};
+                $scope.toolbar.selectTab(10);
+            });
+        };
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

@@ -1,0 +1,33 @@
+<h2 class="form-title">Lista de Usuarios</h2>
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Usuarios</div>
+     <!-- Table -->
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Documento</th>
+            <th>Tipo Documento</th>
+            <th>Telefono</th>
+            <th>Direccion</th>
+            <th>Correo</th>
+            <th>Tarjeta</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="usuario in usuarios | orderBy: 'nombre'">
+            <td>{{usuario.nombre}}</td>
+            <td>{{usuario.documento}}</td>
+            <td>{{usuario.tipoDocumento}}</td>
+            <td>{{usuario.telefono}}</td>
+            <td>{{usuario.direccion}}</td>
+            <td>{{usuario.correo}}</td>
+            <td>{{usuario.tarjeta}}</td>
+   
+        
+        </tr>
+        </tbody>
+    </table>
+</div> 

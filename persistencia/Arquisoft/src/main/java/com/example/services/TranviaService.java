@@ -90,6 +90,14 @@ public class TranviaService
         List<Tranvia> tranvias = q.getResultList();
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(tranvias).build();
     } 
+     @GET
+    @Path("/tranvias/idTranvia/{idTranvia}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response get(@PathParam("idTranvia") String idTranvia) {
+        Query q = entityManager.createQuery("select u from Tranvia u where u.id = '"+ idTranvia +"'");
+        List<Tranvia> tranvias = q.getResultList();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(tranvias).build();
+    } 
     
     @PUT
     @Path("/chocado/idTranvia/{idTranvia}")

@@ -1,0 +1,28 @@
+<h2 class="form-title">Lista de tranvias</h2>
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Tranvias</div>
+     <!-- Table -->
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Temperatura</th>
+            <th>Coordenada:</th>
+            <th>Linea:</th>
+            <th>Kilometraje:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="tranvia in tranvias | orderBy: 'id'">
+            <td>{{tranvia.id}}</td>
+            <td>{{tranvia.tempatura}}</td>
+            <td>{{tranvia.coordenada}}</td>
+            <td>{{tranvia.linea}}</td>
+            <td>{{tranvia.kilometraje}}</td>
+   
+        
+        </tr>
+        </tbody>
+    </table>
+</div> 
