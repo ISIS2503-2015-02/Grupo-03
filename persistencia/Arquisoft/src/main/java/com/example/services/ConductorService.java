@@ -82,5 +82,12 @@ public class ConductorService
         return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(conductores).build();
     } 
     
-   
+    @GET
+    @Path("/rank")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getRank() {
+        Query q = entityManager.createQuery("select u from Conductor u order by u.promedio DSC");
+        List<Conductor> conductores = q.getResultList();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(conductores).build();
+    }   
 }
