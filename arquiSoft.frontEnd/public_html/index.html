@@ -34,10 +34,10 @@
          <div ng-if="toolbar.isSelected(3)">
                 <mobibus-info></mobibus-info>
             </div>
-         <div ng-if="toolbar.isSelected(13)">
-                <mobibus-form></mobibus-form>
+          <div ng-if="toolbar.isSelected(4)">
+                <reserva-form reserva-info><reserva-form>
             </div>
-         
+    
             <div ng-if="toolbar.isSelected(5)">
                 <vcub-info></vcub-info>
             </div>
@@ -57,16 +57,27 @@
          <div ng-if="toolbar.isSelected(10)">
               <usuario-info></usuario-info>
              </div>
+         
+            
          <div ng-if="toolbar.isSelected(11)">
-             <mejorConductor></mejorConductor>
+              <usuarioAlquilar-form usuarioInfo></usuarioAlquilar-form>
              </div>
-         <div ng-if="toolbar.isSelected(12)">
-              <usuarioAlquilar-form usuarioInfo ></usuarioAlquilar-form>
-             </div>
-         <div ng-if="toolbar.isSelected(10)">
-              <usuarioDevolver-form usuarioInfo ></usuarioDevolver-form>
+        
+        <div ng-if="toolbar.isSelected(12)">
+              <usuariodevolver-form  ></usuariodevolver-form>
              </div>
          
+         
+          <div ng-if="toolbar.isSelected(13)">
+              <mejorConducto></mejorConducto>
+             </div>
+              <div ng-if="toolbar.isSelected(14)">
+                <mobibus-form></mobibus-form>
+            </div>
+         
+          <div ng-if="toolbar.isSelected(15)">
+                <reserva-info></reserva-info>
+            </div>
 
              
 

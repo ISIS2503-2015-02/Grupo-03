@@ -57,6 +57,8 @@ private Date fecha;
    
         @OneToOne
         private Mobibus busAsociado;
+
+  
  
    
     
@@ -221,4 +223,14 @@ return jesus;
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     } 
+    
+    
+      public Mobibus getBusAsociado() {
+        return busAsociado;
+    }
+
+    public void setBusAsociado(Mobibus busAsociado) {
+        this.busAsociado = busAsociado;
+    }
+    
 }

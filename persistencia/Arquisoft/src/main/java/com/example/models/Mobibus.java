@@ -38,19 +38,12 @@ public class Mobibus implements Serializable
     @OneToOne
     private Ubicacion ubic;
     
-    @OneToMany
-    private List<Reserva> reservas;
+   
     //-----------------------------------------------------------
     // Constructores
     //-----------------------------------------------------------
 
-    public List<Reserva> getReservas() {
-        return reservas;
-    }
 
-    public void setReservas(List<Reserva> reservas) {
-        this.reservas = reservas;
-    }
 
     /**
      * Constructor de la clase (sin argumentos)
@@ -63,7 +56,6 @@ public class Mobibus implements Serializable
     public Mobibus(long id)
     {
         this.id = id;
-        reservas = new ArrayList<Reserva>();
         estado = "disponible";
         Ubicacion w = new Ubicacion( 4.60, -74.07);
         this.ubic = w;

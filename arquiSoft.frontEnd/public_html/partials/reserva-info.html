@@ -4,24 +4,40 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<h2 class="form-title">Lista de todas las ubicaciones</h2>
+<h2 class="form-title">Lista de todas las reservas</h2>
 <div class="panel panel-default">
     <!-- Default panel contents -->
-    <div class="panel-heading">Ubicaciones</div>
+    <div class="panel-heading">Reservas</div>
     <!-- Table -->
     <table class="table">
         <thead>
-        <tr>
+        <tr>      
             <th>Id</th>
-            <th>Latitud</th>
-            <th>Longitud</th>
+            <th>Fecha</th>
+            <th>Id del Usuario</th>
+            <th> Usuario</th>
+
+            <th>Mobibus asociado</th>
+            <th>Ubicacion</th>
+            <th>Personas en espera espera</th>
+            
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="ubicacion in ubicaciones | orderBy: 'id'">
-            <td>{{ubicacion.id}}</td>
-            <td>{{ubicacion.latitud}}</td>
-            <td>{{ubicacion.longitud}}</td>
+            <tr ng-repeat="reserva in reservas | orderBy: 'id'">
+            <td>{{reserva.id}}</td>
+                <td>{{reserva.fecha}}</td>
+                         <td>{{reserva.usuario.documento}}</td>
+                               <td>{{reserva.usuario.nombre}}</td>
+
+
+            <td>{{reserva.busAsociado.id}}</td>
+            <td>{{reserva.busAsociado.ubicacion}}</td>
+                        <td>{{reserva.listaEspera.nombre}}</td>
+
+
+
+
         </tr>
         </tbody>
     </table>

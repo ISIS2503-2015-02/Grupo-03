@@ -25,7 +25,24 @@ aplicacionMundial.directive('toolbar', function(){
             
         };
     });
-
+    aplicacionMundial.directive('devolverForm', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/usuariodevolver-form.html',
+            controller: 'devolverCtrl'
+        };
+    });
+    aplicacionMundial.controller("devolverCtrl", function($http, $scope) {
+ 
+        $scope.devolver=function(){
+            $http.put('http://localhost:8080/usuario/devolver/idUsr/666/idVcub/1', " ").success(function(data,headers){
+                $scope.usuario={};
+                $scope.toolbar.selectTab(10);
+            });
+        };
+     }); 
+     
+     
     aplicacionMundial.directive('vcubInfo', function(){
         return{
             restrict:'E',
@@ -187,6 +204,31 @@ aplicacionMundial.directive('competitorInfo', function(){
     });
     
     
+        aplicacionMundial.directive('alquilarForm', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/usuarioAlquilar-form.html',
+            controller: 'alquilarCtrl'
+        };
+    });
+    aplicacionMundial.controller("alquilarCtrl", function($http, $scope) {
+  $scope.alquilar=function(){
+            $http.post()('http://localhost:8080/usuario/alquilar/idUsr/'+$scope.jesus.documento + '/idVcub/'+$scope.jesus.vcubAL,"asd").success(function(data,headers){
+                $scope.usuario={};
+                $scope.toolbar.selectTab(10);
+            });
+        };            
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     aplicacionMundial.directive('tranviaInfo', function(){
         return{
             restrict:'E',
@@ -219,23 +261,11 @@ aplicacionMundial.directive('competitorInfo', function(){
                 $scope.toolbar.selectTab(8);
             });
         };
-        
-        
-        
-        $scope.alquilar=function(){
-            $http.put('http://localhost:8080/usuario/alquilar/idUsr/'+$scope.usuario.documento + '/idVcub/'+$scope.usuario.vcubAL).success(function(data,headers){
-                $scope.tranvia={};
-                $scope.toolbar.selectTab(10);
-            });
-        };
-        
-    }); 
-    
-    
-    
-    
-    
-    
+     }); 
+     
+     
+     
+  
     aplicacionMundial.directive('usuarioInfo', function(){
         return{
             restrict:'E',
@@ -253,17 +283,7 @@ aplicacionMundial.directive('competitorInfo', function(){
         // log error
       });
     });
-    
-    
-     
-    
-    
-    
-    
-    
-    
-    
-    
+  
     aplicacionMundial.directive('usuarioForm', function(){
         return{
             restrict:'E',
@@ -279,8 +299,11 @@ aplicacionMundial.directive('competitorInfo', function(){
                 $scope.toolbar.selectTab(10);
             });
         };
+          
     });
     
+    
+
     
     
     aplicacionMundial.directive('mobibusInfo', function(){
@@ -323,11 +346,44 @@ aplicacionMundial.directive('competitorInfo', function(){
     }); 
     
     
+    aplicacionMundial.directive('reservaInfo', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/reserva-info.html',
+            controller: 'getReservas'
+        };
+    });
+    
+    
+    aplicacionMundial.controller("getReservas", function($http, $scope) {
+    $http.get('http://localhost:8080/reserva/reservas').
+      success(function(data, status, headers, config) {
+        $scope.reservas = data;
+      }).
+      error(function(data, status, headers, config) {
+        // log error
+      });
+    });
+    aplicacionMundial.directive('reservaForm', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/reserva-form.html',
+            controller: 'reservaCtrl'
+        };
+    });
+    aplicacionMundial.controller("reservaCtrl", function($http, $scope) {
+
+        $scope.reservar=function(){
+            $http.put('http://localhost:8080/usuario/reservar/idUsr/'+ $scope.reserva.id + '/idMobibus/' + $scope.reserva.idM + '/fecha/' + $scope.reserva.fecha , '').success(function(data,headers){
+                $scope.reserva={};
+                $scope.toolbar.selectTab(15);
+            });
+        };
+     }); 
     
     
     
-    
-    
+
     
     
     
