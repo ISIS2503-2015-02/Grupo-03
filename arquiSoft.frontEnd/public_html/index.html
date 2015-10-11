@@ -60,14 +60,14 @@
          
             
          <div ng-if="toolbar.isSelected(11)">
-              <usuarioAlquilar-form usuarioInfo></usuarioAlquilar-form>
+              <alquilar-form usuarioInfo></alquilar-form>
              </div>
         
         <div ng-if="toolbar.isSelected(12)">
-              <usuariodevolver-form  ></usuariodevolver-form>
+              <devolver-form usuarioInfo ></devolver-form>
              </div>
          
-         
+              
           <div ng-if="toolbar.isSelected(13)">
               <mejorConducto></mejorConducto>
              </div>
@@ -78,8 +78,12 @@
           <div ng-if="toolbar.isSelected(15)">
                 <reserva-info></reserva-info>
             </div>
+         
+          <div ng-if="toolbar.isSelected(16)">
+               <cancelar-form reserva-info><cancelar-form>
+            </div>
 
-             
+        
 
 			<!-- Header -->
 				<div id="header-wrapper" class="wrapper">

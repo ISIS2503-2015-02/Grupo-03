@@ -115,6 +115,7 @@ public class Usuario implements Serializable
         this.tipoDocumento = ptipoDocumento;
         this.telefono = pTelefono;
         notificacion = "";
+        bicicleta = null;
     
     }
 
@@ -257,7 +258,7 @@ public class Usuario implements Serializable
     }
     
     public void devolverVcub() {
-        this.bicicleta = null;
+        bicicleta = null;
     }
 
 

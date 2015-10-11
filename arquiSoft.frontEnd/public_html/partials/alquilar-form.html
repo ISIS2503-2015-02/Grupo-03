@@ -1,24 +1,21 @@
 <form name="alquilarForm" ng-submit="alquilar()" ng-controller="alquilarCtrl" novalidate>
     <h2 class="form-title">Alquilar</h2>
     <div class="row">
-     
         <div class="col-md-6">
-            <label>Documento Usuario</label>
-            <input ng-model="jesus.documento" type="number" class="form-control" required/>
+            <label>Id del Usuario</label>
+            <input ng-model="alquiler.id" type="number" class="form-control" required/>
         </div>
     </div>
-    
-     <div class="row">
+    <div class="row">
         <div class="col-md-6">
-            <label>Id Vcub</label>
-            <input ng-model="jesus.vcubAL" type="text" class="form-control" required/>
+            <label>Id del Vcub</label>
+            <input ng-model="alquiler.idVcub" type="number" class="form-control" required/>
         </div>
     </div>
-      <div class="row">
+    <div class="row">
         <div class="col-md-6">
             <input type="submit" value="submit" class="btn btn-default">
         </div>
-    </div> 
-         
+    </div>        
 </form>
 

@@ -1,0 +1,21 @@
+<form name="devolverForm" ng-submit="devolver()" ng-controller="devolverCtrl" novalidate>
+    <h2 class="form-title">Devolver</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Id del Usuario</label>
+            <input ng-model="devolver.id" type="number" class="form-control" required/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Id del Vcub</label>
+            <input ng-model="devolver.idV" type="number" class="form-control" required/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <input type="submit" value="submit" class="btn btn-default">
+        </div>
+    </div>        
+</form>
+

@@ -212,8 +212,11 @@ public class UsuarioService
         else
         {
              Usuario jesus = usuarios.get(0);
-             
-            Vcub mia =jesus.getBicicleta();
+             Vcub mia =jesus.getBicicleta();
+
+             jesus.devolverVcub();
+
+             System.out.println(mia);
 
         
          try {
@@ -359,6 +362,103 @@ fechaS = fechaS.replaceAll(" ", "/");
         }
 
     }
+    
+    
+    
+    
+    
+    
+    @PUT
+    @Path("/cancelar/idReserva/{idReserva}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response cancelarReservarMobibus(@PathParam("idReserva") String idReserva) 
+    {
+              
+        Long papitas = Long.parseLong(idReserva);
+                System.out.println("LLEGA");
+
+       
+        Query q = entityManager.createQuery("select u from Reserva u where u.id ='" +papitas+ "'");
+        List<Reserva> reserva = q.getResultList();
+        
+        
+        JSONObject rta = new JSONObject();
+
+      
+
+
+        System.out.println("uSUARIOS"+reserva.size());
+
+        
+        if (reserva.isEmpty() )
+        {
+                                                           System.out.println("nokas");
+
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta).build();
+
+        
+        }
+        //Esta vacia la reserva, no existe
+        
+        else
+        {
+
+
+            Reserva copas =  reserva.get(0);
+            
+Usuario algo = copas.soltarReserva();
+
+if (algo == null)
+
+{
+         try {
+            entityManager.getTransaction().begin();
+            entityManager.remove(copas);
+
+            entityManager.getTransaction().commit();
+            rta.put("Se ha hecho la reserva para el: ", copas.getFecha());
+        } catch (Throwable t) {
+            t.printStackTrace();
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            copas = null;
+        } finally {
+            entityManager.clear();
+            entityManager.close();
+        }
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta).build();
+        
+        
+        }
+        
+        else
+        {
+                try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(copas);
+
+            entityManager.getTransaction().commit();
+            rta.put("Se ha hecho la reserva para el: ", copas.getFecha());
+        } catch (Throwable t) {
+            t.printStackTrace();
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            copas = null;
+        } finally {
+            entityManager.clear();
+            entityManager.close();
+        }
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(rta).build();
+                
+                
+                }
+
+    }
+    }
+    
+    
     
 }
 

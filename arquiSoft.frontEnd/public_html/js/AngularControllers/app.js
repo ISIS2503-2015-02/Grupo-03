@@ -24,25 +24,7 @@ aplicacionMundial.directive('toolbar', function(){
             
             
         };
-    });
-    aplicacionMundial.directive('devolverForm', function(){
-        return{
-            restrict:'E',
-            templateUrl:'partials/usuariodevolver-form.html',
-            controller: 'devolverCtrl'
-        };
-    });
-    aplicacionMundial.controller("devolverCtrl", function($http, $scope) {
- 
-        $scope.devolver=function(){
-            $http.put('http://localhost:8080/usuario/devolver/idUsr/666/idVcub/1', " ").success(function(data,headers){
-                $scope.usuario={};
-                $scope.toolbar.selectTab(10);
-            });
-        };
-     }); 
-     
-     
+    }); 
     aplicacionMundial.directive('vcubInfo', function(){
         return{
             restrict:'E',
@@ -204,29 +186,11 @@ aplicacionMundial.directive('competitorInfo', function(){
     });
     
     
-        aplicacionMundial.directive('alquilarForm', function(){
-        return{
-            restrict:'E',
-            templateUrl:'partials/usuarioAlquilar-form.html',
-            controller: 'alquilarCtrl'
-        };
-    });
-    aplicacionMundial.controller("alquilarCtrl", function($http, $scope) {
-  $scope.alquilar=function(){
-            $http.post()('http://localhost:8080/usuario/alquilar/idUsr/'+$scope.jesus.documento + '/idVcub/'+$scope.jesus.vcubAL,"asd").success(function(data,headers){
-                $scope.usuario={};
-                $scope.toolbar.selectTab(10);
-            });
-        };            
-    });
     
     
     
     
-    
-    
-    
-    
+
     
     
     aplicacionMundial.directive('tranviaInfo', function(){
@@ -383,15 +347,65 @@ aplicacionMundial.directive('competitorInfo', function(){
     
     
     
+    
+    
+    
 
     
     
+    aplicacionMundial.directive('alquilarForm', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/alquilar-form.html',
+            controller: 'alquilarCtrl'
+        };
+    });
+    aplicacionMundial.controller("alquilarCtrl", function($http, $scope) {
+
+        $scope.alquilar=function(){
+            $http.put('http://localhost:8080/usuario/alquilar/idUsr/'+ $scope.alquiler.id + '/idVcub/'+$scope.alquiler.idVcub,'').success(function(data,headers){
+                $scope.toolbar.selectTab(10);
+            });
+        };
+     });
+    
+
+        aplicacionMundial.directive('devolverForm', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/devolver-form.html',
+            controller: 'devolverCtrl'
+        };
+    });
+    aplicacionMundial.controller("devolverCtrl", function($http, $scope) {
+
+        $scope.devolver=function(){
+            $http.put('http://localhost:8080/usuario/devolver/idUsr/'+ $scope.devolver.id+ '/idVcub/'+$scope.devolver.idV, '').success(function(data,headers){
+                $scope.toolbar.selectTab(10);
+            });
+        };
+     });
     
     
     
     
     
     
+      aplicacionMundial.directive('cancelarForm', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/cancelar-form.html',
+            controller: 'cancelarCtrl'
+        };
+    });
+    aplicacionMundial.controller("cancelarCtrl", function($http, $scope) {
+
+        $scope.cancelar=function(){
+            $http.put('http://localhost:8080/usuario/cancelar/idReserva/'+ $scope.cancelar.id , '').success(function(data,headers){
+                $scope.toolbar.selectTab(15);
+            });
+        };
+     });
     
     
     

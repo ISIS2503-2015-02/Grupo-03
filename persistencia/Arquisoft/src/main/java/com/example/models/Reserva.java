@@ -109,10 +109,10 @@ fecha = pfecha;
      */
     public Usuario soltarReserva()
     {
-         Usuario jesus = null;
+     usuario = null;
     if (listaEspera.size()!= 0)
     {
-    jesus = listaEspera.get(0);
+    Usuario jesus = listaEspera.get(0);
     jesus.setNotificacion("se ha liberado un Mobibus, usted queda con la reserva");
     listaEspera.remove(0);
     return jesus;
@@ -120,8 +120,12 @@ fecha = pfecha;
     else
     {
     listaEspera = new ArrayList<Usuario>();
-return jesus;
+    fecha = null;
+    busAsociado = null;
+    return null;
+    
     }
+    
     }
     
     public String reservar(Usuario jesus, Date fecha)
@@ -164,7 +168,7 @@ return jesus;
       calendar.add(Calendar.DAY_OF_YEAR, 8);
      java.util.Date x = calendar.getTime();
 
-    if (fechaActual.before(fechaVerficar) || x.before(fechaVerficar) )
+    if (fechaActual.after(fechaVerficar) || x.before(fechaVerficar) )
     {
     return true;
     
