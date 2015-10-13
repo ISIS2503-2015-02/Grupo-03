@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import MobibusStandAloneMundo.Emergencia;
 import MobibusStandAloneMundo.Mundo;
 import MobibusStandAloneMundo.Ubicacion;
 import MobibusStandAloneMundo.Mobibus;
@@ -26,6 +27,10 @@ public class PanelPrincipal extends JPanel {
 
 
 	private PanelMobibus estaciones;
+
+	private PanelEmergencias emergencias;
+
+	private MobibusStandAloneInterfaz.PanelInfo info;
 
 
 	public static void main(String[] args) 
@@ -72,7 +77,19 @@ public class PanelPrincipal extends JPanel {
 		return Mobibuses;
 	}
 
-	
+	public Emergencia[] darEmergencias()
+	{
+		mundo.emergencias();
+
+		ArrayList<Emergencia> x = mundo.derEmergencias();
+		Emergencia[] lista = new Emergencia[x.size()];
+		for(int i=0; i<x.size();i++)
+		{
+			lista[i]=x.get(i);
+		}
+		return lista;
+	}
+
 	public String generarMapa(Ubicacion x)
 	{
 		return mundo.generarMapa(x);
@@ -88,8 +105,15 @@ public class PanelPrincipal extends JPanel {
 		botones.setVisible( true );
 		botones.actualizar();
 	}
-	
 
+	public void mostrarBotones3() 
+	{	
+		emergencias.setVisible(false);
+		botones = new PanelMenu(this);
+		add(botones, BorderLayout.CENTER);
+		botones.setVisible( true );
+		botones.actualizar();
+	}
 
 	public void mostrarEstaciones() 
 	{	
@@ -100,9 +124,9 @@ public class PanelPrincipal extends JPanel {
 		estaciones.actualizar();
 		estaciones.actualizarLista(darDisponibles());
 	}
-	
-	
-	
+
+
+
 	public void mostrarEstaciones2() 
 	{	
 		estaciones = new PanelMobibus(this);
@@ -111,7 +135,26 @@ public class PanelPrincipal extends JPanel {
 		estaciones.actualizar();
 		estaciones.actualizarLista(darDisponibles());
 	}
+
+	public void mostrarEmergencias() 
+	{	
+		botones.setVisible(false);
+		emergencias = new PanelEmergencias(this);
+		add(emergencias, BorderLayout.CENTER);
+		emergencias.setVisible( true );
+		emergencias.actualizar();
+		emergencias.actualizarLista(darEmergencias());
+	}
 	
+	public void mostrarInfo(Emergencia x) 
+	{	
+		emergencias.setVisible(false);
+		info = new PanelInfo(this);
+		add(info, BorderLayout.CENTER);
+		info.setVisible( true );
+		info.actualizar(mundo.cercano(x));
+	}
+
 	public void cambiarEstadoMobi(Mobibus mobi)
 	{
 		mundo.cambiarEstado(mobi);

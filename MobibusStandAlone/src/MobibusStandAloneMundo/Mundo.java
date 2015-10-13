@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -19,9 +20,12 @@ import com.google.gson.JsonParser;
 public class Mundo 
 {
 	private ArrayList<Mobibus> disponibles;
+	private ArrayList<Emergencia> emergencias;
+
 	public Mundo()
 	{
 		disponibles = new ArrayList<Mobibus>();
+		emergencias = new ArrayList<Emergencia>();
 	}
 
 	public void disponibles()
@@ -82,6 +86,65 @@ public class Mundo
 		}
 	}
 
+	public void emergencias()
+	{
+		try {
+			emergencias = new ArrayList<Emergencia>();
+
+			URL url = new URL("http://localhost:8080/emergencia/get");
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Accept", "application/json");
+
+			if (conn.getResponseCode() != 200) {
+				throw new RuntimeException("Failed : HTTP error code : "
+						+ conn.getResponseCode());
+			}
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(conn.getInputStream())));
+
+			String output;
+			System.out.println("Output from Server .... \n");
+			while((output = br.readLine())!=null)
+			{
+				JsonParser parser = new JsonParser();
+				JsonElement arrayElement = parser.parse(output);
+				System.out.println(arrayElement.getAsJsonArray().size());
+				System.out.println(output);
+				agregarEmergencia(arrayElement.getAsJsonArray(), emergencias);
+				//				String array[] = output.split(",");
+				//				System.out.println(array[0]);
+				//				for(int i=0;i+1<array.length;i=i+2)
+				//				{
+				//					array[i].replaceAll("\"", "");
+				//					String y[]=array[i].split(":");
+				//					Long pId = Long.valueOf(y[1]);
+				//					Mobibus agregar=new Mobibus(pId, "disponible");
+				//					disponibles.add(agregar);
+				//
+				//				}
+			}
+			//			while ((output = br.readLine()) != null) 
+			//			{
+			//				convertir(output, disponibles);
+			//				System.out.println(output);
+			//			}
+
+			conn.disconnect();
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+	}
+
+
 	public String generarMapa(Ubicacion x)
 	{
 		if(x == null)
@@ -95,7 +158,7 @@ public class Mundo
 		return URL;
 	}
 
-	
+
 	public void agregarMobibus(JsonArray jsonArray, ArrayList res)
 	{
 		for(int i=0;i<jsonArray.size();i++)
@@ -109,19 +172,74 @@ public class Mundo
 		}
 	}
 
+	public void agregarEmergencia(JsonArray jsonArray, ArrayList res)
+	{
+		for(int i=0;i<jsonArray.size();i++)
+		{
+			if(jsonArray.get(i)!=null)
+			{
+				String blog = String.valueOf(((JsonObject) jsonArray.get(i)).get("id"));
+				Long id = Long.valueOf(blog);
+				System.out.println(id);
+				String descripcion = String.valueOf(((JsonObject) jsonArray.get(i)).get("descripcion"));
+				String consecuencia = String.valueOf(((JsonObject) jsonArray.get(i)).get("consecuencia"));
+				String magnitud = String.valueOf(((JsonObject) jsonArray.get(i)).get("magnitud"));
+				Date fecha = Date.valueOf(String.valueOf(((JsonObject) jsonArray.get(i)).get("fecha")));
+				JsonObject ubi = jsonArray.get(i).getAsJsonObject().getAsJsonObject("ubicacion");
+				String lat = String.valueOf(ubi.get("latitud"));
+				String lon = String.valueOf(ubi.get("longitud"));
+				double latitud = Double.parseDouble(lat);
+				double longitud = Double.parseDouble(lon);
+				String blog2 = String.valueOf(ubi.get("id"));
+				Long pId = Long.valueOf(blog);
+				Ubicacion ubicacion = new Ubicacion(pId, latitud, longitud);
+				Emergencia temp = new Emergencia(descripcion, consecuencia, magnitud, fecha, ubicacion, null);
+				res.add(temp);
+			}
+		}
+	}
+
+	public Mobibus cercano(Emergencia em)
+	{
+		disponibles();
+		Mobibus res = null;
+		double menor = distancia(disponibles.get(0).getUbicacion(),em.darUbicacion());
+		for(int i=1; i<disponibles.size();i++)
+		{
+			double x= distancia(disponibles.get(i).getUbicacion(),em.darUbicacion());
+			if(x < menor)
+			{
+				menor = x;
+				res = disponibles.get(i);
+			}
+		}
+		return res;
+	}
 
 	public ArrayList darDisponibles()
 	{
-		
+
 		return disponibles;
 	}
 	
+	public ArrayList<Emergencia> derEmergencias()
+	{
+		return emergencias;
+	}
+
 	public void cambiarEstado(Mobibus mobi)
 	{
 		mobi.cambiarEstado();
 	}
-	
 
-	
+	public double distancia(Ubicacion ubi1, Ubicacion ubi2)
+	{
+		double distancia = 0;
+		if(ubi1!=null && ubi2!=null)
+		{
+			distancia=Math.pow((Math.pow((ubi1.getLatitud()-ubi2.getLatitud()),2)+Math.pow((ubi1.getLongitud()-ubi2.getLongitud()),2)),1/2);
+		}
+		return distancia;
+	}
 }
 

@@ -67,8 +67,15 @@ public class PanelMenu extends JPanel implements ActionListener
 		gbc_btnCambiarUbicacionActual.gridy = 3;
 		add(btnCambiarUbicacionActual, gbc_btnCambiarUbicacionActual);
 		
-		
+		JButton btnEmergencias = new JButton("Ver Emergencias");
+		btnEmergencias.setActionCommand("CAMBIO");
+		btnEmergencias.addActionListener(this);
 
+		gbc_btnCambiarUbicacionActual.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCambiarUbicacionActual.gridx = 2;
+		gbc_btnCambiarUbicacionActual.gridy = 5;
+		add(btnEmergencias, gbc_btnCambiarUbicacionActual);
+		
 //		panel = new JPanel();
 //		panel.setPreferredSize(new Dimension(200, 200));
 //		GridBagConstraints gbc_panel = new GridBagConstraints();
@@ -188,6 +195,10 @@ public class PanelMenu extends JPanel implements ActionListener
 		if(x.equals("CAMBIO1"))
 		{
 			principal.mostrarEstaciones();
+		}
+		else if(x.equals("CAMBIO"))
+		{
+			principal.mostrarEmergencias();;
 		}
 	}
 }
