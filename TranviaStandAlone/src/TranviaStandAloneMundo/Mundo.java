@@ -1,7 +1,6 @@
 package TranviaStandAloneMundo;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -29,7 +28,7 @@ public class Mundo
 
 	public Mundo()
 	{
-		actual= new Tranvia(2,"el bronx","97,08",45000);
+		actual= new Tranvia(1,"el bronx","97,08",45000);
 	}
 	
 	public void cambiarTranvia(Tranvia actual)
@@ -45,7 +44,7 @@ public class Mundo
 			System.out.println(url);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestProperty("Accept", "application/json; charset=UTF-8");
 			JsonObject emergencia = new JsonObject();
 			JsonArray vehicInvolv= new JsonArray();
 
@@ -68,15 +67,6 @@ public class Mundo
 			wr.write(emergencia.toString());
 			System.out.println(emergencia);
 			wr.flush();
-			wr.close();
-			//lee la respuesta
-			String response = null;
-			DataInputStream input = new DataInputStream (conn.getInputStream());
-			while (null != ((response = input.readLine()))) {
-				System.out.println(response);
-			}
-				input.close ();
-				
 
 			if (conn.getResponseCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : "
@@ -107,7 +97,7 @@ public class Mundo
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
 			conn.setRequestMethod("POST");
-	        conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestProperty("Accept", "application/json; charset=UTF-8");
 			JsonObject emergencia = new JsonObject();
 			JsonArray vehicInvolv= new JsonArray();
 
@@ -117,7 +107,7 @@ public class Mundo
 				u.addProperty("longitud", coordenadas[1]);
 				
 			
-			emergencia.addProperty( "descripcion", "Accidente critico");
+			emergencia.addProperty( "descripcion", "Accidente crítico");
 			emergencia.addProperty("consecuencia", "ko");
 			emergencia.add("vehiculosInvolucrados", vehicInvolv);
 			emergencia.addProperty("magnitud", "grave");
@@ -126,24 +116,14 @@ public class Mundo
 			String formattedDate= df.format(date);
 			emergencia.addProperty("fecha", formattedDate);
 			emergencia.add("ubicacion", u);
-			conn.setDoOutput(true);	
-	
+			conn.setDoOutput(true);			
 			OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 			wr.write(emergencia.toString());
-			wr.flush();
-			wr.close();
+			System.out.println(emergencia);
 			System.out.println(url);
-			System.out.println(conn.getOutputStream());
-			//lee la respuesta
-			String response = null;
-			DataInputStream input = new DataInputStream (conn.getInputStream());
-			while (null != ((response = input.readLine()))) {
-				System.out.println(response);
-			}
-				input.close ();
-				
 
-			
+
+			wr.flush();
 
 			if (conn.getResponseCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : "
