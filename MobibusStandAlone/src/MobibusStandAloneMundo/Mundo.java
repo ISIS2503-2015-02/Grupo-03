@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -91,7 +92,7 @@ public class Mundo
 		try {
 			emergencias = new ArrayList<Emergencia>();
 
-			URL url = new URL("http://localhost:8080/emergencia/get");
+			URL url = new URL("http://172.24.100.41:80/emergencia/get");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
@@ -112,7 +113,25 @@ public class Mundo
 				JsonElement arrayElement = parser.parse(output);
 				System.out.println(arrayElement.getAsJsonArray().size());
 				System.out.println(output);
-				agregarEmergencia(arrayElement.getAsJsonArray(), emergencias);
+				for(int i=0;i<arrayElement.getAsJsonArray().size();i++)
+				{
+					if(arrayElement.getAsJsonArray().get(i)!=null)
+					{
+						String blog = String.valueOf(arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("id"));
+						Long id = Long.valueOf(blog);
+						System.out.println(id);
+						String descripcion = String.valueOf(arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("descripcion"));
+						String consecuencia = String.valueOf(arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("consecuencia"));
+						String magnitud = String.valueOf(arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("magnitud"));
+//						Long tempId2 = arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("ubicacion").getAsJsonObject().get("id").getAsLong();
+//						int tempLatitud = arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("ubicacion").getAsJsonObject().get("latitud").getAsInt();
+//						int tempLongitud = arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("ubicacion").getAsJsonObject().get("longitud").getAsInt();
+						Ubicacion tempUb = new Ubicacion(Long.valueOf(i), 20, 0);
+						Long pId = Long.valueOf(blog);
+						Emergencia temp = new Emergencia(descripcion, consecuencia, magnitud, null, tempUb, null);
+						emergencias.add(temp);
+					}
+				}
 				//				String array[] = output.split(",");
 				//				System.out.println(array[0]);
 				//				for(int i=0;i+1<array.length;i=i+2)
@@ -184,16 +203,12 @@ public class Mundo
 				String descripcion = String.valueOf(((JsonObject) jsonArray.get(i)).get("descripcion"));
 				String consecuencia = String.valueOf(((JsonObject) jsonArray.get(i)).get("consecuencia"));
 				String magnitud = String.valueOf(((JsonObject) jsonArray.get(i)).get("magnitud"));
-				Date fecha = Date.valueOf(String.valueOf(((JsonObject) jsonArray.get(i)).get("fecha")));
-				JsonObject ubi = jsonArray.get(i).getAsJsonObject().getAsJsonObject("ubicacion");
-				String lat = String.valueOf(ubi.get("latitud"));
-				String lon = String.valueOf(ubi.get("longitud"));
-				double latitud = Double.parseDouble(lat);
-				double longitud = Double.parseDouble(lon);
-				String blog2 = String.valueOf(ubi.get("id"));
+				Long tempId2 = jsonArray.getAsJsonArray().get(i).getAsJsonObject().get("ubicacion").getAsJsonObject().get("id").getAsLong();
+				int tempLatitud = jsonArray.getAsJsonArray().get(i).getAsJsonObject().get("ubicacion").getAsJsonObject().get("latitud").getAsInt();
+				int tempLongitud = jsonArray.getAsJsonArray().get(i).getAsJsonObject().get("ubicacion").getAsJsonObject().get("longitud").getAsInt();
+				Ubicacion tempUb = new Ubicacion(tempId2, tempLatitud, tempLongitud);
 				Long pId = Long.valueOf(blog);
-				Ubicacion ubicacion = new Ubicacion(pId, latitud, longitud);
-				Emergencia temp = new Emergencia(descripcion, consecuencia, magnitud, fecha, ubicacion, null);
+				Emergencia temp = new Emergencia(descripcion, consecuencia, magnitud, null, tempUb, null);
 				res.add(temp);
 			}
 		}

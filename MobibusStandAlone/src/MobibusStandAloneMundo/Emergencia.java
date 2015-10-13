@@ -57,4 +57,9 @@ public class Emergencia
 	{
 		return vehiculos;
 	}
+	
+	public String toString()
+	{
+		return magnitud;
+	}
 }
