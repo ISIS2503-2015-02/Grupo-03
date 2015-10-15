@@ -28,7 +28,7 @@ public class Mobibus implements Serializable
     //-----------------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
     /**
      * Estado del Mobibus
      */
@@ -37,6 +37,9 @@ public class Mobibus implements Serializable
     
     @OneToOne
     private Ubicacion ubic;
+    
+
+  
     
    
     //-----------------------------------------------------------
@@ -53,7 +56,7 @@ public class Mobibus implements Serializable
         
     }
     
-    public Mobibus(long id)
+    public Mobibus(int id)
     {
         this.id = id;
         estado = "disponible";
@@ -78,11 +81,11 @@ public class Mobibus implements Serializable
         this.estado = estado;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
             
@@ -94,6 +97,9 @@ public class Mobibus implements Serializable
     public void setUbicacion(Ubicacion ubic) {
         this.ubic = ubic;
     }
+    
+     
+ 
     /**
      * Modifica el estado del Mobibus
      */

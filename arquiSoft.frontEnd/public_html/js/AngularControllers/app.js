@@ -101,7 +101,7 @@ aplicacionMundial.directive('toolbar', function(){
         };
     });    
     
-    aplicacionMundial.directive('rankingConductores', function(){
+    aplicacionMundial.directive('mejorConductor', function(){
         return{
             restrict:'E',
             templateUrl:'partials/mejorConductor.html',
@@ -386,8 +386,22 @@ aplicacionMundial.directive('competitorInfo', function(){
      });
     
     
-    
-    
+    aplicacionMundial.directive('addconductorForm', function(){
+        return{
+            restrict:'E',
+            templateUrl:'partials/addconductor-form.html',
+            controller: 'addconductorCtrl'
+        };
+    });
+    aplicacionMundial.controller("addconductorCtrl", function($http, $scope) {
+
+        $scope.addConductor=function(){
+            $http.put('http://localhost:8080/conductor/add', JSON.stringify($scope.conductor)).success(function(data,headers){
+                $scope.conductor={};
+                $scope.toolbar.selectTab(13);
+            });
+        };
+    });
     
     
       aplicacionMundial.directive('cancelarForm', function(){

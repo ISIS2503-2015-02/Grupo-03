@@ -29,7 +29,7 @@ private String estado;
      * Ubicacion del mobibus
      */
      private Ubicacion ubic;
-
+     
     //-----------------------------------------------------------
     // Constructores
     //-----------------------------------------------------------
@@ -48,9 +48,10 @@ private String estado;
      */
     public MobibusDTO(int id)
     {
-        this.id = id;
-        this.estado = "disponible";
-     
+         this.id = id;
+        estado = "disponible";
+        Ubicacion w = new Ubicacion( 4.60, -74.07);
+        this.ubic = w;
     }
 
     //-----------------------------------------------------------

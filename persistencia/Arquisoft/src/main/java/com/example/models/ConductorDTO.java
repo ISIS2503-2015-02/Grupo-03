@@ -65,17 +65,16 @@ public class ConductorDTO
      * @param nombre
      * @param movi
      * @param tran
-     * @param tipoRuta
-     * @param tiempos
-     * @param prom
+
      */
-    public ConductorDTO(long cc, String nombre, MobibusDTO movi, Tranvia tran, Ruta tipoRuta, ArrayList tiempos, Double prom)
+    public ConductorDTO(long cc, String nombre, MobibusDTO movi, Tranvia tran)
     {
         this.cc = cc;
         this.nombre = nombre;
         this.mobibus = movi;
         this.tranvia = tran;
-        this.ruta = tipoRuta;
+        Ruta r = new Ruta(1, "Universidad", "Monserrate");
+        this.ruta = r;
         this.tiempos = new ArrayList();
         this.promedio = 0.0;
 
