@@ -270,18 +270,18 @@ aplicacionMundial.directive('competitorInfo', function(){
 
     
     
-    aplicacionMundial.directive('mobibusInfo', function(){
+     aplicacionMundial.directive('mobibusInfo', function(){
         return{
             restrict:'E',
             templateUrl:'partials/mobibus-info.html',
             controller: 'getMobibuses'
         };
     });
- 
+    
     aplicacionMundial.controller("getMobibuses", function($http, $scope) {
     $http.get('http://localhost:8080/mobibus/get').
       success(function(data, status, headers, config) {
-        $scope.competitors = data;
+        $scope.mobibus = data;
       }).
       error(function(data, status, headers, config) {
         // log error
@@ -289,25 +289,24 @@ aplicacionMundial.directive('competitorInfo', function(){
     });
     
     
-    
-     aplicacionMundial.directive('mobibusForm', function(){
+   aplicacionMundial.directive('mobibusForm', function(){
         return{
             restrict:'E',
             templateUrl:'partials/mobibus-form.html',
             controller: 'mobibusCtrl'
         };
     });
- 
+    
     aplicacionMundial.controller("mobibusCtrl", function($http, $scope) {
  
         $scope.addMobibus=function(){
             console.log('id');
-            $http.post('http://localhost:8080/mobibus/add', JSON.stringify($scope.competitor)).success(function(data,headers){
-                $scope.competitor={};
-                $scope.toolbar.selectTab(13);
+            $http.post('http://localhost:8080/mobibus/add', JSON.stringify($scope.mobibus)).success(function(data,headers){
+                $scope.mobibus={};
+                $scope.toolbar.selectTab(3);
             });
         };
-    }); 
+    });    
     
     
     aplicacionMundial.directive('reservaInfo', function(){
