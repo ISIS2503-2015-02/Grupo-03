@@ -272,27 +272,30 @@ public class Mundo
 			URL url = new URL("http://localhost:8080/usuario/add");
 			System.out.println(url);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestProperty("Accept", "application/json");
 			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Accept", "application/json; charset=UTF-8");
+//			conn.setRequestProperty("Accept", "application/json; charset=UTF-8");
 			JsonObject usuario = new JsonObject();
 			
-			usuario.addProperty( "nombre", pNombre);
+			usuario.addProperty("nombre", pNombre);
 			usuario.addProperty("documento", pDocumento);
 			usuario.addProperty("tipoDocumento", pTipoDocumento);
 			usuario.addProperty("telefono", pTelefono);
 			usuario.addProperty("direccion", pDireccion);
 			usuario.addProperty("correo", pCorreo);
 			usuario.addProperty("tarjeta", pTarjeta);
-			conn.setDoOutput(true);
 			OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 			wr.write(usuario.toString());
 			System.out.println(usuario);
 			wr.flush();
 
 			if (conn.getResponseCode() != 200) {
-//				throw new RuntimeException("Failed : HTTP error code : "
-//						+ conn.getResponseCode());
-				respuesta = false;
+				throw new RuntimeException("Failed : HTTP error code : "
+						+ conn.getResponseCode());
+//				respuesta = false;
 			}
 			else 
 			{
