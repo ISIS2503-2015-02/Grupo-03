@@ -214,4 +214,49 @@ public class Mundo
 
 		return estaciones;
 	}
+	
+	public boolean iniciar(String pCorreo, String pPassword)
+	{
+		boolean respuesta = false;
+		try {
+
+			URL url = new URL("http://localhost:8080/usuario/get/"+pCorreo);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Accept", "application/json");
+
+			if (conn.getResponseCode() != 200) {
+				throw new RuntimeException("Failed : HTTP error code : "
+						+ conn.getResponseCode());
+			}
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(conn.getInputStream())));
+
+			String output;
+			System.out.println("Output from Server .... \n");
+			while((output = br.readLine())!=null)
+			{
+				JsonParser parser = new JsonParser();
+				JsonElement arrayElement = parser.parse(output);
+				System.out.println(output);
+				if(pPassword.equalsIgnoreCase(arrayElement.getAsJsonObject().get("documento").getAsString()))
+				{
+					respuesta = true;
+				}
+			}
+
+			conn.disconnect();
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+		return respuesta;
+	}
 }

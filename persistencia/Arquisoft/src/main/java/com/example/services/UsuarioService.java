@@ -458,7 +458,22 @@ if (algo == null)
     }
     }
     
-    
+    @GET
+    @Path("/get/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response login(@PathParam("id") String pAddress)
+    {
+       Query q = entityManager.createQuery("select u from Usuario u where u.correo = '"+pAddress+"'");
+       Usuario x = (Usuario) q.getSingleResult();
+       if(x != null)
+       {
+           return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(x).build();
+       }
+       else
+       {
+           throw new NotAuthorizedException("Perdidas socito");
+       }
+    }
     
 }
 
