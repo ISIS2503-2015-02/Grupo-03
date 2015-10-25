@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -22,6 +23,8 @@ import VcubStandAloneMundo.Vcub;
 public class PanelPrincipal extends JPanel {
 
 	private Mundo mundo;
+	
+	private PanelIniciarSesion iniciar;
 
 	private PanelMenu botones;
 
@@ -50,11 +53,15 @@ public class PanelPrincipal extends JPanel {
 		mundo = x;
 		//Creación de los paneles aquí
 
-		botones = new PanelMenu( this );
-		add( botones, BorderLayout.CENTER);		
-		botones.setVisible(true);
+//		botones = new PanelMenu(this);
+//		add(botones, BorderLayout.CENTER);
+//		botones.setVisible(true);
+//		botones.actualizar();
+		iniciar = new PanelIniciarSesion( this );
+		add( iniciar, BorderLayout.CENTER);		
+		iniciar.setVisible(true);
 
-		botones.actualizar();
+		iniciar.reiniciar();
 		this.revalidate();
 	}
 
@@ -109,6 +116,22 @@ public class PanelPrincipal extends JPanel {
 		add(botones, BorderLayout.CENTER);
 		botones.setVisible( true );
 		botones.actualizar();
+	}
+	
+	public void iniciarSesion(String pCorreo, String pPassword) 
+	{	
+		if(mundo.iniciar(pCorreo, pPassword)==true)
+		{
+			iniciar.setVisible(false);
+			botones = new PanelMenu(this);
+			add(botones, BorderLayout.CENTER);
+			botones.setVisible( true );
+			botones.actualizar();
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(this, "No se ha encontrado el usuario");
+		}
 	}
 
 	public void mostrarBotones2() 
