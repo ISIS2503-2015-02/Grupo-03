@@ -5,11 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -247,6 +250,54 @@ public class Mundo
 				}
 			}
 
+			conn.disconnect();
+
+		} catch (MalformedURLException e) {
+
+			e.printStackTrace();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+		return respuesta;
+	}
+	
+	public boolean registrarse(String pNombre, long pDocumento, String pTipoDocumento, long pTelefono, String pDireccion, String pCorreo, long pTarjeta) throws ParseException
+	{
+		boolean respuesta = false;
+		try {
+
+			URL url = new URL("http://localhost:8080/usuario/add");
+			System.out.println(url);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Accept", "application/json; charset=UTF-8");
+			JsonObject usuario = new JsonObject();
+			
+			usuario.addProperty( "nombre", pNombre);
+			usuario.addProperty("documento", pDocumento);
+			usuario.addProperty("tipoDocumento", pTipoDocumento);
+			usuario.addProperty("telefono", pTelefono);
+			usuario.addProperty("direccion", pDireccion);
+			usuario.addProperty("correo", pCorreo);
+			usuario.addProperty("tarjeta", pTarjeta);
+			conn.setDoOutput(true);
+			OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+			wr.write(usuario.toString());
+			System.out.println(usuario);
+			wr.flush();
+
+			if (conn.getResponseCode() != 200) {
+//				throw new RuntimeException("Failed : HTTP error code : "
+//						+ conn.getResponseCode());
+				respuesta = false;
+			}
+			else 
+			{
+				respuesta = true;
+			}
 			conn.disconnect();
 
 		} catch (MalformedURLException e) {

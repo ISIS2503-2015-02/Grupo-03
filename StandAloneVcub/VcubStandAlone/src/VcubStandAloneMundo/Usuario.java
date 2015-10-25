@@ -59,7 +59,7 @@ public class Usuario
 	/**
 	 * Constructor de la clase sin argumentos
 	 */
-	public Usuario(String pNombre, long pTelefono, String pDireccion, String pCorreo, long pTarjeta, Vcub pBicicleta)
+	public Usuario(String pNombre, long pDocumento, String pTipoDocumento, long pTelefono, String pDireccion, String pCorreo, long pTarjeta, Vcub pBicicleta)
 	{
 		nombre = pNombre;
 		telefono = pTelefono;

@@ -49,24 +49,24 @@ public class PanelIniciarSesion extends JPanel implements ActionListener
 	public PanelIniciarSesion(PanelPrincipal ventana)
 	{
 		principal = ventana;
-		
+
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
-		
+
 		JLabel labelx = new JLabel("Iniciar Sesion");
 		labelx.setBounds(168, 11, 78, 17);
 		labelx.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
+
 		GridBagConstraints gbc_btnCambiarUbicacionActual = new GridBagConstraints();
 		gbc_btnCambiarUbicacionActual.insets = new Insets(0, 0, 5, 5);
 		gbc_btnCambiarUbicacionActual.gridx = 2;
 		gbc_btnCambiarUbicacionActual.gridy = 1;
 		add(labelx, gbc_btnCambiarUbicacionActual);
-		
+
 		gbc_btnCambiarUbicacionActual.gridx = 0;
 		gbc_btnCambiarUbicacionActual.gridy = 3;
 		JLabel lblUsuario = new JLabel("Correo:");
@@ -82,7 +82,7 @@ public class PanelIniciarSesion extends JPanel implements ActionListener
 		textNombre.setBounds(225, 55, 86, 20);
 		add(textNombre, gbc_btnCambiarUbicacionActual);
 		textNombre.setColumns(10);
-		
+
 		gbc_btnCambiarUbicacionActual.gridx = 0;
 		gbc_btnCambiarUbicacionActual.gridy = 5;
 		JLabel lblId = new JLabel("Documento:");
@@ -97,7 +97,7 @@ public class PanelIniciarSesion extends JPanel implements ActionListener
 		textIdentificador.setBounds(225, 105, 86, 20);
 		textIdentificador.setColumns(10);
 		add(textIdentificador, gbc_btnCambiarUbicacionActual);
-		
+
 		gbc_btnCambiarUbicacionActual.gridx = 2;
 		gbc_btnCambiarUbicacionActual.gridy = 7;
 		JButton btnInicarSesion = new JButton("IniciarSesion");
@@ -114,6 +114,7 @@ public class PanelIniciarSesion extends JPanel implements ActionListener
 		btnCancelar.addActionListener(this);
 		add(btnCancelar, gbc_btnCambiarUbicacionActual);
 
+		reiniciar();
 		this.revalidate();
 	}
 
@@ -127,7 +128,7 @@ public class PanelIniciarSesion extends JPanel implements ActionListener
 		String x = e.getActionCommand();
 		if(x.equals("REGISTRAR"))
 		{
-			//			principal.mostrarDialogoRegistrar();
+			principal.mostrarRegistro();
 		}	
 		else if(x.equals(INICIARSESION))
 		{

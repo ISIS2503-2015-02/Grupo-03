@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -23,7 +24,7 @@ import VcubStandAloneMundo.Vcub;
 public class PanelPrincipal extends JPanel {
 
 	private Mundo mundo;
-	
+
 	private PanelIniciarSesion iniciar;
 
 	private PanelMenu botones;
@@ -33,6 +34,8 @@ public class PanelPrincipal extends JPanel {
 	private PanelEstaciones estaciones;
 
 	private PanelInfo info;
+
+	private PanelRegistro registro;
 
 	public static void main(String[] args) 
 	{
@@ -53,10 +56,10 @@ public class PanelPrincipal extends JPanel {
 		mundo = x;
 		//Creación de los paneles aquí
 
-//		botones = new PanelMenu(this);
-//		add(botones, BorderLayout.CENTER);
-//		botones.setVisible(true);
-//		botones.actualizar();
+		//		botones = new PanelMenu(this);
+		//		add(botones, BorderLayout.CENTER);
+		//		botones.setVisible(true);
+		//		botones.actualizar();
 		iniciar = new PanelIniciarSesion( this );
 		add( iniciar, BorderLayout.CENTER);		
 		iniciar.setVisible(true);
@@ -117,7 +120,7 @@ public class PanelPrincipal extends JPanel {
 		botones.setVisible( true );
 		botones.actualizar();
 	}
-	
+
 	public void iniciarSesion(String pCorreo, String pPassword) 
 	{	
 		if(mundo.iniciar(pCorreo, pPassword)==true)
@@ -134,6 +137,22 @@ public class PanelPrincipal extends JPanel {
 		}
 	}
 
+	public void registrarse(String pNombre, long pDocumento, String pTipoDocumento, long pTelefono, String pDireccion, String pCorreo, long pTarjeta) throws ParseException
+	{
+		if(mundo.registrarse(pNombre, pDocumento, pTipoDocumento, pTelefono, pDireccion, pCorreo, pTarjeta)==true)
+		{
+			registro.setVisible(false);
+			botones = new PanelMenu(this);
+			add(botones, BorderLayout.CENTER);
+			botones.setVisible( true );
+			botones.actualizar();
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(this, "No se pudo llevar a cabo el registro");
+		}	
+	}
+
 	public void mostrarBotones2() 
 	{	
 		estaciones.setVisible(false);
@@ -142,7 +161,7 @@ public class PanelPrincipal extends JPanel {
 		botones.setVisible( true );
 		botones.actualizar();
 	}
-	
+
 	public void mostrarBotones3() 
 	{	
 		info.setVisible(false);
@@ -150,6 +169,14 @@ public class PanelPrincipal extends JPanel {
 		add(botones, BorderLayout.CENTER);
 		botones.setVisible( true );
 		botones.actualizar();
+	}
+
+	public void mostrarRegistro() 
+	{	
+		iniciar.setVisible(false);
+		registro = new PanelRegistro(this);
+		add(registro, BorderLayout.CENTER);
+		registro.setVisible( true );
 	}
 
 	public void mostrarEstaciones() 
@@ -161,7 +188,7 @@ public class PanelPrincipal extends JPanel {
 		estaciones.actualizar();
 		estaciones.actualizarLista(darEstaciones());
 	}
-	
+
 	public void mostrarInfo(EstacionVcub x) 
 	{	
 		estaciones.setVisible(false);
@@ -170,7 +197,15 @@ public class PanelPrincipal extends JPanel {
 		info.setVisible( true );
 		info.actualizar(x);
 	}
-	
+
+	public void mostrarIniciar( ) 
+	{	
+		registro.setVisible(false);
+		iniciar = new PanelIniciarSesion(this);
+		add(iniciar, BorderLayout.CENTER);
+		iniciar.setVisible( true );
+	}
+
 	public void mostrarEstaciones2() 
 	{	
 		info.setVisible(false);
