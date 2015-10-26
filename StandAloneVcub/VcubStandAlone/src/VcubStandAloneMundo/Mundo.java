@@ -34,7 +34,7 @@ public class Mundo
 		try {
 			disponibles = new ArrayList<Vcub>();
 
-			URL url = new URL("http://172.24.100:80/vcub/disponibles");
+			URL url = new URL("http://172.24.100.41:80/vcub/disponibles");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
@@ -100,7 +100,7 @@ public class Mundo
 		try {
 			estaciones = new ArrayList<EstacionVcub>();
 
-			URL url = new URL("http://172.24.100:80/estacion/get");
+			URL url = new URL("http://172.24.100.41:80/estacion/get");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
@@ -156,7 +156,7 @@ public class Mundo
 	//	{
 	//		try {
 	//
-	//			URL url = new URL("http://172.24.100:8080/vcub/disponibles");
+	//			URL url = new URL("http://172.24.100.41:8080/vcub/disponibles");
 	//			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	//			conn.setRequestMethod("GET");
 	//			conn.setRequestProperty("Accept", "application/json");
@@ -223,7 +223,7 @@ public class Mundo
 		boolean respuesta = false;
 		try {
 
-			URL url = new URL("http://172.24.100:80/usuario/get/"+pCorreo);
+			URL url = new URL("http://172.24.100.41:80/usuario/get/"+pCorreo);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Accept", "application/json");
@@ -269,7 +269,7 @@ public class Mundo
 		boolean respuesta = false;
 		try {
 
-			URL url = new URL("http://172.24.100:80/usuario/add");
+			URL url = new URL("http://172.24.100.41:80/usuario/add");
 			System.out.println(url);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
