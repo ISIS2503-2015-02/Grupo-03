@@ -3,63 +3,65 @@ package MobibusStandAloneMundo;
 import java.lang.reflect.Array;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Emergencia 
 {
-	private String descripcion;
+	private String descripcionM;
 
-	private String consecuencia;
+	private String consecuenciaM;
 
-	private String magnitud;
+	private String magnitudM;
 
-	private Date fecha;
+	private Date fechaM;
 
-	private Ubicacion ubicacion;
+	private Ubicacion ubicacionM;
 	
-	private ArrayList<Vehiculo> vehiculos;
+	private List<Vehiculo> vehiculosM;
 
-	public Emergencia(String pDescripcion, String pConsecuencia, String pMagnitud, Date pFecha, Ubicacion pUbicacion, ArrayList<Vehiculo> pVehiculos)
+	public Emergencia(String pDescripcion, String pConsecuencia, String pMagnitud, Date pFecha, Ubicacion pUbicacion, List<Vehiculo> pVehiculos)
 	{
-		descripcion = pDescripcion;
-		consecuencia = pConsecuencia;
-		magnitud = pMagnitud;
-		fecha = pFecha;
-		ubicacion = pUbicacion;
-		vehiculos = pVehiculos;
+		descripcionM = pDescripcion;
+		consecuenciaM = pConsecuencia;
+		magnitudM = pMagnitud;
+		fechaM = pFecha;
+		ubicacionM = pUbicacion;
+		vehiculosM = pVehiculos;
 	}
 
 	public String darDescripcion()
 	{
-		return descripcion;
+		return descripcionM;
 	}
 
 	public String darConsecuencia()
 	{
-		return consecuencia;
+		return consecuenciaM;
 	}
 
 	public String darMagnitud()
 	{
-		return magnitud;
+		return magnitudM;
 	}
 	
 	public Date darFecha()
 	{
-		return fecha;
+		return fechaM;
 	}
 	
 	public Ubicacion darUbicacion()
 	{
-		return ubicacion;
+		return ubicacionM;
 	}
 	
-	public ArrayList<Vehiculo> darVehiculos()
+	public List<Vehiculo> darVehiculos()
 	{
-		return vehiculos;
+		return vehiculosM;
 	}
 	
+	@Override
 	public String toString()
 	{
-		return magnitud;
+		return magnitudM;
 	}
 }

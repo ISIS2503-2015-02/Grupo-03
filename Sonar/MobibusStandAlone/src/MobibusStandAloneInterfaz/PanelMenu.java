@@ -20,168 +20,71 @@ import java.net.URL;
 
 public class PanelMenu extends JPanel implements ActionListener
 {
-	private PanelPrincipal principal;
-	private JLabel label;
-	private JLabel lblSuUbicacinActual;
-	private JPanel panel;
-	private JLabel lblLatitud;
-	private JLabel lblLongitud;
-	private JLabel lblCodigoPostal;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JLabel lblCiudad;
-	private JTextField textField_3;
-
+	private PanelPrincipal principalIP;
+	private JLabel labelIP;
 	/**
 	 * Create the panel.
 	 */
 	public PanelMenu(PanelPrincipal ventana)
 	{
-		principal = ventana;
+		principalIP = ventana;
 
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
+		GridBagLayout gridBagLayoutIP = new GridBagLayout();
+		gridBagLayoutIP.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gridBagLayoutIP.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayoutIP.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayoutIP.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		setLayout(gridBagLayoutIP);
 
-		label = new JLabel("");
-		label.setHorizontalAlignment( JLabel.CENTER );
-		label.setBorder(new LineBorder(new Color(0, 0, 0)));
-		label.setPreferredSize(new Dimension(300, 300));
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.insets = new Insets(0, 0, 5, 5);
-		gbc_label.gridx = 2;
-		gbc_label.gridy = 1;
-		add(label, gbc_label);
+		labelIP = new JLabel("");
+		labelIP.setHorizontalAlignment( JLabel.CENTER );
+		labelIP.setBorder(new LineBorder(new Color(0, 0, 0)));
+		labelIP.setPreferredSize(new Dimension(300, 300));
+		GridBagConstraints gbc_labelIP = new GridBagConstraints();
+		gbc_labelIP.insets = new Insets(0, 0, 5, 5);
+		gbc_labelIP.gridx = 2;
+		gbc_labelIP.gridy = 1;
+		add(labelIP, gbc_labelIP);
 		
-		JButton btnCambiarUbicacionActual = new JButton("Ver Mobibuses");
-		btnCambiarUbicacionActual.setActionCommand("CAMBIO1");
-		btnCambiarUbicacionActual.addActionListener(this);
+		JButton btnCambiarUbicacionActualIP = new JButton("Ver Mobibuses");
+		btnCambiarUbicacionActualIP.setActionCommand("CAMBIO1");
+		btnCambiarUbicacionActualIP.addActionListener(this);
 		
-		GridBagConstraints gbc_btnCambiarUbicacionActual = new GridBagConstraints();
-		gbc_btnCambiarUbicacionActual.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCambiarUbicacionActual.gridx = 2;
-		gbc_btnCambiarUbicacionActual.gridy = 3;
-		add(btnCambiarUbicacionActual, gbc_btnCambiarUbicacionActual);
+		GridBagConstraints gbc_btnCambiarUbicacionActualIP = new GridBagConstraints();
+		gbc_btnCambiarUbicacionActualIP.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCambiarUbicacionActualIP.gridx = 2;
+		gbc_btnCambiarUbicacionActualIP.gridy = 3;
+		add(btnCambiarUbicacionActualIP, gbc_btnCambiarUbicacionActualIP);
 		
 		JButton btnEmergencias = new JButton("Ver Emergencias");
 		btnEmergencias.setActionCommand("CAMBIO");
 		btnEmergencias.addActionListener(this);
 
-		gbc_btnCambiarUbicacionActual.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCambiarUbicacionActual.gridx = 2;
-		gbc_btnCambiarUbicacionActual.gridy = 5;
-		add(btnEmergencias, gbc_btnCambiarUbicacionActual);
+		gbc_btnCambiarUbicacionActualIP.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCambiarUbicacionActualIP.gridx = 2;
+		gbc_btnCambiarUbicacionActualIP.gridy = 5;
+		add(btnEmergencias, gbc_btnCambiarUbicacionActualIP);
 		
-//		panel = new JPanel();
-//		panel.setPreferredSize(new Dimension(200, 200));
-//		GridBagConstraints gbc_panel = new GridBagConstraints();
-//		gbc_panel.gridheight = 4;
-//		gbc_panel.insets = new Insets(0, 0, 5, 5);
-//		gbc_panel.fill = GridBagConstraints.BOTH;
-//		gbc_panel.gridx = 2;
-//		gbc_panel.gridy = 6;
-//		add(panel, gbc_panel);
-//		GridBagLayout gbl_panel = new GridBagLayout();
-//		gbl_panel.columnWidths = new int[]{0, 0, 0};
-//		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0};
-//		gbl_panel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-//		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-//		panel.setLayout(gbl_panel);
-//
-//		lblLatitud = new JLabel("Latitud:");
-//		GridBagConstraints gbc_lblLatitud = new GridBagConstraints();
-//		gbc_lblLatitud.anchor = GridBagConstraints.WEST;
-//		gbc_lblLatitud.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblLatitud.gridx = 0;
-//		gbc_lblLatitud.gridy = 0;
-//		panel.add(lblLatitud, gbc_lblLatitud);
-//
-//		textField = new JTextField();
-//		textField.setEditable(false);
-//		GridBagConstraints gbc_textField = new GridBagConstraints();
-//		gbc_textField.insets = new Insets(0, 0, 5, 0);
-//		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_textField.gridx = 1;
-//		gbc_textField.gridy = 0;
-//		panel.add(textField, gbc_textField);
-//		textField.setColumns(10);
-//
-//		lblLongitud = new JLabel("Longitud:");
-//		GridBagConstraints gbc_lblLongitud = new GridBagConstraints();
-//		gbc_lblLongitud.anchor = GridBagConstraints.WEST;
-//		gbc_lblLongitud.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblLongitud.gridx = 0;
-//		gbc_lblLongitud.gridy = 1;
-//		panel.add(lblLongitud, gbc_lblLongitud);
-//
-//		textField_1 = new JTextField();
-//		textField_1.setEditable(false);
-//		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-//		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
-//		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_textField_1.gridx = 1;
-//		gbc_textField_1.gridy = 1;
-//		panel.add(textField_1, gbc_textField_1);
-//		textField_1.setColumns(10);
-//
-//		lblCodigoPostal = new JLabel("Codigo postal:");
-//		GridBagConstraints gbc_lblCodigoPostal = new GridBagConstraints();
-//		gbc_lblCodigoPostal.anchor = GridBagConstraints.EAST;
-//		gbc_lblCodigoPostal.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblCodigoPostal.gridx = 0;
-//		gbc_lblCodigoPostal.gridy = 2;
-//		panel.add(lblCodigoPostal, gbc_lblCodigoPostal);
-//
-//		textField_2 = new JTextField();
-//		textField_2.setEditable(false);
-//		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-//		gbc_textField_2.insets = new Insets(0, 0, 5, 0);
-//		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_textField_2.gridx = 1;
-//		gbc_textField_2.gridy = 2;
-//		panel.add(textField_2, gbc_textField_2);
-//		textField_2.setColumns(10);
-//
-//		lblCiudad = new JLabel("Ciudad:");
-//		GridBagConstraints gbc_lblCiudad = new GridBagConstraints();
-//		gbc_lblCiudad.anchor = GridBagConstraints.WEST;
-//		gbc_lblCiudad.insets = new Insets(0, 0, 0, 5);
-//		gbc_lblCiudad.gridx = 0;
-//		gbc_lblCiudad.gridy = 3;
-//		panel.add(lblCiudad, gbc_lblCiudad);
-//
-//		textField_3 = new JTextField();
-//		textField_3.setEditable(false);
-//		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-//		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_textField_3.gridx = 1;
-//		gbc_textField_3.gridy = 3;
-//		panel.add(textField_3, gbc_textField_3);
-//		textField_3.setColumns(10);
 		actualizar();
 	}
 
 	public void actualizar()
 	{
-		URL zz = null;
+		URL zzIP = null;
 
 		try
 		{
-			zz = new URL("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ7RqeQ93yAGmWy-qow58NQ4BR-YaknJs-TKpOUmx_-KeNdKq4X");
+			zzIP = new URL("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ7RqeQ93yAGmWy-qow58NQ4BR-YaknJs-TKpOUmx_-KeNdKq4X");
 		} 
 		catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		if(zz!=null)
+		if(zzIP!=null)
 		{
-			ImageIcon icono = new ImageIcon(zz);
-			label.setIcon(icono);
+			ImageIcon iconoIP = new ImageIcon(zzIP);
+			labelIP.setIcon(iconoIP);
 		}
 		this.revalidate();
 		this.repaint();
@@ -192,13 +95,13 @@ public class PanelMenu extends JPanel implements ActionListener
 	{
 		// TODO Auto-generated method stub
 		String x = arg0.getActionCommand();
-		if(x.equals("CAMBIO1"))
+		if("CAMBIO1".equals(x))
 		{
-			principal.mostrarEstaciones();
+			principalIP.mostrarEstaciones();
 		}
-		else if(x.equals("CAMBIO"))
+		else if("CAMBIO1".equals(x))
 		{
-			principal.mostrarEmergencias();;
+			principalIP.mostrarEmergencias();;
 		}
 	}
 }

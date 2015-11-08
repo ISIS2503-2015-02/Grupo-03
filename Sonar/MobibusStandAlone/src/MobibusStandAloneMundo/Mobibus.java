@@ -69,7 +69,7 @@ public class Mobibus
      * Modifica el estado del Mobibus
      */
     public void cambiarEstado() {
-        if(this.estado.equalsIgnoreCase("disponible"))
+        if("disponible".equalsIgnoreCase(this.estado))
         {
             this.estado = "reservado"; 
         }
@@ -81,6 +81,7 @@ public class Mobibus
         	this.estado = "disponible";
     }
     
+    @Override
     public String toString()
     {
     	return "id:"+String.valueOf(id);

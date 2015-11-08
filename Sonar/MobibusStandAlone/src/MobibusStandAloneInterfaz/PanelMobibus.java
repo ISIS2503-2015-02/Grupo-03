@@ -71,11 +71,6 @@ public class PanelMobibus extends JPanel implements ListSelectionListener, Actio
 	 * label numero de ubicaciones
 	 */
 	private JLabel label;
-	
-	/**
-	 * textfield numero de ubicaciones
-	 */
-	private JTextField textField;
 
 	// -----------------------------------------------------------------
 	// Constructor
@@ -85,99 +80,99 @@ public class PanelMobibus extends JPanel implements ListSelectionListener, Actio
 	 */
 	public PanelMobibus(PanelPrincipal ventana)
 	{
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
+		GridBagLayout gridBagLayoutM = new GridBagLayout();
+		gridBagLayoutM.columnWidths = new int[]{0, 0, 0};
+		gridBagLayoutM.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayoutM.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayoutM.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		setLayout(gridBagLayoutM);
 				
-				JPanel panel_2 = new JPanel();
-				GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-				gbc_panel_2.gridwidth = 2;
-				gbc_panel_2.insets = new Insets(0, 0, 5, 0);
-				gbc_panel_2.fill = GridBagConstraints.BOTH;
-				gbc_panel_2.gridx = 0;
-				gbc_panel_2.gridy = 1;
-				add(panel_2, gbc_panel_2);
-				GridBagLayout gbl_panel_2 = new GridBagLayout();
-				gbl_panel_2.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-				gbl_panel_2.rowHeights = new int[]{0, 0};
-				gbl_panel_2.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-				gbl_panel_2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-				panel_2.setLayout(gbl_panel_2);
+				JPanel panel_2M = new JPanel();
+				GridBagConstraints gbc_panel_2M = new GridBagConstraints();
+				gbc_panel_2M.gridwidth = 2;
+				gbc_panel_2M.insets = new Insets(0, 0, 5, 0);
+				gbc_panel_2M.fill = GridBagConstraints.BOTH;
+				gbc_panel_2M.gridx = 0;
+				gbc_panel_2M.gridy = 1;
+				add(panel_2M, gbc_panel_2M);
+				GridBagLayout gbl_panel_2M = new GridBagLayout();
+				gbl_panel_2M.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+				gbl_panel_2M.rowHeights = new int[]{0, 0};
+				gbl_panel_2M.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+				gbl_panel_2M.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+				panel_2M.setLayout(gbl_panel_2M);
 		
-				JPanel panel = new JPanel();
-				GridBagConstraints gbc_panel = new GridBagConstraints();
-				gbc_panel.gridheight = 3;
-				gbc_panel.gridwidth = 2;
-				gbc_panel.insets = new Insets(0, 0, 5, 0);
-				gbc_panel.fill = GridBagConstraints.BOTH;
-				gbc_panel.gridx = 0;
-				gbc_panel.gridy = 2;
-				add(panel, gbc_panel);
+				JPanel panelM = new JPanel();
+				GridBagConstraints gbc_panelM = new GridBagConstraints();
+				gbc_panelM.gridheight = 3;
+				gbc_panelM.gridwidth = 2;
+				gbc_panelM.insets = new Insets(0, 0, 5, 0);
+				gbc_panelM.fill = GridBagConstraints.BOTH;
+				gbc_panelM.gridx = 0;
+				gbc_panelM.gridy = 2;
+				add(panelM, gbc_panelM);
 				
-						JScrollPane scrollPane = new JScrollPane();
-						scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-						scrollPane.setPreferredSize(new Dimension(200, 100));
-						panel.add(scrollPane);
+						JScrollPane scrollPaneM = new JScrollPane();
+						scrollPaneM.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+						scrollPaneM.setPreferredSize(new Dimension(200, 100));
+						panelM.add(scrollPaneM);
 						
 								list = new JList();
-								scrollPane.setViewportView(list);
+								scrollPaneM.setViewportView(list);
 								
-								JPanel panel_1 = new JPanel();
-								GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-								gbc_panel_1.insets = new Insets(0, 0, 5, 0);
-								gbc_panel_1.gridwidth = 2;
-								gbc_panel_1.fill = GridBagConstraints.BOTH;
-								gbc_panel_1.gridx = 0;
-								gbc_panel_1.gridy = 5;
-								add(panel_1, gbc_panel_1);
-								panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+								JPanel panel_1M = new JPanel();
+								GridBagConstraints gbc_panel_1M = new GridBagConstraints();
+								gbc_panel_1M.insets = new Insets(0, 0, 5, 0);
+								gbc_panel_1M.gridwidth = 2;
+								gbc_panel_1M.fill = GridBagConstraints.BOTH;
+								gbc_panel_1M.gridx = 0;
+								gbc_panel_1M.gridy = 5;
+								add(panel_1M, gbc_panel_1M);
+								panel_1M.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-								JButton btnVerEnMapa = new JButton("Ver en mapa");
-								GridBagConstraints gbc_btnReservar = new GridBagConstraints();
-								gbc_btnReservar.insets = new Insets(0, 0, 0, 5);
-								gbc_btnReservar.anchor = GridBagConstraints.NORTHEAST;
-								gbc_btnReservar.gridx = 0;
-								gbc_btnReservar.gridy = 5;
-								panel_1.add(btnVerEnMapa, gbc_btnReservar);
-								btnVerEnMapa.setActionCommand(MAPA);
-								btnVerEnMapa.addActionListener(this);
-								panel_1.add(btnVerEnMapa);
+								JButton btnVerEnMapaM = new JButton("Ver en mapa");
+								GridBagConstraints gbc_btnReservarM = new GridBagConstraints();
+								gbc_btnReservarM.insets = new Insets(0, 0, 0, 5);
+								gbc_btnReservarM.anchor = GridBagConstraints.NORTHEAST;
+								gbc_btnReservarM.gridx = 0;
+								gbc_btnReservarM.gridy = 5;
+								panel_1M.add(btnVerEnMapaM, gbc_btnReservarM);
+								btnVerEnMapaM.setActionCommand(MAPA);
+								btnVerEnMapaM.addActionListener(this);
+								panel_1M.add(btnVerEnMapaM);
 
-								JButton btnCambiarEstado = new JButton("Cambiar estado");
-								GridBagConstraints gbc_btn = new GridBagConstraints();
-								gbc_btn.insets = new Insets(0, 0, 0, 5);
-								gbc_btn.anchor = GridBagConstraints.NORTHEAST;
-								gbc_btn.gridx = 2;
-								gbc_btn.gridy = 5;
-								panel_1.add(btnCambiarEstado, gbc_btn);
-								btnCambiarEstado.setActionCommand("ESTADO");
-								btnCambiarEstado.addActionListener(this);
-								panel_1.add(btnVerEnMapa);
+								JButton btnCambiarEstadoM = new JButton("Cambiar estado");
+								GridBagConstraints gbc_btnM = new GridBagConstraints();
+								gbc_btnM.insets = new Insets(0, 0, 0, 5);
+								gbc_btnM.anchor = GridBagConstraints.NORTHEAST;
+								gbc_btnM.gridx = 2;
+								gbc_btnM.gridy = 5;
+								panel_1M.add(btnCambiarEstadoM, gbc_btnM);
+								btnCambiarEstadoM.setActionCommand("ESTADO");
+								btnCambiarEstadoM.addActionListener(this);
+								panel_1M.add(btnVerEnMapaM);
 
 		
 
 		label = new JLabel("");
 		label.setBorder(new LineBorder(new Color(0, 0, 0)));
 		label.setPreferredSize(new Dimension(200, 200));
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.insets = new Insets(0, 0, 5, 0);
-		gbc_label.gridwidth = 2;
-		gbc_label.gridheight = 6;
-		gbc_label.gridx = 0;
-		gbc_label.gridy = 6;
-		add(label, gbc_label);
+		GridBagConstraints gbc_labelM = new GridBagConstraints();
+		gbc_labelM.insets = new Insets(0, 0, 5, 0);
+		gbc_labelM.gridwidth = 2;
+		gbc_labelM.gridheight = 6;
+		gbc_labelM.gridx = 0;
+		gbc_labelM.gridy = 6;
+		add(label, gbc_labelM);
 
-		JButton btnVolverAlMenu = new JButton("Volver al menu principal");
-		btnVolverAlMenu.setActionCommand(MENU);
-		btnVolverAlMenu.addActionListener(this);
-		GridBagConstraints gbc_btnVolverAlMenu = new GridBagConstraints();
-		gbc_btnVolverAlMenu.gridwidth = 2;
-		gbc_btnVolverAlMenu.gridx = 0;
-		gbc_btnVolverAlMenu.gridy = 12;
-		add(btnVolverAlMenu, gbc_btnVolverAlMenu);
+		JButton btnVolverAlMenuM = new JButton("Volver al menu principal");
+		btnVolverAlMenuM.setActionCommand(MENU);
+		btnVolverAlMenuM.addActionListener(this);
+		GridBagConstraints gbc_btnVolverAlMenuM = new GridBagConstraints();
+		gbc_btnVolverAlMenuM.gridwidth = 2;
+		gbc_btnVolverAlMenuM.gridx = 0;
+		gbc_btnVolverAlMenuM.gridy = 12;
+		add(btnVolverAlMenuM, gbc_btnVolverAlMenuM);
 		principal = ventana;
 
 	}
@@ -208,28 +203,29 @@ public class PanelMobibus extends JPanel implements ListSelectionListener, Actio
 	 */
 	public void actualizar()
 	{
-		URL zz = null;
+		URL zzM = null;
 		if(darSeleccionado()!=null)
 		{
 			
 			try
 			{
-				zz = new URL(principal.generarMapa(darSeleccionado().getUbicacion()));
+				zzM = new URL(principal.generarMapa(darSeleccionado().getUbicacion()));
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		if(zz!=null)
+		if(zzM!=null)
 		{
-			ImageIcon icono = new ImageIcon(zz);
-			label.setIcon(icono);
+			ImageIcon iconoM = new ImageIcon(zzM);
+			label.setIcon(iconoM);
 		}
 	}
 	/**
 	 * Método para manejar los eventos asociados con el cambio de la lista
 	 * @param e El evento con la información del nuevo elemento seleccionado
 	 */
+	@Override
 	public void valueChanged(ListSelectionEvent arg0) 
 	{
 		// TODO Auto-generated method stub
@@ -249,7 +245,7 @@ public class PanelMobibus extends JPanel implements ListSelectionListener, Actio
 		{
 			principal.mostrarBotones2();
 		}
-		else if(x.equals("ESTADO"))
+		else if("ESTADO".equals(x))
 		{
 			principal.cambiarEstadoMobi(darSeleccionado());
 		}

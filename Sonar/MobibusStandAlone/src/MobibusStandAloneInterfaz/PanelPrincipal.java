@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -65,15 +66,12 @@ public class PanelPrincipal extends JPanel {
 	{
 		mundo.disponibles();
 
-		ArrayList<Mobibus> x = mundo.darDisponibles();
+		List<Mobibus> x = mundo.darDisponibles();
 		Mobibus[] Mobibuses = new Mobibus[x.size()];
 		for(int i=0; i<x.size();i++)
 		{
 			Mobibuses[i]=x.get(i);
 		}
-		Mobibus y = new Mobibus(Long.valueOf("12"));
-		System.out.println(mundo.darDisponibles().size());
-		System.out.println(((Mobibus) mundo.darDisponibles().get(0)).getEstado());
 		return Mobibuses;
 	}
 
@@ -81,7 +79,7 @@ public class PanelPrincipal extends JPanel {
 	{
 		mundo.emergencias();
 
-		ArrayList<Emergencia> x = mundo.derEmergencias();
+		List<Emergencia> x = mundo.derEmergencias();
 		Emergencia[] lista = new Emergencia[x.size()];
 		for(int i=0; i<x.size();i++)
 		{
@@ -159,76 +157,4 @@ public class PanelPrincipal extends JPanel {
 	{
 		mundo.cambiarEstado(mobi);
 	}
-	//
-	//	public void mostrarBotones2() 
-	//	{	
-	//		opciones.setVisible(false);
-	//		botones = new PanelBotones(this);
-	//		add(botones, BorderLayout.CENTER);
-	//		botones.setVisible( true );
-	//		botones.actualizar();
-	//	}
-	//
-	//	public void mostrarBotones3() 
-	//	{	
-	//		postal.setVisible(false);
-	//		botones = new PanelBotones(this);
-	//		add(botones, BorderLayout.CENTER);
-	//		botones.setVisible( true );
-	//		botones.actualizar();
-	//	}
-	//
-	//	public void mostrarBotones4() 
-	//	{	
-	//		ciudad.setVisible(false);
-	//		botones = new PanelBotones(this);
-	//		add(botones, BorderLayout.CENTER);
-	//		botones.setVisible( true );
-	//		botones.actualizar();
-	//	}
-	//
-	//	public void mostrarOpciones()
-	//	{
-	//		botones.setVisible(false);
-	//		opciones = new PanelOpciones(this); 
-	//		add(opciones, BorderLayout.CENTER);
-	//		opciones.setVisible( true );
-	//	}
-	//
-	//	public void mostrarCodigoPostal()
-	//	{
-	//		opciones.setVisible(false);
-	//		postal = new PanelCambiarCodigoPostal(this); 
-	//		add(postal, BorderLayout.CENTER);
-	//		postal.setVisible( true );
-	//	}
-	//
-	//	public void mostrarCiudad()
-	//	{
-	//		opciones.setVisible(false);
-	//		ciudad = new PanelCambiarCiudad(this); 
-	//		add(ciudad, BorderLayout.CENTER);
-	//		ciudad.setVisible( true );
-	//	}
-	//
-	//	public void cambiar(String cod, String lat, String lon, String ciu)
-	//	{
-	//		if(darUsuario()!=null)
-	//		{
-	//			if((lat != "" && lon != "")|| cod != "" || ciu != "")
-	//			{
-	//				darUsuario().cambiarUbicacionActual(cod, lat, lon, ciu);
-	//			}
-	//		}
-	//	}
-	//
-	//	public Usuario darUsuario()
-	//	{
-	//		return cupihotel.darUsuario();
-	//	}
-	//
-	//	public String URL()
-	//	{
-	//		return cupihotel.generarMapa();
-	//	}
 }
