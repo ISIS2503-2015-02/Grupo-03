@@ -52,7 +52,7 @@ public class PanelEmergencias extends JPanel implements ListSelectionListener, A
 	/**
 	 * Panel principal de la aplicación
 	 */
-	private PanelPrincipal principal;
+	private transient PanelPrincipal principal;
 
 	/**
 	 * Lista de ubicaciones
@@ -64,11 +64,6 @@ public class PanelEmergencias extends JPanel implements ListSelectionListener, A
 	 */
 	private JLabel label;
 
-	/**
-	 * textfield numero de ubicaciones
-	 */
-	private JTextField textField;
-
 	// -----------------------------------------------------------------
 	// Constructor
 	// -----------------------------------------------------------------	
@@ -77,99 +72,99 @@ public class PanelEmergencias extends JPanel implements ListSelectionListener, A
 	 */
 	public PanelEmergencias(PanelPrincipal ventana)
 	{
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
+		GridBagLayout gridBagLayoutE = new GridBagLayout();
+		gridBagLayoutE.columnWidths = new int[]{0, 0, 0};
+		gridBagLayoutE.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayoutE.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayoutE.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		setLayout(gridBagLayoutE);
 
-		JPanel panel_2 = new JPanel();
-		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-		gbc_panel_2.gridwidth = 2;
-		gbc_panel_2.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_2.fill = GridBagConstraints.BOTH;
-		gbc_panel_2.gridx = 0;
-		gbc_panel_2.gridy = 1;
-		add(panel_2, gbc_panel_2);
-		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_2.rowHeights = new int[]{0, 0};
-		gbl_panel_2.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		panel_2.setLayout(gbl_panel_2);
+		JPanel panel_2E = new JPanel();
+		GridBagConstraints gbc_panel_2E = new GridBagConstraints();
+		gbc_panel_2E.gridwidth = 2;
+		gbc_panel_2E.insets = new Insets(0, 0, 5, 0);
+		gbc_panel_2E.fill = GridBagConstraints.BOTH;
+		gbc_panel_2E.gridx = 0;
+		gbc_panel_2E.gridy = 1;
+		add(panel_2E, gbc_panel_2E);
+		GridBagLayout gbl_panel_2E = new GridBagLayout();
+		gbl_panel_2E.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_2E.rowHeights = new int[]{0, 0};
+		gbl_panel_2E.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_2E.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_2E.setLayout(gbl_panel_2E);
 
-		JPanel panel = new JPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.gridheight = 3;
-		gbc_panel.gridwidth = 2;
-		gbc_panel.insets = new Insets(0, 0, 5, 0);
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 2;
-		add(panel, gbc_panel);
+		JPanel panelE = new JPanel();
+		GridBagConstraints gbc_panelE = new GridBagConstraints();
+		gbc_panelE.gridheight = 3;
+		gbc_panelE.gridwidth = 2;
+		gbc_panelE.insets = new Insets(0, 0, 5, 0);
+		gbc_panelE.fill = GridBagConstraints.BOTH;
+		gbc_panelE.gridx = 0;
+		gbc_panelE.gridy = 2;
+		add(panelE, gbc_panelE);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setPreferredSize(new Dimension(200, 100));
-		panel.add(scrollPane);
+		JScrollPane scrollPaneE = new JScrollPane();
+		scrollPaneE.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPaneE.setPreferredSize(new Dimension(200, 100));
+		panelE.add(scrollPaneE);
 
 		list = new JList();
-		scrollPane.setViewportView(list);
+		scrollPaneE.setViewportView(list);
 
-		JPanel panel_1 = new JPanel();
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_1.gridwidth = 2;
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 5;
-		add(panel_1, gbc_panel_1);
-		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		JPanel panel_1E = new JPanel();
+		GridBagConstraints gbc_panel_1E = new GridBagConstraints();
+		gbc_panel_1E.insets = new Insets(0, 0, 5, 0);
+		gbc_panel_1E.gridwidth = 2;
+		gbc_panel_1E.fill = GridBagConstraints.BOTH;
+		gbc_panel_1E.gridx = 0;
+		gbc_panel_1E.gridy = 5;
+		add(panel_1E, gbc_panel_1E);
+		panel_1E.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JButton btnVerEnMapa = new JButton("Ver en mapa");
-		GridBagConstraints gbc_btnReservar = new GridBagConstraints();
-		gbc_btnReservar.insets = new Insets(0, 0, 0, 5);
-		gbc_btnReservar.anchor = GridBagConstraints.NORTHEAST;
-		gbc_btnReservar.gridx = 0;
-		gbc_btnReservar.gridy = 5;
-		panel_1.add(btnVerEnMapa, gbc_btnReservar);
-		btnVerEnMapa.setActionCommand(MAPA);
-		btnVerEnMapa.addActionListener(this);
-		panel_1.add(btnVerEnMapa);
+		JButton btnVerEnMapaE = new JButton("Ver en mapa");
+		GridBagConstraints gbc_btnReservarE = new GridBagConstraints();
+		gbc_btnReservarE.insets = new Insets(0, 0, 0, 5);
+		gbc_btnReservarE.anchor = GridBagConstraints.NORTHEAST;
+		gbc_btnReservarE.gridx = 0;
+		gbc_btnReservarE.gridy = 5;
+		panel_1E.add(btnVerEnMapaE, gbc_btnReservarE);
+		btnVerEnMapaE.setActionCommand(MAPA);
+		btnVerEnMapaE.addActionListener(this);
+		panel_1E.add(btnVerEnMapaE);
 
-		JButton btnCambiarEstado = new JButton("Ver Mobibus Cercano");
-		GridBagConstraints gbc_btn = new GridBagConstraints();
-		gbc_btn.insets = new Insets(0, 0, 0, 5);
-		gbc_btn.anchor = GridBagConstraints.NORTHEAST;
-		gbc_btn.gridx = 2;
-		gbc_btn.gridy = 5;
-		panel_1.add(btnCambiarEstado, gbc_btn);
-		btnCambiarEstado.setActionCommand("CERCA");
-		btnCambiarEstado.addActionListener(this);
-		panel_1.add(btnVerEnMapa);
+		JButton btnCambiarEstadoE = new JButton("Ver Mobibus Cercano");
+		GridBagConstraints gbc_btnE = new GridBagConstraints();
+		gbc_btnE.insets = new Insets(0, 0, 0, 5);
+		gbc_btnE.anchor = GridBagConstraints.NORTHEAST;
+		gbc_btnE.gridx = 2;
+		gbc_btnE.gridy = 5;
+		panel_1E.add(btnCambiarEstadoE, gbc_btnE);
+		btnCambiarEstadoE.setActionCommand("CERCA");
+		btnCambiarEstadoE.addActionListener(this);
+		panel_1E.add(btnVerEnMapaE);
 
 
 
 		label = new JLabel("");
 		label.setBorder(new LineBorder(new Color(0, 0, 0)));
 		label.setPreferredSize(new Dimension(200, 200));
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.insets = new Insets(0, 0, 5, 0);
-		gbc_label.gridwidth = 2;
-		gbc_label.gridheight = 6;
-		gbc_label.gridx = 0;
-		gbc_label.gridy = 6;
-		add(label, gbc_label);
+		GridBagConstraints gbc_labelE = new GridBagConstraints();
+		gbc_labelE.insets = new Insets(0, 0, 5, 0);
+		gbc_labelE.gridwidth = 2;
+		gbc_labelE.gridheight = 6;
+		gbc_labelE.gridx = 0;
+		gbc_labelE.gridy = 6;
+		add(label, gbc_labelE);
 
-		JButton btnVolverAlMenu = new JButton("Volver al menu principal");
-		btnVolverAlMenu.setActionCommand(MENU);
-		btnVolverAlMenu.addActionListener(this);
-		GridBagConstraints gbc_btnVolverAlMenu = new GridBagConstraints();
-		gbc_btnVolverAlMenu.gridwidth = 2;
-		gbc_btnVolverAlMenu.gridx = 0;
-		gbc_btnVolverAlMenu.gridy = 12;
-		add(btnVolverAlMenu, gbc_btnVolverAlMenu);
+		JButton btnVolverAlMenuE = new JButton("Volver al menu principal");
+		btnVolverAlMenuE.setActionCommand(MENU);
+		btnVolverAlMenuE.addActionListener(this);
+		GridBagConstraints gbc_btnVolverAlMenuE = new GridBagConstraints();
+		gbc_btnVolverAlMenuE.gridwidth = 2;
+		gbc_btnVolverAlMenuE.gridx = 0;
+		gbc_btnVolverAlMenuE.gridy = 12;
+		add(btnVolverAlMenuE, gbc_btnVolverAlMenuE);
 		principal = ventana;
 
 	}
@@ -222,6 +217,7 @@ public class PanelEmergencias extends JPanel implements ListSelectionListener, A
 	 * Método para manejar los eventos asociados con el cambio de la lista
 	 * @param e El evento con la información del nuevo elemento seleccionado
 	 */
+	@Override
 	public void valueChanged(ListSelectionEvent arg0) 
 	{
 		// TODO Auto-generated method stub
@@ -241,7 +237,7 @@ public class PanelEmergencias extends JPanel implements ListSelectionListener, A
 		{
 			principal.mostrarBotones3();
 		}
-		else if(x.equals("CERCA"))
+		else if("CERCA".equals(x))
 		{
 			principal.mostrarInfo(darSeleccionado());
 		}

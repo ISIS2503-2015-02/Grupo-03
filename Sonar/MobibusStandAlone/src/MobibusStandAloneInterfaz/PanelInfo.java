@@ -68,7 +68,7 @@ public class PanelInfo extends JPanel implements ActionListener
 	/**
 	 * label mapa
 	 */
-	private JLabel label;
+	private JLabel labelIM;
 
 	// -----------------------------------------------------------------
 	// Constructor
@@ -82,109 +82,109 @@ public class PanelInfo extends JPanel implements ActionListener
 
 		setPreferredSize(new Dimension(346, 736));
 
-		JPanel panel = new JPanel();
-		add(panel);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
+		JPanel panelIM = new JPanel();
+		add(panelIM);
+		GridBagLayout gbl_panelIM = new GridBagLayout();
+		gbl_panelIM.columnWidths = new int[]{0, 0, 0};
+		gbl_panelIM.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panelIM.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panelIM.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		panelIM.setLayout(gbl_panelIM);
 
-		JLabel lblInformacinDelHotel = new JLabel("Informaci\u00F3n de la estacion");
-		lblInformacinDelHotel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		GridBagConstraints gbc_lblInformacinDelHotel = new GridBagConstraints();
-		gbc_lblInformacinDelHotel.gridwidth = 2;
-		gbc_lblInformacinDelHotel.insets = new Insets(0, 0, 5, 0);
-		gbc_lblInformacinDelHotel.gridx = 0;
-		gbc_lblInformacinDelHotel.gridy = 0;
-		panel.add(lblInformacinDelHotel, gbc_lblInformacinDelHotel);
+		JLabel lblInformacinDelHotelIM = new JLabel("Informaci\u00F3n de la estacion");
+		lblInformacinDelHotelIM.setFont(new Font("Tahoma", Font.BOLD, 14));
+		GridBagConstraints gbc_lblInformacinDelHotelIM = new GridBagConstraints();
+		gbc_lblInformacinDelHotelIM.gridwidth = 2;
+		gbc_lblInformacinDelHotelIM.insets = new Insets(0, 0, 5, 0);
+		gbc_lblInformacinDelHotelIM.gridx = 0;
+		gbc_lblInformacinDelHotelIM.gridy = 0;
+		panelIM.add(lblInformacinDelHotelIM, gbc_lblInformacinDelHotelIM);
 
-		JLabel lblNombre = new JLabel("Id:");
-		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 11));
-		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
-		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNombre.anchor = GridBagConstraints.WEST;
-		gbc_lblNombre.gridx = 0;
-		gbc_lblNombre.gridy = 1;
-		panel.add(lblNombre, gbc_lblNombre);
+		JLabel lblNombreIM = new JLabel("Id:");
+		lblNombreIM.setFont(new Font("Tahoma", Font.BOLD, 11));
+		GridBagConstraints gbc_lblNombreIM = new GridBagConstraints();
+		gbc_lblNombreIM.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNombreIM.anchor = GridBagConstraints.WEST;
+		gbc_lblNombreIM.gridx = 0;
+		gbc_lblNombreIM.gridy = 1;
+		panelIM.add(lblNombreIM, gbc_lblNombreIM);
 
 		textField = new JTextField();
 		textField.setEditable(false);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 1;
-		panel.add(textField, gbc_textField);
+		GridBagConstraints gbc_textFieldIM = new GridBagConstraints();
+		gbc_textFieldIM.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldIM.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldIM.gridx = 1;
+		gbc_textFieldIM.gridy = 1;
+		panelIM.add(textField, gbc_textFieldIM);
 		textField.setColumns(10);
 
-		JLabel lblLocalidad = new JLabel("Estado:");
-		lblLocalidad.setFont(new Font("Tahoma", Font.BOLD, 11));
-		GridBagConstraints gbc_lblLocalidad = new GridBagConstraints();
-		gbc_lblLocalidad.anchor = GridBagConstraints.WEST;
-		gbc_lblLocalidad.insets = new Insets(0, 0, 5, 5);
-		gbc_lblLocalidad.gridx = 0;
-		gbc_lblLocalidad.gridy = 3;
-		panel.add(lblLocalidad, gbc_lblLocalidad);
+		JLabel lblLocalidadIM = new JLabel("Estado:");
+		lblLocalidadIM.setFont(new Font("Tahoma", Font.BOLD, 11));
+		GridBagConstraints gbc_lblLocalidadIM = new GridBagConstraints();
+		gbc_lblLocalidadIM.anchor = GridBagConstraints.WEST;
+		gbc_lblLocalidadIM.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLocalidadIM.gridx = 0;
+		gbc_lblLocalidadIM.gridy = 3;
+		panelIM.add(lblLocalidadIM, gbc_lblLocalidadIM);
 
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 1;
-		gbc_textField_1.gridy = 3;
-		panel.add(textField_1, gbc_textField_1);
+		GridBagConstraints gbc_textField_1IM = new GridBagConstraints();
+		gbc_textField_1IM.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_1IM.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_1IM.gridx = 1;
+		gbc_textField_1IM.gridy = 3;
+		panelIM.add(textField_1, gbc_textField_1IM);
 		textField_1.setColumns(10);
 
 		
 		
-		label = new JLabel();
-		label.setBorder(new LineBorder(new Color(0, 0, 0)));
-		label.setPreferredSize(new Dimension(180, 180));
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.insets = new Insets(0, 0, 5, 0);
-		gbc_label.gridwidth = 2;
-		gbc_label.gridx = 0;
-		gbc_label.gridy = 11;
-		panel.add(label, gbc_label);
+		labelIM = new JLabel();
+		labelIM.setBorder(new LineBorder(new Color(0, 0, 0)));
+		labelIM.setPreferredSize(new Dimension(180, 180));
+		GridBagConstraints gbc_labelIM = new GridBagConstraints();
+		gbc_labelIM.insets = new Insets(0, 0, 5, 0);
+		gbc_labelIM.gridwidth = 2;
+		gbc_labelIM.gridx = 0;
+		gbc_labelIM.gridy = 11;
+		panelIM.add(labelIM, gbc_labelIM);
 		
-		JPanel panel_1 = new JPanel();
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.gridwidth = 2;
-		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 18;
-		panel.add(panel_1, gbc_panel_1);
-		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{103, 0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{23, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		panel_1.setLayout(gbl_panel_1);
+		JPanel panel_1IM = new JPanel();
+		GridBagConstraints gbc_panel_1IM = new GridBagConstraints();
+		gbc_panel_1IM.gridwidth = 2;
+		gbc_panel_1IM.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_1IM.fill = GridBagConstraints.BOTH;
+		gbc_panel_1IM.gridx = 0;
+		gbc_panel_1IM.gridy = 18;
+		panelIM.add(panel_1IM, gbc_panel_1IM);
+		GridBagLayout gbl_panel_1IM = new GridBagLayout();
+		gbl_panel_1IM.columnWidths = new int[]{103, 0, 0, 0};
+		gbl_panel_1IM.rowHeights = new int[]{23, 0};
+		gbl_panel_1IM.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1IM.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_1IM.setLayout(gbl_panel_1IM);
 
-		JButton btnReservar = new JButton("Volver al menu principal");
-		GridBagConstraints gbc_btnReservar = new GridBagConstraints();
-		gbc_btnReservar.insets = new Insets(0, 0, 0, 5);
-		gbc_btnReservar.anchor = GridBagConstraints.NORTHEAST;
-		gbc_btnReservar.gridx = 0;
-		gbc_btnReservar.gridy = 0;
-		panel_1.add(btnReservar, gbc_btnReservar);
-		btnReservar.setActionCommand(MENU);
-		btnReservar.addActionListener(this);
-		btnReservar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		JButton btnReservarIM = new JButton("Volver al menu principal");
+		GridBagConstraints gbc_btnReservarIM = new GridBagConstraints();
+		gbc_btnReservarIM.insets = new Insets(0, 0, 0, 5);
+		gbc_btnReservarIM.anchor = GridBagConstraints.NORTHEAST;
+		gbc_btnReservarIM.gridx = 0;
+		gbc_btnReservarIM.gridy = 0;
+		panel_1IM.add(btnReservarIM, gbc_btnReservarIM);
+		btnReservarIM.setActionCommand(MENU);
+		btnReservarIM.addActionListener(this);
+		btnReservarIM.setFont(new Font("Tahoma", Font.PLAIN, 11));
 
-		JButton btnVolverAlMenu = new JButton("Ver todas las emergencias");
-		GridBagConstraints gbc_btnVolverAlMenu_1 = new GridBagConstraints();
-		gbc_btnVolverAlMenu_1.insets = new Insets(0, 0, 0, 5);
-		gbc_btnVolverAlMenu_1.gridx = 1;
-		gbc_btnVolverAlMenu_1.gridy = 0;
-		btnVolverAlMenu.setActionCommand(VOLVER);
-		btnVolverAlMenu.addActionListener(this);
-		btnVolverAlMenu.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		panel_1.add(btnVolverAlMenu, gbc_btnVolverAlMenu_1);
+		JButton btnVolverAlMenuIM = new JButton("Ver todas las emergencias");
+		GridBagConstraints gbc_btnVolverAlMenu_1IM = new GridBagConstraints();
+		gbc_btnVolverAlMenu_1IM.insets = new Insets(0, 0, 0, 5);
+		gbc_btnVolverAlMenu_1IM.gridx = 1;
+		gbc_btnVolverAlMenu_1IM.gridy = 0;
+		btnVolverAlMenuIM.setActionCommand(VOLVER);
+		btnVolverAlMenuIM.addActionListener(this);
+		btnVolverAlMenuIM.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		panel_1IM.add(btnVolverAlMenuIM, gbc_btnVolverAlMenu_1IM);
 	}
 	
 	// -----------------------------------------------------------------
@@ -198,22 +198,22 @@ public class PanelInfo extends JPanel implements ActionListener
 	{
 		textField.setText(String.valueOf(bus.getId()));
 		textField_1.setText(String.valueOf(bus.getEstado()));
-		Ubicacion x = bus.getUbicacion();
-		URL zz = null;
+		Ubicacion xIM = bus.getUbicacion();
+		URL zzIM = null;
 
 		try
 		{
-			zz = new URL(principal.generarMapa(x));
+			zzIM = new URL(principal.generarMapa(xIM));
 		} 
 		catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		if(zz!=null)
+		if(zzIM!=null)
 		{
-			ImageIcon icono = new ImageIcon(zz);
-			label.setIcon(icono);
+			ImageIcon iconoIM = new ImageIcon(zzIM);
+			labelIM.setIcon(iconoIM);
 		}
 	}
 
@@ -221,12 +221,12 @@ public class PanelInfo extends JPanel implements ActionListener
 	public void actionPerformed(ActionEvent arg0) 
 	{
 		// TODO Auto-generated method stub
-		String x = arg0.getActionCommand();
-		if(x.equals(MENU))
+		String xIM = arg0.getActionCommand();
+		if(xIM.equals(MENU))
 		{
 			principal.mostrarBotones3();
 		}
-		else if(x.equals(VOLVER))
+		else if(xIM.equals(VOLVER))
 		{
 			principal.mostrarEstaciones2();
 		}
