@@ -61,7 +61,7 @@ public class VcubService
             entityManager.getTransaction().commit();
             entityManager.refresh(vcubTmp);
             rta.put("vcub_id", vcubTmp.getId());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();

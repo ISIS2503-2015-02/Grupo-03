@@ -62,7 +62,7 @@ public class UbicacionService
             entityManager.getTransaction().commit();
             entityManager.refresh(ubTmp);
             rta.put("ubicacion_id", ubTmp.getId());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();

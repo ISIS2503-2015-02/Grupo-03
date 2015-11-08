@@ -61,7 +61,7 @@ public class VehiculoService {
             entityManager.getTransaction().commit();
             entityManager.refresh(vTmp);
             rta.put("vehiculo_id", vTmp.getId());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();

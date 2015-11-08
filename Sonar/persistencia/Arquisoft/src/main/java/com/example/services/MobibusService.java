@@ -61,7 +61,7 @@ public class MobibusService
             entityManager.getTransaction().commit();
             entityManager.refresh(mobiTmp);
             rta.put("mobibus_id", mobiTmp.getId());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();

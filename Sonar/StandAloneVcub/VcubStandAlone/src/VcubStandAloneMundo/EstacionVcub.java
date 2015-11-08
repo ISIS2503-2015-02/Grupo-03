@@ -11,22 +11,22 @@ public class EstacionVcub
     /**
      * ID de la estación
      */
-    private int id;
+    private int idXX;
     
     /**
      * capacidad de guardar vcubs
      */
-    private int capacidad;
+    private int capacidadXX;
     
     /**
      * los vcubs guardados en la estación.
      */
-    private List<Vcub> vcubs;
+    private List<Vcub> vcubsXX;
     
     /**
      * la ubicacion de la estación de vcubs.
      */
-    private Ubicacion ubicacion;
+    private Ubicacion ubicacionXX;
     
     
     //-----------------------------------------------------------
@@ -48,10 +48,10 @@ public class EstacionVcub
      * @param ubicacion 
      */
     public EstacionVcub(int id, int capacidad, List<Vcub> vcubs, Ubicacion ubicacion) {
-        this.id = id;
-        this.capacidad = capacidad;
-        this.vcubs = vcubs;
-        this.ubicacion = ubicacion;
+        this.idXX = id;
+        this.capacidadXX = capacidad;
+        this.vcubsXX = vcubs;
+        this.ubicacionXX = ubicacion;
     }
 
     /**
@@ -59,7 +59,7 @@ public class EstacionVcub
      * @return 
      */
     public int getId() {
-        return id;
+        return idXX;
     }
 
     /**
@@ -67,7 +67,7 @@ public class EstacionVcub
      * @return 
      */
     public int getCapacidad() {
-        return capacidad;
+        return capacidadXX;
     }
 
     /**
@@ -75,7 +75,7 @@ public class EstacionVcub
      * @return 
      */
     public List<Vcub> getVcubs() {
-        return vcubs;
+        return vcubsXX;
     }
 
     /**
@@ -83,7 +83,7 @@ public class EstacionVcub
      * @return 
      */
     public Ubicacion getUbicacion() {
-        return ubicacion;
+        return ubicacionXX;
     }
 
     /**
@@ -91,7 +91,7 @@ public class EstacionVcub
      * @param id 
      */
     public void setId(int id) {
-        this.id = id;
+        this.idXX = id;
     }
 
     /**
@@ -99,7 +99,7 @@ public class EstacionVcub
      * @param capacidad 
      */
     public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
+        this.capacidadXX = capacidad;
     }
 
     /**
@@ -107,7 +107,7 @@ public class EstacionVcub
      * @param vcubs 
      */
     public void setVcubs(List<Vcub> vcubs) {
-        this.vcubs = vcubs;
+        this.vcubsXX = vcubs;
     }
 
     /**
@@ -115,11 +115,12 @@ public class EstacionVcub
      * @param ubicacion 
      */
     public void setUbicacion(Ubicacion ubicacion) {
-        this.ubicacion = ubicacion;
+        this.ubicacionXX = ubicacion;
     }
     
+    @Override
     public String toString()
     {
-    	return "Estacion #" + id;
+    	return "Estacion #" + idXX;
     }
 }

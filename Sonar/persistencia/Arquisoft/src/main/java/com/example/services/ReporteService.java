@@ -60,7 +60,7 @@ public class ReporteService {
             entityManager.getTransaction().commit();
             entityManager.refresh(vTmp);
             rta.put("reporte_id", vTmp.getId());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();

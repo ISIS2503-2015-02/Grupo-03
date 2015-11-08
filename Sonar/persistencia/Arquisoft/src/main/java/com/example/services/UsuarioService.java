@@ -77,7 +77,7 @@ public class UsuarioService
             entityManager.getTransaction().commit();
             entityManager.refresh(usuario);
             rta.put("Se ha creado el usuario", usuario.getNombre());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -124,7 +124,7 @@ public class UsuarioService
             entityManager.getTransaction().commit();
             entityManager.refresh(usuario);
             rta.put("Se ha creado el usuario", usuario.getNombre());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -174,7 +174,7 @@ public class UsuarioService
 
             entityManager.getTransaction().commit();
             rta.put("Usted ha alquilado un vcub", jesus.getNombre());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -226,7 +226,7 @@ public class UsuarioService
 
             entityManager.getTransaction().commit();
             rta.put("Usted ha devuelto el vcub", jesus.getNombre());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -315,7 +315,7 @@ fechaS = fechaS.replaceAll(" ", "/");
 
             entityManager.getTransaction().commit();
             rta.put("Se ha hecho la reserva para el: ", copas.getFecha());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -346,7 +346,7 @@ fechaS = fechaS.replaceAll(" ", "/");
 
             entityManager.getTransaction().commit();
             rta.put("Se ha hecho la reserva para el: ", copas.getFecha());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -417,7 +417,7 @@ if (algo == null)
 
             entityManager.getTransaction().commit();
             rta.put("Se ha hecho la reserva para el: ", copas.getFecha());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -440,7 +440,7 @@ if (algo == null)
 
             entityManager.getTransaction().commit();
             rta.put("Se ha hecho la reserva para el: ", copas.getFecha());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();

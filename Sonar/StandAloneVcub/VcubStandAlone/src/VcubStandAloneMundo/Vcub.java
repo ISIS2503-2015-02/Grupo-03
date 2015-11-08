@@ -6,11 +6,11 @@ public class Vcub
     // Atributos
     //-----------------------------------------------------------
 	
-    private Long id;
+    private Long idVV;
     /**
      * Estado del Vcub
      */
-    private String estado;
+    private String estadoVV;
     
 
     //-----------------------------------------------------------
@@ -27,8 +27,8 @@ public class Vcub
     
     public Vcub(Long pId, String pEstado)
     {
-    	id= pId;
-        estado = pEstado;
+    	idVV = pId;
+        estadoVV = pEstado;
     }
 
     //-----------------------------------------------------------
@@ -41,37 +41,38 @@ public class Vcub
      */
     public String getEstado()
     {
-        return estado;
+        return estadoVV;
     }
 
     public void setEstado(String estado) {
-        this.estado = estado;
+        this.estadoVV = estado;
     }
 
     public Long getId() {
-        return id;
+        return idVV;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.idVV = id;
     }
             
     /**
      * Modifica el estado del Vcub
      */
     public void cambiarEstado() {
-        if(this.estado.equalsIgnoreCase("disponible"))
+        if("disponible".equalsIgnoreCase(this.estadoVV))
         {
-            this.estado = "alquilado"; 
+            this.estadoVV = "alquilado"; 
         }
         else
         {
-            this.estado = "disponible";
+            this.estadoVV = "disponible";
         }
     }
     
+    @Override
     public String toString()
     {
-    	return "id:"+String.valueOf(id);
+    	return "id:"+String.valueOf(idVV);
     }
 }

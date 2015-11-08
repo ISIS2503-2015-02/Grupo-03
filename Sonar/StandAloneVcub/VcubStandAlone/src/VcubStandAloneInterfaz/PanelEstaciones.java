@@ -69,11 +69,6 @@ public class PanelEstaciones extends JPanel implements ListSelectionListener, Ac
 	 * label numero de ubicaciones
 	 */
 	private JLabel label;
-	
-	/**
-	 * textfield numero de ubicaciones
-	 */
-	private JTextField textField;
 
 	// -----------------------------------------------------------------
 	// Constructor
@@ -83,99 +78,99 @@ public class PanelEstaciones extends JPanel implements ListSelectionListener, Ac
 	 */
 	public PanelEstaciones(PanelPrincipal ventana)
 	{
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
+		GridBagLayout gridBagLayoutEV = new GridBagLayout();
+		gridBagLayoutEV.columnWidths = new int[]{0, 0, 0};
+		gridBagLayoutEV.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayoutEV.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayoutEV.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		setLayout(gridBagLayoutEV);
 				
-				JPanel panel_2 = new JPanel();
-				GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-				gbc_panel_2.gridwidth = 2;
-				gbc_panel_2.insets = new Insets(0, 0, 5, 0);
-				gbc_panel_2.fill = GridBagConstraints.BOTH;
-				gbc_panel_2.gridx = 0;
-				gbc_panel_2.gridy = 1;
-				add(panel_2, gbc_panel_2);
-				GridBagLayout gbl_panel_2 = new GridBagLayout();
-				gbl_panel_2.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-				gbl_panel_2.rowHeights = new int[]{0, 0};
-				gbl_panel_2.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-				gbl_panel_2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-				panel_2.setLayout(gbl_panel_2);
+				JPanel panel_2EV = new JPanel();
+				GridBagConstraints gbc_panel_2EV = new GridBagConstraints();
+				gbc_panel_2EV.gridwidth = 2;
+				gbc_panel_2EV.insets = new Insets(0, 0, 5, 0);
+				gbc_panel_2EV.fill = GridBagConstraints.BOTH;
+				gbc_panel_2EV.gridx = 0;
+				gbc_panel_2EV.gridy = 1;
+				add(panel_2EV, gbc_panel_2EV);
+				GridBagLayout gbl_panel_2EV = new GridBagLayout();
+				gbl_panel_2EV.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+				gbl_panel_2EV.rowHeights = new int[]{0, 0};
+				gbl_panel_2EV.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+				gbl_panel_2EV.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+				panel_2EV.setLayout(gbl_panel_2EV);
 		
-				JPanel panel = new JPanel();
-				GridBagConstraints gbc_panel = new GridBagConstraints();
-				gbc_panel.gridheight = 3;
-				gbc_panel.gridwidth = 2;
-				gbc_panel.insets = new Insets(0, 0, 5, 0);
-				gbc_panel.fill = GridBagConstraints.BOTH;
-				gbc_panel.gridx = 0;
-				gbc_panel.gridy = 2;
-				add(panel, gbc_panel);
+				JPanel panelEV = new JPanel();
+				GridBagConstraints gbc_panelEV = new GridBagConstraints();
+				gbc_panelEV.gridheight = 3;
+				gbc_panelEV.gridwidth = 2;
+				gbc_panelEV.insets = new Insets(0, 0, 5, 0);
+				gbc_panelEV.fill = GridBagConstraints.BOTH;
+				gbc_panelEV.gridx = 0;
+				gbc_panelEV.gridy = 2;
+				add(panelEV, gbc_panelEV);
 				
-						JScrollPane scrollPane = new JScrollPane();
-						scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-						scrollPane.setPreferredSize(new Dimension(200, 100));
-						panel.add(scrollPane);
+						JScrollPane scrollPaneEV = new JScrollPane();
+						scrollPaneEV.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+						scrollPaneEV.setPreferredSize(new Dimension(200, 100));
+						panelEV.add(scrollPaneEV);
 						
 								list = new JList();
-								scrollPane.setViewportView(list);
+								scrollPaneEV.setViewportView(list);
 								
-								JPanel panel_1 = new JPanel();
-								GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-								gbc_panel_1.insets = new Insets(0, 0, 5, 0);
-								gbc_panel_1.gridwidth = 2;
-								gbc_panel_1.fill = GridBagConstraints.BOTH;
-								gbc_panel_1.gridx = 0;
-								gbc_panel_1.gridy = 5;
-								add(panel_1, gbc_panel_1);
-								panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+								JPanel panel_1EV = new JPanel();
+								GridBagConstraints gbc_panel_1EV = new GridBagConstraints();
+								gbc_panel_1EV.insets = new Insets(0, 0, 5, 0);
+								gbc_panel_1EV.gridwidth = 2;
+								gbc_panel_1EV.fill = GridBagConstraints.BOTH;
+								gbc_panel_1EV.gridx = 0;
+								gbc_panel_1EV.gridy = 5;
+								add(panel_1EV, gbc_panel_1EV);
+								panel_1EV.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-								JButton btnVerEnMapa = new JButton("Ver en mapa");
-								GridBagConstraints gbc_btnReservar = new GridBagConstraints();
-								gbc_btnReservar.insets = new Insets(0, 0, 0, 5);
-								gbc_btnReservar.anchor = GridBagConstraints.NORTHEAST;
-								gbc_btnReservar.gridx = 0;
-								gbc_btnReservar.gridy = 5;
-								panel_1.add(btnVerEnMapa, gbc_btnReservar);
-								btnVerEnMapa.setActionCommand(MAPA);
-								btnVerEnMapa.addActionListener(this);
-								panel_1.add(btnVerEnMapa);
+								JButton btnVerEnMapaEV = new JButton("Ver en mapa");
+								GridBagConstraints gbc_btnReservarEV = new GridBagConstraints();
+								gbc_btnReservarEV.insets = new Insets(0, 0, 0, 5);
+								gbc_btnReservarEV.anchor = GridBagConstraints.NORTHEAST;
+								gbc_btnReservarEV.gridx = 0;
+								gbc_btnReservarEV.gridy = 5;
+								panel_1EV.add(btnVerEnMapaEV, gbc_btnReservarEV);
+								btnVerEnMapaEV.setActionCommand(MAPA);
+								btnVerEnMapaEV.addActionListener(this);
+								panel_1EV.add(btnVerEnMapaEV);
 
-								JButton btnVerInfo = new JButton("Ver info");
-								GridBagConstraints gbc_btn = new GridBagConstraints();
-								gbc_btn.insets = new Insets(0, 0, 0, 5);
-								gbc_btn.anchor = GridBagConstraints.NORTHEAST;
-								gbc_btn.gridx = 2;
-								gbc_btn.gridy = 5;
-								panel_1.add(btnVerInfo, gbc_btn);
-								btnVerInfo.setActionCommand("INFO");
-								btnVerInfo.addActionListener(this);
-								panel_1.add(btnVerEnMapa);
+								JButton btnVerInfoEV = new JButton("Ver info");
+								GridBagConstraints gbc_btnEV = new GridBagConstraints();
+								gbc_btnEV.insets = new Insets(0, 0, 0, 5);
+								gbc_btnEV.anchor = GridBagConstraints.NORTHEAST;
+								gbc_btnEV.gridx = 2;
+								gbc_btnEV.gridy = 5;
+								panel_1EV.add(btnVerInfoEV, gbc_btnEV);
+								btnVerInfoEV.setActionCommand("INFO");
+								btnVerInfoEV.addActionListener(this);
+								panel_1EV.add(btnVerEnMapaEV);
 
 		
 
 		label = new JLabel("");
 		label.setBorder(new LineBorder(new Color(0, 0, 0)));
 		label.setPreferredSize(new Dimension(200, 200));
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.insets = new Insets(0, 0, 5, 0);
-		gbc_label.gridwidth = 2;
-		gbc_label.gridheight = 6;
-		gbc_label.gridx = 0;
-		gbc_label.gridy = 6;
-		add(label, gbc_label);
+		GridBagConstraints gbc_labelEV = new GridBagConstraints();
+		gbc_labelEV.insets = new Insets(0, 0, 5, 0);
+		gbc_labelEV.gridwidth = 2;
+		gbc_labelEV.gridheight = 6;
+		gbc_labelEV.gridx = 0;
+		gbc_labelEV.gridy = 6;
+		add(label, gbc_labelEV);
 
-		JButton btnVolverAlMenu = new JButton("Volver al menu principal");
-		btnVolverAlMenu.setActionCommand(MENU);
-		btnVolverAlMenu.addActionListener(this);
-		GridBagConstraints gbc_btnVolverAlMenu = new GridBagConstraints();
-		gbc_btnVolverAlMenu.gridwidth = 2;
-		gbc_btnVolverAlMenu.gridx = 0;
-		gbc_btnVolverAlMenu.gridy = 12;
-		add(btnVolverAlMenu, gbc_btnVolverAlMenu);
+		JButton btnVolverAlMenuEV = new JButton("Volver al menu principal");
+		btnVolverAlMenuEV.setActionCommand(MENU);
+		btnVolverAlMenuEV.addActionListener(this);
+		GridBagConstraints gbc_btnVolverAlMenuEV = new GridBagConstraints();
+		gbc_btnVolverAlMenuEV.gridwidth = 2;
+		gbc_btnVolverAlMenuEV.gridx = 0;
+		gbc_btnVolverAlMenuEV.gridy = 12;
+		add(btnVolverAlMenuEV, gbc_btnVolverAlMenuEV);
 		principal = ventana;
 
 	}
@@ -206,28 +201,29 @@ public class PanelEstaciones extends JPanel implements ListSelectionListener, Ac
 	 */
 	public void actualizar()
 	{
-		URL zz = null;
+		URL zzEV = null;
 		if(darSeleccionado()!=null)
 		{
 			
 			try
 			{
-				zz = new URL(principal.generarMapa(darSeleccionado().getUbicacion()));
+				zzEV = new URL(principal.generarMapa(darSeleccionado().getUbicacion()));
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		if(zz!=null)
+		if(zzEV!=null)
 		{
-			ImageIcon icono = new ImageIcon(zz);
-			label.setIcon(icono);
+			ImageIcon iconoEV = new ImageIcon(zzEV);
+			label.setIcon(iconoEV);
 		}
 	}
 	/**
 	 * Método para manejar los eventos asociados con el cambio de la lista
 	 * @param e El evento con la información del nuevo elemento seleccionado
 	 */
+	@Override
 	public void valueChanged(ListSelectionEvent arg0) 
 	{
 		// TODO Auto-generated method stub
@@ -247,7 +243,7 @@ public class PanelEstaciones extends JPanel implements ListSelectionListener, Ac
 		{
 			principal.mostrarBotones2();
 		}
-		else if(x.equals("INFO"))
+		else if("INFO".equals(x))
 		{
 			principal.mostrarInfo(darSeleccionado());
 		}

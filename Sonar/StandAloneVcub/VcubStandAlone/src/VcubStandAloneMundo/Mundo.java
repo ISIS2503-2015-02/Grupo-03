@@ -48,31 +48,12 @@ public class Mundo
 					(conn.getInputStream())));
 
 			String output;
-			System.out.println("Output from Server .... \n");
 			while((output = br.readLine())!=null)
 			{
 				JsonParser parser = new JsonParser();
 				JsonElement arrayElement = parser.parse(output);
-				System.out.println(arrayElement.getAsJsonArray().size());
-				System.out.println(output);
 				agregarVcubs(arrayElement.getAsJsonArray(), disponibles);
-				//				String array[] = output.split(",");
-				//				System.out.println(array[0]);
-				//				for(int i=0;i+1<array.length;i=i+2)
-				//				{
-				//					array[i].replaceAll("\"", "");
-				//					String y[]=array[i].split(":");
-				//					Long pId = Long.valueOf(y[1]);
-				//					Vcub agregar=new Vcub(pId, "disponible");
-				//					disponibles.add(agregar);
-				//
-				//				}
 			}
-			//			while ((output = br.readLine()) != null) 
-			//			{
-			//				convertir(output, disponibles);
-			//				System.out.println(output);
-			//			}
 
 			conn.disconnect();
 
@@ -114,13 +95,10 @@ public class Mundo
 					(conn.getInputStream())));
 
 			String output;
-			System.out.println("Output from Server .... \n");
 			while((output = br.readLine())!=null)
 			{
 				JsonParser parser = new JsonParser();
 				JsonElement arrayElement = parser.parse(output);
-				System.out.println(arrayElement.getAsJsonArray().size());
-				System.out.println(output);
 				for(int i=0;i<arrayElement.getAsJsonArray().size();i++)
 				{
 					if(arrayElement.getAsJsonArray().get(i)!=null)
@@ -151,45 +129,6 @@ public class Mundo
 
 		}
 	}
-
-	//	public ArrayList estaciones()
-	//	{
-	//		try {
-	//
-	//			URL url = new URL("http://172.24.100.41:8080/vcub/disponibles");
-	//			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	//			conn.setRequestMethod("GET");
-	//			conn.setRequestProperty("Accept", "application/json");
-	//
-	//			if (conn.getResponseCode() != 200) {
-	//				throw new RuntimeException("Failed : HTTP error code : "
-	//						+ conn.getResponseCode());
-	//			}
-	//
-	//			BufferedReader br = new BufferedReader(new InputStreamReader(
-	//					(conn.getInputStream())));
-	//
-	//			String output;
-	//			System.out.println("Output from Server .... \n");
-	//			while ((output = br.readLine()) != null) 
-	//			{
-	//				convertir(output, disponibles);
-	//				System.out.println(output);
-	//			}
-	//
-	//			conn.disconnect();
-	//
-	//		} catch (MalformedURLException e) {
-	//
-	//			e.printStackTrace();
-	//
-	//		} catch (IOException e) {
-	//
-	//			e.printStackTrace();
-	//
-	//		}
-	//		return disponibles;
-	//	}
 
 	public void agregarVcubs(JsonArray jsonArray, ArrayList res)
 	{
@@ -229,8 +168,6 @@ public class Mundo
 			conn.setRequestProperty("Accept", "application/json");
 
 			if (conn.getResponseCode() != 200) {
-//				throw new RuntimeException("Failed : HTTP error code : "
-//						+ conn.getResponseCode());
 				return false;
 			}
 
@@ -238,12 +175,10 @@ public class Mundo
 					(conn.getInputStream())));
 
 			String output;
-			System.out.println("Output from Server .... \n");
 			while((output = br.readLine())!=null)
 			{
 				JsonParser parser = new JsonParser();
 				JsonElement arrayElement = parser.parse(output);
-				System.out.println(output);
 				if(pPassword.equalsIgnoreCase(arrayElement.getAsJsonObject().get("documento").getAsString()))
 				{
 					respuesta = true;
@@ -270,14 +205,12 @@ public class Mundo
 		try {
 
 			URL url = new URL("http://172.24.100.41:80/usuario/add");
-			System.out.println(url);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setDoInput(true);
 			conn.setRequestProperty("Content-Type", "application/json");
 			conn.setRequestProperty("Accept", "application/json");
 			conn.setRequestMethod("POST");
-//			conn.setRequestProperty("Accept", "application/json; charset=UTF-8");
 			JsonObject usuario = new JsonObject();
 			
 			usuario.addProperty("nombre", pNombre);
@@ -289,13 +222,11 @@ public class Mundo
 			usuario.addProperty("tarjeta", pTarjeta);
 			OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 			wr.write(usuario.toString());
-			System.out.println(usuario);
 			wr.flush();
 
 			if (conn.getResponseCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : "
 						+ conn.getResponseCode());
-//				respuesta = false;
 			}
 			else 
 			{

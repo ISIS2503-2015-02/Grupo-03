@@ -60,7 +60,7 @@ public class ConductorService
             entityManager.getTransaction().commit();
             entityManager.refresh(condTmp);
             rta.put("conductor_id", condTmp.getCc());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();

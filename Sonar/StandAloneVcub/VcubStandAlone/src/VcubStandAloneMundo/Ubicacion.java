@@ -6,16 +6,16 @@ public class Ubicacion
     // Atributos
     //-----------------------------------------------------------
 
-	private Long id;
+	private Long idU;
     /**
      * Latitud de la ubicacion
      */
-    private double latitud;
+    private double latitudU;
     
     /**
      * Longitud de la ubicacion
      */
-    private double longitud;
+    private double longitudU;
 
     //-----------------------------------------------------------
     // Constructores
@@ -31,22 +31,31 @@ public class Ubicacion
     
     public Ubicacion(Long pId, double lat, double lon)
     {
-    	id = pId;
-    	latitud = lat;
-    	longitud = lon;
+    	idU = pId;
+    	latitudU = lat;
+    	longitudU = lon;
     }
 
     //-----------------------------------------------------------
     // Getters y setters
     //-----------------------------------------------------------
 
+    public double getIdU()
+    {
+        return idU;
+    }
+    
+    public void setIdU(Long id) {
+        this.idU = id;
+    }
+    
     /**
      * Devuelve la latitud de la ubicacion
      * @return latitud Latitud de la ubicacion
      */
     public double getLatitud()
     {
-        return latitud;
+        return latitudU;
     }
     
     /**
@@ -55,7 +64,7 @@ public class Ubicacion
      */
     public double getLongitud()
     {
-        return longitud;
+        return longitudU;
     }
     
     /**
@@ -63,7 +72,7 @@ public class Ubicacion
      * @param lat Nueva latitud de la ubicacion
      */
     public void setLatitud(double lat) {
-        this.latitud = lat;
+        this.latitudU = lat;
     }
     
     /**
@@ -71,7 +80,7 @@ public class Ubicacion
      * @param lon Nueva longitud de la ubicacion
      */
     public void setLongitud(double lon) {
-        this.longitud = lon;
+        this.longitudU = lon;
     }  
 
 }

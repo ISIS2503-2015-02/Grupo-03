@@ -226,7 +226,7 @@ public class PanelMobibus extends JPanel implements ListSelectionListener, Actio
 	 * @param e El evento con la información del nuevo elemento seleccionado
 	 */
 	@Override
-	public void valueChanged(ListSelectionEvent arg0) 
+	public void valueChanged(ListSelectionEvent arg10) 
 	{
 		// TODO Auto-generated method stub
 
@@ -236,16 +236,16 @@ public class PanelMobibus extends JPanel implements ListSelectionListener, Actio
 	public void actionPerformed(ActionEvent arg0) 
 	{
 		// TODO Auto-generated method stub
-		String x = arg0.getActionCommand();
-		if(x.equals(MAPA))
+		String y = arg0.getActionCommand();
+		if(y.equals(MAPA))
 		{
 			actualizar();
 		}
-		else if(x.equals(MENU))
+		else if(y.equals(MENU))
 		{
 			principal.mostrarBotones2();
 		}
-		else if("ESTADO".equals(x))
+		else if("ESTADO".equals(y))
 		{
 			principal.cambiarEstadoMobi(darSeleccionado());
 		}

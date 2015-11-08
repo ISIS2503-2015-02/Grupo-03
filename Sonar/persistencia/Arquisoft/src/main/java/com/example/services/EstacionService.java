@@ -60,7 +60,7 @@ public class EstacionService {
             entityManager.getTransaction().commit();
             entityManager.refresh(vTmp);
             rta.put("estacion_id", vTmp.getId());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();

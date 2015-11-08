@@ -69,7 +69,7 @@ public class TranviaService
             entityManager.getTransaction().commit();
             entityManager.refresh(tranvia);
             rta.put("Se ha creado el tranvia", tranvia.getId());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -125,7 +125,7 @@ public class TranviaService
             entityManager.merge(jesus);
             entityManager.getTransaction().commit();
             rta.put("Se ha actualizado el tranvia", jesus.getId());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -161,7 +161,7 @@ public class TranviaService
             entityManager.merge(tranvia);
             entityManager.getTransaction().commit();
             rta.put("Se ha actualizado el tranvia", tranvia.getId());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -199,7 +199,7 @@ public class TranviaService
             entityManager.merge(jesus);
             entityManager.getTransaction().commit();
             rta.put("Se ha actualizado el tranvia", jesus.getId());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();

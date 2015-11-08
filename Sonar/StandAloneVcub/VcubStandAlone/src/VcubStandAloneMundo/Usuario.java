@@ -10,47 +10,47 @@ public class Usuario
 	/**
 	 * Nombres y apellidos del usuario
 	 */
-	private String nombre;
+	private String nombreUU;
 
 	/**
 	 * Número de documento de identidad
 	 */
-	private long documento;
+	private long documentoUU;
 
 	/**
 	 * Tipo de documento
 	 */
-	private String tipoDocumento;
+	private String tipoDocumentoUU;
 
 	/**
 	 * Número del teléfono 
 	 */
-	private long telefono;
+	private long telefonoUU;
 
 	/**
 	 * Dirección de residencia del usuario
 	 */
-	private String direccion;
+	private String direccionUU;
 
 	/**
 	 * Correo electrónico del usuario
 	 */
-	private String correo;
+	private String correoUU;
 
 	/**
 	 * Numero tarjeta de credito
 	 */
-	private Long tarjeta;
+	private Long tarjetaUU;
 
 	/**
 	 * Bicicleta alquilada por el usuario
 	 */
-	private Vcub bicicleta;
+	private Vcub bicicletaUU;
 
 	/**
 	 * Notificacion pendiente para el usuario
 	 */
-	public String notificacion;
+	private String notificacionUU;
 
 	//-----------------------------------------------------------
 	// Constructores
@@ -59,14 +59,14 @@ public class Usuario
 	/**
 	 * Constructor de la clase sin argumentos
 	 */
-	public Usuario(String pNombre, long pDocumento, String pTipoDocumento, long pTelefono, String pDireccion, String pCorreo, long pTarjeta, Vcub pBicicleta)
+	public Usuario(String pNombre,long pTelefono, String pDireccion, String pCorreo, long pTarjeta, Vcub pBicicleta)
 	{
-		nombre = pNombre;
-		telefono = pTelefono;
-		direccion = pDireccion;
-		correo = pCorreo;
-		tarjeta = pTarjeta;
-		bicicleta = pBicicleta;
+		nombreUU = pNombre;
+		telefonoUU = pTelefono;
+		direccionUU = pDireccion;
+		correoUU = pCorreo;
+		tarjetaUU = pTarjeta;
+		bicicletaUU = pBicicleta;
 	}
 
 	//-----------------------------------------------------------
@@ -78,7 +78,7 @@ public class Usuario
 	 * @return nombre dle usuario
 	 */
 	public String getNombre() {
-		return nombre;
+		return nombreUU;
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class Usuario
 	 * @param nombre nuevo nombre a asignar
 	 */
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.nombreUU = nombre;
 	}
 	
 	/**
@@ -94,15 +94,15 @@ public class Usuario
 	 * @return tipo documento del usuario
 	 */
 	public String getTipoDocumento() {
-		return tipoDocumento;
+		return tipoDocumentoUU;
 	}
 
 	public Long getTarjeta() {
-		return tarjeta;
+		return tarjetaUU;
 	}
 
 	public void setTarjeta(Long tarjeta) {
-		this.tarjeta = tarjeta;
+		this.tarjetaUU = tarjeta;
 	}
 	
 	/**
@@ -110,7 +110,7 @@ public class Usuario
 	 * @param tipoDocumento nuevo tipo a ser asignado
 	 */
 	public void setTipoDocumento(String tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
+		this.tipoDocumentoUU = tipoDocumento;
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class Usuario
 	 */
 	public String getCorreo()
 	{
-		return correo;
+		return correoUU;
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class Usuario
 	 */
 	public void setCorreo(String correo)
 	{
-		this.correo = correo;
+		this.correoUU = correo;
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class Usuario
 	 */
 	public String getDireccion()
 	{
-		return direccion;
+		return direccionUU;
 	}
 
 	/**
@@ -146,7 +146,7 @@ public class Usuario
 	 */
 	public void setDireccion(String direccion)
 	{
-		this.direccion = direccion;
+		this.direccionUU = direccion;
 	}
 
 	/**
@@ -155,7 +155,7 @@ public class Usuario
 	 */
 	public long getDocumento()
 	{
-		return documento;
+		return documentoUU;
 	}
 
 	/**
@@ -164,7 +164,7 @@ public class Usuario
 	 */
 	public void setDocumento(long documento)
 	{
-		this.documento = documento;
+		this.documentoUU = documento;
 	}
 
 	/**
@@ -173,7 +173,7 @@ public class Usuario
 	 */
 	public long getTelefono()
 	{
-		return telefono;
+		return telefonoUU;
 	}
 
 	/**
@@ -182,23 +182,23 @@ public class Usuario
 	 */
 	public void setTelefono(long telefonoLocal)
 	{
-		this.telefono = telefonoLocal;
+		this.telefonoUU = telefonoLocal;
 	}
 
 
 	public Vcub getBicicleta() {
-		return bicicleta;
+		return bicicletaUU;
 	}
 
 	public void prestarVicicleta(Vcub bicicleta) {
-		this.bicicleta = bicicleta;
+		this.bicicletaUU = bicicleta;
 	}
 	
 	public String getNotificacion() {
-		return notificacion;
+		return notificacionUU;
 	}
 
 	public void setNotificacion(String notificacion) {
-		this.notificacion = notificacion;
+		this.notificacionUU = notificacion;
 	}
 }

@@ -10,18 +10,18 @@ public class Vehiculo
      * ID del VehiculoDTO
      */
 
-    private int id;
+    private int idMV;
     
     /**
      * capacidad del vehiculo
      */
-    private int capacidad;
+    private int capacidadMV;
     
     /**
      * ubicacion del vehiculo
      */
 
-    private Ubicacion ubicacion;
+    private Ubicacion ubicacionMV;
     
     
     //-----------------------------------------------------------
@@ -43,8 +43,8 @@ public class Vehiculo
      */
     public Vehiculo(int id, Ubicacion ubic)
     {
-        this.id = id;
-        ubicacion = ubic;    
+        this.idMV = id;
+        ubicacionMV = ubic;    
     }
     
     //-----------------------------------------------------------
@@ -57,7 +57,7 @@ public class Vehiculo
      */
     public long getId()
     {
-        return id;
+        return idMV;
     }
     
     /**
@@ -66,7 +66,7 @@ public class Vehiculo
      */
     public int getCapacidad()
     {
-        return capacidad;
+        return capacidadMV;
     }
 
     /**
@@ -74,7 +74,7 @@ public class Vehiculo
      * @return ubicacion
      */
     public Ubicacion getUbicacion() {
-        return ubicacion;
+        return ubicacionMV;
     }
 
     /**
@@ -82,7 +82,7 @@ public class Vehiculo
      * @param cap La nueva capacidad del vehiculo
      */
     public void setCapacidad(int cap) {
-        capacidad= cap;
+        capacidadMV= cap;
     }
 
     /**
@@ -90,7 +90,7 @@ public class Vehiculo
      * @param ubicacion 
      */
     public void setUbicacion(Ubicacion ubicacion) {
-        this.ubicacion = ubicacion;
+        this.ubicacionMV = ubicacion;
     }
    
     

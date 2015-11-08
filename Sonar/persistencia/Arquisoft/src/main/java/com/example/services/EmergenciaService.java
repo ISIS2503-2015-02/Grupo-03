@@ -66,7 +66,7 @@ public class EmergenciaService {
             entityManager.getTransaction().commit();
             entityManager.refresh(vTmp);
             rta.put("emergencia_id", vTmp.getId());
-        } catch (Throwable t) {
+        } catch (Exception t) {
             t.printStackTrace();
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
