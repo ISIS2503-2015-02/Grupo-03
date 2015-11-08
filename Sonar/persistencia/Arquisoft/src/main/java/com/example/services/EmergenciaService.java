@@ -10,6 +10,7 @@ import com.example.models.Emergencia;
 import com.example.models.EmergenciaDTO;
 import com.example.models.Vehiculo;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,6 +33,7 @@ import org.json.simple.JSONObject;
 @Produces(MediaType.APPLICATION_JSON)
 public class EmergenciaService {
     
+    private transient Logger LOGGER;
     @PersistenceContext(unitName = "tbcPU")
     EntityManager entityManager;
 
@@ -40,7 +42,7 @@ public class EmergenciaService {
         try {
             entityManager = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(null, "context", e);
         }
     }
     
@@ -67,7 +69,7 @@ public class EmergenciaService {
             entityManager.refresh(vTmp);
             rta.put("emergencia_id", vTmp.getId());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }

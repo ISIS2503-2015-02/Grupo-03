@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -40,6 +41,8 @@ import org.codehaus.jettison.json.JSONObject;
 @Produces(MediaType.APPLICATION_JSON)
 public class UsuarioService 
 {
+    
+    private transient Logger LOGGER;
     /**
      * Referencia al Ejb del tranvia encargada de realizar las operaciones del mismo.
      */
@@ -52,7 +55,7 @@ public class UsuarioService
 
             entityManager = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(null, "context", e);
         }
     }
     @POST
@@ -78,7 +81,7 @@ public class UsuarioService
             entityManager.refresh(usuario);
             rta.put("Se ha creado el usuario", usuario.getNombre());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
@@ -125,7 +128,7 @@ public class UsuarioService
             entityManager.refresh(usuario);
             rta.put("Se ha creado el usuario", usuario.getNombre());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
@@ -175,7 +178,7 @@ public class UsuarioService
             entityManager.getTransaction().commit();
             rta.put("Usted ha alquilado un vcub", jesus.getNombre());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
@@ -227,7 +230,7 @@ public class UsuarioService
             entityManager.getTransaction().commit();
             rta.put("Usted ha devuelto el vcub", jesus.getNombre());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
@@ -257,7 +260,8 @@ fechaS = fechaS.replaceAll(" ", "/");
         }
         catch (Exception ex) 
         {
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Error en fecha").build();
+            LOGGER.log(null, "context", ex);
+            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Error en fecha").build();
         }
         
         
@@ -316,7 +320,7 @@ fechaS = fechaS.replaceAll(" ", "/");
             entityManager.getTransaction().commit();
             rta.put("Se ha hecho la reserva para el: ", copas.getFecha());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
@@ -347,7 +351,7 @@ fechaS = fechaS.replaceAll(" ", "/");
             entityManager.getTransaction().commit();
             rta.put("Se ha hecho la reserva para el: ", copas.getFecha());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
@@ -418,7 +422,7 @@ if (algo == null)
             entityManager.getTransaction().commit();
             rta.put("Se ha hecho la reserva para el: ", copas.getFecha());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
@@ -441,7 +445,7 @@ if (algo == null)
             entityManager.getTransaction().commit();
             rta.put("Se ha hecho la reserva para el: ", copas.getFecha());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }

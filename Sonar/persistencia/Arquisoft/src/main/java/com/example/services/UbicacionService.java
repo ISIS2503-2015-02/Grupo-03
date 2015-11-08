@@ -9,6 +9,7 @@ import com.example.models.UbicacionDTO;
 import com.example.models.Ubicacion;
 import com.example.PersistenceManager;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,6 +33,8 @@ import org.json.simple.JSONObject;
 @Produces(MediaType.APPLICATION_JSON)
 public class UbicacionService 
 {
+    
+    private transient Logger LOGGER;
     /**
      * Referencia al Ejb del vcub encargada de realizar las operaciones del mismo.
      */
@@ -43,7 +46,7 @@ public class UbicacionService
         try {
             entityManager = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(null, "context", e);
         }
     }
    
@@ -63,7 +66,7 @@ public class UbicacionService
             entityManager.refresh(ubTmp);
             rta.put("ubicacion_id", ubTmp.getId());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }

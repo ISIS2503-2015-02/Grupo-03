@@ -47,7 +47,7 @@ public class Vehiculo implements Serializable {
      */
     @OneToOne( cascade= CascadeType.PERSIST, targetEntity = Ubicacion.class)
     @JoinColumn(name="idUbicacion")  
-    private Ubicacion ubicacion;
+    private transient Ubicacion ubicacion;
     
     
     //-----------------------------------------------------------

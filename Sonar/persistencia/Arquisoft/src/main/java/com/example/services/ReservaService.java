@@ -11,6 +11,7 @@ import com.example.PersistenceManager;
 import com.example.models.Vcub;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -36,6 +37,8 @@ import org.codehaus.jettison.json.JSONObject;
 @Produces(MediaType.APPLICATION_JSON)
 public class ReservaService 
 {
+    
+    private transient Logger LOGGER;
     /**
      * Referencia al Ejb del tranvia encargada de realizar las operaciones del mismo.
      */
@@ -48,7 +51,7 @@ public class ReservaService
 
             entityManager = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(null, "context", e);
         }
     }
     

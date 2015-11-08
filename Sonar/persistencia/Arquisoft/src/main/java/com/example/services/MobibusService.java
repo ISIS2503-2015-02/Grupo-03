@@ -9,6 +9,7 @@ import com.example.models.MobibusDTO;
 import com.example.models.Mobibus;
 import com.example.PersistenceManager;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,6 +33,8 @@ import org.json.simple.JSONObject;
 @Produces(MediaType.APPLICATION_JSON)
 public class MobibusService 
 {
+    
+    private transient Logger LOGGER;
     /**
      * Referencia al Ejb del mobibus encargada de realizar las operaciones del mismo.
      */
@@ -43,7 +46,7 @@ public class MobibusService
         try {
             entityManager = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(null, "context", e);
         }
     }
    
@@ -62,7 +65,7 @@ public class MobibusService
             entityManager.refresh(mobiTmp);
             rta.put("mobibus_id", mobiTmp.getId());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }

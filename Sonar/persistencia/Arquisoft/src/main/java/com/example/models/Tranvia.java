@@ -64,7 +64,7 @@ public class Tranvia implements Serializable
      */
         @OneToOne
 
-    private Emergencia emergencia;
+    private transient Emergencia emergencia;
     
     /**
      * Kilometraje recorrido

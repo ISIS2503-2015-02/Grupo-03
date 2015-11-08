@@ -37,16 +37,10 @@ public class Mobibus implements Serializable
     
     @OneToOne
     private transient Ubicacion ubic;
-    
 
-  
-    
-   
     //-----------------------------------------------------------
     // Constructores
     //-----------------------------------------------------------
-
-
 
     /**
      * Constructor de la clase (sin argumentos)

@@ -10,6 +10,7 @@ import com.example.models.Tranvia;
 import com.example.PersistenceManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -35,6 +36,8 @@ import org.codehaus.jettison.json.JSONObject;
 @Produces(MediaType.APPLICATION_JSON)
 public class TranviaService 
 {
+    
+    private transient Logger LOGGER;
     /**
      * Referencia al Ejb del tranvia encargada de realizar las operaciones del mismo.
      */
@@ -48,7 +51,7 @@ public class TranviaService
 
             entityManager = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(null, "context", e);
         }
     }
     @POST
@@ -70,7 +73,7 @@ public class TranviaService
             entityManager.refresh(tranvia);
             rta.put("Se ha creado el tranvia", tranvia.getId());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
@@ -126,7 +129,7 @@ public class TranviaService
             entityManager.getTransaction().commit();
             rta.put("Se ha actualizado el tranvia", jesus.getId());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
@@ -162,7 +165,7 @@ public class TranviaService
             entityManager.getTransaction().commit();
             rta.put("Se ha actualizado el tranvia", tranvia.getId());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
@@ -200,7 +203,7 @@ public class TranviaService
             entityManager.getTransaction().commit();
             rta.put("Se ha actualizado el tranvia", jesus.getId());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }

@@ -72,7 +72,7 @@ public class Usuario implements Serializable
      * Bicicleta alquilada por el usuario
      */
     @OneToOne
-    private Vcub bicicleta;
+    private transient Vcub bicicleta;
     
    
 

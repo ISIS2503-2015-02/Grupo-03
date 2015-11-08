@@ -10,6 +10,7 @@ import com.example.PersistenceManager;
 import com.example.models.Vehiculo;
 import com.example.models.VehiculoDTO;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -34,6 +35,7 @@ import javax.ws.rs.PathParam;
 @Produces(MediaType.APPLICATION_JSON)
 public class VehiculoService {
     
+    private transient Logger LOGGER;
     @PersistenceContext(unitName = "tbcPU")
     EntityManager entityManager;
 
@@ -42,7 +44,7 @@ public class VehiculoService {
         try {
             entityManager = PersistenceManager.getInstance().getEntityManagerFactory().createEntityManager();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(null, "context", e);
         }
     }
     
@@ -62,7 +64,7 @@ public class VehiculoService {
             entityManager.refresh(vTmp);
             rta.put("vehiculo_id", vTmp.getId());
         } catch (Exception t) {
-            t.printStackTrace();
+            LOGGER.log(null, "context", t);
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
