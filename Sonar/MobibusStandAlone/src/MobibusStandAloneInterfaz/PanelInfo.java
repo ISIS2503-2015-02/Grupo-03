@@ -71,7 +71,7 @@ public class PanelInfo extends JPanel implements ActionListener
 	 */
 	private JLabel labelIM;
 	
-	private Logger LOGGER;
+	private transient Logger LOGGER;
 
 	// -----------------------------------------------------------------
 	// Constructor
@@ -210,7 +210,6 @@ public class PanelInfo extends JPanel implements ActionListener
 		} 
 		catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			LOGGER.log(null, "context", e);
 		}
 

@@ -65,7 +65,7 @@ public class PanelEmergencias extends JPanel implements ListSelectionListener, A
 	 */
 	private JLabel label;
 	
-	private Logger LOGGER;
+	private transient Logger LOGGER;
 
 	// -----------------------------------------------------------------
 	// Constructor
@@ -207,7 +207,6 @@ public class PanelEmergencias extends JPanel implements ListSelectionListener, A
 				zz = new URL(principal.generarMapa(darSeleccionado().darUbicacion()));
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
 				LOGGER.log(null, "context", e);
 			}
 		}

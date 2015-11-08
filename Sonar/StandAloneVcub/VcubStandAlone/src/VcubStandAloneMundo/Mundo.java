@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -23,6 +24,7 @@ public class Mundo
 {
 	private ArrayList<Vcub> disponibles;
 	private ArrayList<EstacionVcub> estaciones;
+	private transient Logger LOGGER;
 
 	public Mundo()
 	{
@@ -59,11 +61,11 @@ public class Mundo
 
 		} catch (MalformedURLException e) {
 
-			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 
 		} catch (IOException e) {
 
-			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 
 		}
 	}
@@ -121,11 +123,11 @@ public class Mundo
 			}
 		} catch (MalformedURLException e) {
 
-			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 
 		} catch (IOException e) {
 
-			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 
 		}
 	}
@@ -189,11 +191,11 @@ public class Mundo
 
 		} catch (MalformedURLException e) {
 
-			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 
 		} catch (IOException e) {
 
-			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 
 		}
 		return respuesta;
@@ -236,11 +238,11 @@ public class Mundo
 
 		} catch (MalformedURLException e) {
 
-			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 
 		} catch (IOException e) {
 
-			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 
 		}
 		return respuesta;

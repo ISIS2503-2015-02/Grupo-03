@@ -2,12 +2,15 @@ package VcubStandAloneInterfaz;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.logging.Logger;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -66,8 +69,10 @@ public class PanelRegistro extends JPanel implements ActionListener
 	/**
 	 * Panel principal de la interfaz
 	 */
-	private PanelPrincipal principal;
+	private transient PanelPrincipal principal;
 
+	private transient Logger LOGGER;
+	
 	// -----------------------------------------------------------------
 	// Constructor
 	// -----------------------------------------------------------------	
@@ -238,7 +243,7 @@ public class PanelRegistro extends JPanel implements ActionListener
 				principal.registrarse(textNombre.getText(), doc, textTipoIdentificador.getText(), tel, textDireccion.getText(), textCorreo.getText(), tar);
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				LOGGER.log(null, "context", e1);
 			}
 		}	
 		else if("CANCELAR".equals(x))

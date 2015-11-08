@@ -482,12 +482,9 @@ public class Mundo
 
 		} catch (MalformedURLException e) {
 
-			e.printStackTrace();
 			LOGGER.log(null, "context", e);
 
 		} catch (IOException e) {
-
-			e.printStackTrace();
 			LOGGER.log(null, "context", e);
 
 		}
@@ -675,13 +672,9 @@ public class Mundo
 			connY.disconnect();
 
 		} catch (MalformedURLException e) {
-
-			e.printStackTrace();
 			LOGGER.log(null, "context", e);
 
 		} catch (IOException e) {
-
-			e.printStackTrace();
 			LOGGER.log(null, "context", e);
 
 		}

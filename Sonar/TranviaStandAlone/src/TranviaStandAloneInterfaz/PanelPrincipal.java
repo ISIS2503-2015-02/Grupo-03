@@ -34,12 +34,12 @@ import java.awt.Panel;
 
 public class PanelPrincipal extends JPanel {
 
-	private Mundo mundo;
+	private transient Mundo mundo;
 	private JButton btnCrearEmergencia;
 	private JButton btnPnico;
-	private Panel panel;
-	private PanelCrearEmergencia emergencia;
-	private PanelLogIn login;
+	private transient Panel panel;
+	private transient PanelCrearEmergencia emergencia;
+	private transient PanelLogIn login;
 
 	public static void main(String[] args) 
 	{

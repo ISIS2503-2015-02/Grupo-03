@@ -36,7 +36,7 @@ public class PanelVcubs extends JPanel implements ListSelectionListener, ActionL
 	/**
 	 * Ventana principal de la aplicación
 	 */
-	private PanelPrincipal principal;
+	private transient PanelPrincipal principal;
 
 	// -----------------------------------------------------------------
 	// Constructor

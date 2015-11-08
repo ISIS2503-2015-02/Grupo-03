@@ -38,7 +38,7 @@ public class PanelIniciarSesion extends JPanel implements ActionListener
 	/**
 	 * Panel principal de la interfaz
 	 */
-	private PanelPrincipal principal;
+	private transient PanelPrincipal principal;
 
 	// -----------------------------------------------------------------
 	// Constructor

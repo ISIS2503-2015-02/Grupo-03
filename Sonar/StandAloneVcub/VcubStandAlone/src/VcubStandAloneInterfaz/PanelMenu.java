@@ -7,21 +7,27 @@ import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+
 import javax.swing.JTextField;
+
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 public class PanelMenu extends JPanel implements ActionListener
 {
-	private PanelPrincipal principal;
+	private transient PanelPrincipal principal;
 	private JLabel label;
+	private transient Logger LOGGER;
 
 	/**
 	 * Create the panel.
@@ -77,7 +83,7 @@ public class PanelMenu extends JPanel implements ActionListener
 		} 
 		catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 		}
 
 		if(zzVM!=null)

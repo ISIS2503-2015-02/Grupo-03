@@ -71,7 +71,7 @@ public class PanelEstaciones extends JPanel implements ListSelectionListener, Ac
 	 */
 	private JLabel label;
 	
-	private Logger LOGGER;
+	private transient Logger LOGGER;
 
 	// -----------------------------------------------------------------
 	// Constructor
@@ -213,7 +213,6 @@ public class PanelEstaciones extends JPanel implements ListSelectionListener, Ac
 				zzEV = new URL(principal.generarMapa(darSeleccionado().getUbicacion()));
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
 				LOGGER.log(null, "context", e);
 			}
 		}

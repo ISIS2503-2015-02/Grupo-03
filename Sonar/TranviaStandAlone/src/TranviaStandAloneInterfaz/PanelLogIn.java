@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 
 public class PanelLogIn extends JPanel {
 	private JTextField textField;
-	private PanelPrincipal principal;
+	private transient PanelPrincipal principal;
 
 	/**
 	 * Create the panel.

@@ -23,19 +23,19 @@ import VcubStandAloneMundo.Vcub;
 
 public class PanelPrincipal extends JPanel {
 
-	private Mundo mundo;
+	private transient Mundo mundo;
 
-	private PanelIniciarSesion iniciar;
+	private transient PanelIniciarSesion iniciar;
 
-	private PanelMenu botones;
+	private transient PanelMenu botones;
 
-	private PanelVcubs vcubs;
+	private transient PanelVcubs vcubs;
 
-	private PanelEstaciones estaciones;
+	private transient PanelEstaciones estaciones;
 
-	private PanelInfo info;
+	private transient PanelInfo info;
 
-	private PanelRegistro registro;
+	private transient PanelRegistro registro;
 
 	public static void main(String[] args) 
 	{

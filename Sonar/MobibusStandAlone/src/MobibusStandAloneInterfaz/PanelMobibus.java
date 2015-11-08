@@ -74,7 +74,7 @@ public class PanelMobibus extends JPanel implements ListSelectionListener, Actio
 	 */
 	private JLabel label;
 	
-	private Logger LOGGER;
+	private transient Logger LOGGER;
 
 	// -----------------------------------------------------------------
 	// Constructor
@@ -216,7 +216,6 @@ public class PanelMobibus extends JPanel implements ListSelectionListener, Actio
 				zzM = new URL(principal.generarMapa(darSeleccionado().getUbicacion()));
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
 				LOGGER.log(null, "context", e);
 			}
 		}
