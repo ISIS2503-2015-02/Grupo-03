@@ -41,18 +41,18 @@ public class Conductor implements Serializable
      */
     @OneToOne
     @JoinColumn(name="idMobibus")
-    private Mobibus mobibus;
+    private transient Mobibus mobibus;
     
     @OneToOne
     @JoinColumn(name="idTtranvia")
-    private Tranvia tranvia;
+    private transient Tranvia tranvia;
     
     /**
      * Tipó de ruta que cubre
      */
     @OneToOne
     @JoinColumn(name="idRuta")
-    private Ruta ruta;
+    private transient Ruta ruta;
     
     /**
      *Array de tiempos cubriendo la ruta

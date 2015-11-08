@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -40,6 +41,7 @@ public class PanelPrincipal extends JPanel {
 	private transient Panel panel;
 	private transient PanelCrearEmergencia emergencia;
 	private transient PanelLogIn login;
+	private transient Logger LOGGER;
 
 	public static void main(String[] args) 
 	{
@@ -119,7 +121,7 @@ public class PanelPrincipal extends JPanel {
 		try {
 			mundo.crearEmergencia(descripcion, consecuencia, magnitud);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 		}
 	}
 

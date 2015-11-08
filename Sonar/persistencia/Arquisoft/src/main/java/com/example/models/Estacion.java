@@ -46,7 +46,7 @@ public class Estacion implements Serializable {
      * los vcubs guardados en la estación.
      */
     @OneToMany
-    private List<Vcub> vcubs;
+    private transient List<Vcub> vcubs;
     
     /**
      * la ubicacion de la estación de vcubs.
@@ -54,7 +54,7 @@ public class Estacion implements Serializable {
     @NotNull
     @OneToOne( cascade= CascadeType.PERSIST, targetEntity = Ubicacion.class)
     @JoinColumn(name="idUbicacion") 
-    private Ubicacion ubicacion;
+    private transient Ubicacion ubicacion;
     
     
     //-----------------------------------------------------------

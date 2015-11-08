@@ -36,7 +36,7 @@ public class Mobibus implements Serializable
     private String estado;
     
     @OneToOne
-    private Ubicacion ubic;
+    private transient Ubicacion ubic;
     
 
   
