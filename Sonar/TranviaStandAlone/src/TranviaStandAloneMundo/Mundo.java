@@ -28,7 +28,7 @@ public class Mundo
 
 	public Mundo()
 	{
-		actual= new Tranvia(1,"el bronx","97,08",45000);
+		actual= new Tranvia(1,"el bronx","97,08");
 	}
 	
 	public void cambiarTranvia(Tranvia actual)
@@ -41,7 +41,6 @@ public class Mundo
 		try {
 
 			URL url = new URL("http://localhost:8080/emergencia/add/" + actual.getId());
-			System.out.println(url);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Accept", "application/json; charset=UTF-8");
@@ -65,16 +64,11 @@ public class Mundo
 			conn.setDoOutput(true);
 			OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 			wr.write(emergencia.toString());
-			System.out.println(emergencia);
 			wr.flush();
 
 			if (conn.getResponseCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : "
 						+ conn.getResponseCode());
-			}
-			else 
-			{
-				
 			}
 			conn.disconnect();
 
@@ -119,8 +113,6 @@ public class Mundo
 			conn.setDoOutput(true);			
 			OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 			wr.write(emergencia.toString());
-			System.out.println(emergencia);
-			System.out.println(url);
 
 
 			wr.flush();
@@ -128,10 +120,6 @@ public class Mundo
 			if (conn.getResponseCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : "
 						+ conn.getResponseCode());
-			}
-			else 
-			{
-				
 			}
 
 
@@ -188,25 +176,10 @@ public class Mundo
 					(conn.getInputStream())));
 
 			String output;
-			System.out.println("Output from Server .... \n");
 			while((output = br.readLine())!=null)
 			{
 				JsonParser parser = new JsonParser();
 				JsonElement arrayElement = parser.parse(output);
-				System.out.println(arrayElement.getAsJsonArray().size());
-				System.out.println(output);
-	//			agregarVcubs(arrayElement.getAsJsonArray(), disponibles);
-				//				String array[] = output.split(",");
-				//				System.out.println(array[0]);
-				//				for(int i=0;i+1<array.length;i=i+2)
-				//				{
-				//					array[i].replaceAll("\"", "");
-				//					String y[]=array[i].split(":");
-				//					Long pId = Long.valueOf(y[1]);
-				//					Vcub agregar=new Vcub(pId, "disponible");
-				//					disponibles.add(agregar);
-				//
-				//				}
 			}
 
 
@@ -223,30 +196,4 @@ public class Mundo
 
 		}		
 	}
-	
-
-
-//	public void convertir(String json, ArrayList arrayV )
-//	{
-//
-//		JsonParser parser = new JsonParser();
-//
-//
-//		JsonArray array = parser.parse(json).getAsJsonArray();
-//
-//		for(int i=0;i<array.size();i++)
-//		{
-//			String blog = String.valueOf(((JsonObject) array.get(i)).get("id"));
-//			Long id = Long.valueOf(blog);
-//			System.out.println(id);
-//
-//			String estado = String.valueOf(("estado"));	
-//			System.out.println(estado);
-//
-//			Vcub temp = new Vcub(id, estado);
-//			arrayV.add(temp);
-//		}
-//	}
-
-
 }

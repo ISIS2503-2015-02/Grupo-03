@@ -5,38 +5,37 @@ public class Tranvia {
      * ID del TranviaDTO
      */
    
-    private int id;
+    private int idT;
     
     /**
      * Estado del TranviaDTO
      */
-    private int choque;
+    private int choqueT;
     
     
     /**
      * Temperatura
      */
-   private int tempatura;
+   private int tempaturaT;
    
    /**
     * Boolean con referencia al boton de paanico para situacion de emergencia
     */
-   private int panico; 
-    
+   private int panicoT; 
    
     /**
      * String coordenada
      */
-    private String coordenada;
+    private String coordenadaT;
     
     /**
      * Linea de circulacion
      */
-    private String linea;
+    private String lineaT;
     /**
      * Kilometraje recorrido
      */
-    private int kilometraje ;
+    private int kilometrajeT;
     //-----------------------------------------------------------
     // Constructores
     //-----------------------------------------------------------
@@ -58,14 +57,14 @@ public class Tranvia {
      * @param coordenadaInic
      * @param pkilometraje
      */
-    public Tranvia(int id ,String plinea, String coordenadaInic, int pkilometraje)
+    public Tranvia(int id ,String plinea, String coordenadaInic)
     {
-        this.id = id;
-        this.linea= plinea;
-        this.tempatura = 0;
-        this.coordenada = coordenadaInic;
-        this.panico= 0;
-        this.choque=0;
+        this.idT = id;
+        this.lineaT= plinea;
+        this.tempaturaT = 0;
+        this.coordenadaT = coordenadaInic;
+        this.panicoT= 0;
+        this.choqueT=0;
     }
     
     
@@ -79,7 +78,7 @@ public class Tranvia {
      */
     public int getId()
     {
-        return id;
+        return idT;
     }
     
     /**
@@ -88,7 +87,7 @@ public class Tranvia {
      */
     public boolean getChoque()
     {
-        return choque >= 1 ;
+        return choqueT >= 1 ;
     }
     
     /**
@@ -96,7 +95,7 @@ public class Tranvia {
      * @param id Nuevo id del Vcub
      */
     public void setId(int id) {
-        this.id = id;
+        this.idT = id;
     }
     
     /**
@@ -104,47 +103,45 @@ public class Tranvia {
      */
     public void setChocado()
     {
-     this.choque = 1;
+     this.choqueT = 1;
     }
       public int getKilometraje() {
-        return kilometraje;
+        return kilometrajeT;
     }
 
     public void setKilometraje(int kilometraje) {
-        this.kilometraje = kilometraje;
+        this.kilometrajeT = kilometraje;
     }
 
     public int getTempatura() {
-        return tempatura;
+        return tempaturaT;
     }
 
     public void setTempatura(int tempatura) {
-        this.tempatura = tempatura;
+        this.tempaturaT = tempatura;
     }
 
     public boolean getPanico() {
-        return panico >=1;
+        return panicoT >=1;
     }
 
     public void setPanico() {
-        this.panico = 1;
+        this.panicoT = 1;
     }
 
     public String getCoordenada() {
-        return coordenada;
+        return coordenadaT;
     }
 
     public void setCoordenada(String coordenada) {
-        this.coordenada = coordenada;
+        this.coordenadaT = coordenada;
     }
 
     public String getLinea() {
-        return linea;
+        return lineaT;
     }
 
     public void setLinea(String linea) {
-        this.linea = linea;
+        this.lineaT = linea;
     }
-
-
 }
