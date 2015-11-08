@@ -12,12 +12,12 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Emergencia.class)
 public class Emergencia_ { 
 
-    public static volatile SingularAttribute<Emergencia, Integer> id;
-    public static volatile ListAttribute<Emergencia, Vehiculo> VehiculosInvolucrados;
-    public static volatile SingularAttribute<Emergencia, Date> fecha;
-    public static volatile SingularAttribute<Emergencia, String> descripcion;
-    public static volatile SingularAttribute<Emergencia, String> magnitud;
-    public static volatile SingularAttribute<Emergencia, String> consecuencia;
-    public static volatile SingularAttribute<Emergencia, Ubicacion> ubicacion;
+    public static final SingularAttribute<Emergencia, Integer> id;
+    public static final ListAttribute<Emergencia, Vehiculo> VehiculosInvolucrados;
+    public static final SingularAttribute<Emergencia, Date> fecha;
+    public static final SingularAttribute<Emergencia, String> descripcion;
+    public static final SingularAttribute<Emergencia, String> magnitud;
+    public static final SingularAttribute<Emergencia, String> consecuencia;
+    public static final SingularAttribute<Emergencia, Ubicacion> ubicacion;
 
 }

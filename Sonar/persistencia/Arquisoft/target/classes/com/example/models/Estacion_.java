@@ -11,9 +11,9 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Estacion.class)
 public class Estacion_ { 
 
-    public static volatile SingularAttribute<Estacion, Integer> id;
-    public static volatile ListAttribute<Estacion, Vcub> vcubs;
-    public static volatile SingularAttribute<Estacion, Integer> capacidad;
-    public static volatile SingularAttribute<Estacion, Ubicacion> ubicacion;
+    public static final SingularAttribute<Estacion, Integer> id;
+    public static final ListAttribute<Estacion, Vcub> vcubs;
+    public static final SingularAttribute<Estacion, Integer> capacidad;
+    public static final SingularAttribute<Estacion, Ubicacion> ubicacion;
 
 }

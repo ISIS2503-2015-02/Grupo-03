@@ -12,12 +12,12 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Conductor.class)
 public class Conductor_ { 
 
-    public static volatile SingularAttribute<Conductor, String> nombre;
-    public static volatile SingularAttribute<Conductor, Mobibus> mobibus;
-    public static volatile SingularAttribute<Conductor, Tranvia> tranvia;
-    public static volatile SingularAttribute<Conductor, ArrayList> tiempos;
-    public static volatile SingularAttribute<Conductor, Double> promedio;
-    public static volatile SingularAttribute<Conductor, Ruta> ruta;
-    public static volatile SingularAttribute<Conductor, Long> cc;
+    public static final SingularAttribute<Conductor, String> nombre;
+    public static final SingularAttribute<Conductor, Mobibus> mobibus;
+    public static final SingularAttribute<Conductor, Tranvia> tranvia;
+    public static final SingularAttribute<Conductor, ArrayList> tiempos;
+    public static final SingularAttribute<Conductor, Double> promedio;
+    public static final SingularAttribute<Conductor, Ruta> ruta;
+    public static final SingularAttribute<Conductor, Long> cc;
 
 }

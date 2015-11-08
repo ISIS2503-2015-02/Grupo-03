@@ -12,10 +12,10 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Reserva.class)
 public class Reserva_ { 
 
-    public static volatile SingularAttribute<Reserva, Long> id;
-    public static volatile ListAttribute<Reserva, Usuario> listaEspera;
-    public static volatile SingularAttribute<Reserva, Date> fecha;
-    public static volatile SingularAttribute<Reserva, Usuario> usuario;
-    public static volatile SingularAttribute<Reserva, Mobibus> busAsociado;
+    public static final SingularAttribute<Reserva, Long> id;
+    public static final ListAttribute<Reserva, Usuario> listaEspera;
+    public static final SingularAttribute<Reserva, Date> fecha;
+    public static final SingularAttribute<Reserva, Usuario> usuario;
+    public static final SingularAttribute<Reserva, Mobibus> busAsociado;
 
 }

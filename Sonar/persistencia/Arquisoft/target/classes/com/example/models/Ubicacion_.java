@@ -8,8 +8,8 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Ubicacion.class)
 public class Ubicacion_ { 
 
-    public static volatile SingularAttribute<Ubicacion, Long> id;
-    public static volatile SingularAttribute<Ubicacion, Double> latitud;
-    public static volatile SingularAttribute<Ubicacion, Double> longitud;
+    public static final SingularAttribute<Ubicacion, Long> id;
+    public static final SingularAttribute<Ubicacion, Double> latitud;
+    public static final SingularAttribute<Ubicacion, Double> longitud;
 
 }

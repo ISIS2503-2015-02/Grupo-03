@@ -8,8 +8,8 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Ruta.class)
 public class Ruta_ { 
 
-    public static volatile SingularAttribute<Ruta, Long> id;
-    public static volatile SingularAttribute<Ruta, String> inicio;
-    public static volatile SingularAttribute<Ruta, String> fin;
+    public static final SingularAttribute<Ruta, Long> id;
+    public static final SingularAttribute<Ruta, String> inicio;
+    public static final SingularAttribute<Ruta, String> fin;
 
 }

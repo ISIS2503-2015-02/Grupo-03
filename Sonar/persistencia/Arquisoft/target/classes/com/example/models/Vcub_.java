@@ -8,7 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Vcub.class)
 public class Vcub_ { 
 
-    public static volatile SingularAttribute<Vcub, Long> id;
-    public static volatile SingularAttribute<Vcub, String> estado;
+    public static final SingularAttribute<Vcub, Long> id;
+    public static final SingularAttribute<Vcub, String> estado;
 
 }

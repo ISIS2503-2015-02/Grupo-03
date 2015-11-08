@@ -9,8 +9,8 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Mobibus.class)
 public class Mobibus_ { 
 
-    public static volatile SingularAttribute<Mobibus, Integer> id;
-    public static volatile SingularAttribute<Mobibus, Ubicacion> ubic;
-    public static volatile SingularAttribute<Mobibus, String> estado;
+    public static final SingularAttribute<Mobibus, Integer> id;
+    public static final SingularAttribute<Mobibus, Ubicacion> ubic;
+    public static final SingularAttribute<Mobibus, String> estado;
 
 }
