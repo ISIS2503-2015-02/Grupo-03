@@ -15,6 +15,7 @@
             <artifactId>jetty-servlet</artifactId>
             <version>7.6.0.v20120127</version>
         </dependency>
+        
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
@@ -39,6 +40,7 @@
             <artifactId>jersey-json</artifactId>
             <version>1.8</version>
         </dependency>
+
 
         <!-- jUnit -->
         <dependency>

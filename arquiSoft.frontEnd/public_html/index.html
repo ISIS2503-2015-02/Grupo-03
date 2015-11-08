@@ -25,7 +25,7 @@
                    <hr>
             <hr>
          <toolbar></toolbar>
-         <div ng-if="toolbar.isSelected(1)">
+         <div ng-show ="toolbar.isSelected(1) " >
                <vcub-form vcubInfo></vcub-form>
             </div>
          <div ng-if="toolbar.isSelected(2)">
@@ -85,6 +85,10 @@
          <div ng-if="toolbar.isSelected(17)">
                <addconductor-form ><addconductor-form>
             </div>
+           <div ng-if="toolbar.isSelected(18)">
+               <login-form ><login-form>
+            </div>
+         
 
 
         

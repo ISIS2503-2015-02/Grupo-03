@@ -10,24 +10,24 @@ and open the template in the editor.
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                     </div>
-        <div id="navbar" class="navbar-collapse collapse" ng-if="usuario===jesus">
+        <div id="navbar" class="navbar-collapse collapse" >
             <ul class="nav navbar-nav">
-                <li ng-class="{active:toolbar.isSelected(1)}">
-                    <a href ng-click="toolbar.selectTab(1)"> <span class="glyphicon glyphicon-plus"></span>Agregar Vcub</a>
+                <li ng-class="{active:toolbar.isSelected(1)}"ng-show="roles.role.role === 'administrador'" >
+                    <a  href ng-click="toolbar.selectTab(1)" > <span class="glyphicon glyphicon-plus"></span>Agregar Vcub</a>
                 </li>
-                <li ng-class="{active:toolbar.isSelected(2)}">
+                <li ng-class="{active:toolbar.isSelected(2)}" ng-show="role.role === 'administrador' " >
                     <a href ng-click="toolbar.selectTab(2)"> <span class="glyphicon glyphicon-check"></span>Agregar Tranvia</a>
                 </li>
                  <li ng-class="{active:toolbar.isSelected(3)}">
                     <a href ng-click="toolbar.selectTab(3)"> <span class="glyphicon glyphicon-check"></span> Mobibus</a>
                 </li>
-                <li ng-class="{active:toolbar.isSelected(4)}">
+                <li ng-class="{active:toolbar.isSelected(4)}"ng-show="userRole === 'administrador'">
                     <a href ng-click="toolbar.selectTab(4)"> <span class="glyphicon glyphicon-plus"></span>Reservar</a>
                 </li>
                 <li ng-class="{active:toolbar.isSelected(5)}">
                     <a href ng-click="toolbar.selectTab(5)"> <span class="glyphicon glyphicon-check"></span>Ver Vcub</a>
                 </li>
-                <li ng-class="{active:toolbar.isSelected(6)}">
+                <li ng-class="{active:toolbar.isSelected(6)}"ng-show="userRole === 'administrador'">
                     <a href ng-click="toolbar.selectTab(6)"> <span class="glyphicon glyphicon-plus"></span>Agregar Ubicacion</a>
                 </li>
                 <li ng-class="{active:toolbar.isSelected(7)}">
@@ -36,7 +36,7 @@ and open the template in the editor.
                 <li ng-class="{active:toolbar.isSelected(8)}">
                     <a href ng-click="toolbar.selectTab(8)"> <span class="glyphicon glyphicon-check"></span>Ver Tranvias</a>
                 </li>
-                 <li ng-class="{active:toolbar.isSelected(9)}">
+                 <li ng-class="{active:toolbar.isSelected(9)}"ng-show="userRole === 'administrador'">
                     <a href ng-click="toolbar.selectTab(9)"> <span class="glyphicon glyphicon-check"></span>Agregar Usuario</a>
                 </li>
                  <li ng-class="{active:toolbar.isSelected(10)}">
@@ -45,12 +45,12 @@ and open the template in the editor.
                  </li>
                  
                  
-                   <li ng-class="{active:toolbar.isSelected(11)}">
+                   <li ng-class="{active:toolbar.isSelected(11)}"ng-show="userRole === 'administrador'">
                         <a href ng-click="toolbar.selectTab(11)"> <span class="glyphicon glyphicon-check"></span>Alquilar Vcub</a>
                
                 </li>
                  
-                    <li ng-class="{active:toolbar.isSelected(12)}">
+                    <li ng-class="{active:toolbar.isSelected(12)}"ng-show="userRole === 'administrador'">
                     <a href ng-click="toolbar.selectTab(12)"> <span class="glyphicon glyphicon-check"></span>Registrar devolucion de Vcub</a>
                 </li>
                  
@@ -60,7 +60,7 @@ and open the template in the editor.
                 </li>
               
              
-                <li ng-class="{active:toolbar.isSelected(14)}">
+                <li ng-class="{active:toolbar.isSelected(14)}"ng-show="userRole === 'administrador'">
                     <a href ng-click="toolbar.selectTab(14)"> <span class="glyphicon glyphicon-plus"></span>Registrar mobibus</a>
                 </li>
                     <li ng-class="{active:toolbar.isSelected(15)}">
@@ -68,11 +68,14 @@ and open the template in the editor.
                 </li>
                 
                  
-                    <li ng-class="{active:toolbar.isSelected(16)}">
+                <li ng-class="{active:toolbar.isSelected(16)}"ng-show="userRole === 'administrador'" >
                     <a href ng-click="toolbar.selectTab(16)"> <span class="glyphicon glyphicon-plus"></span>Cancelar Reserva</a>
                 </li>
-                <li ng-class="{active:toolbar.isSelected(17)}">
+                <li ng-class="{active:toolbar.isSelected(17)}"ng-show="userRole === 'administrador'">
                     <a href ng-click="toolbar.selectTab(17)"> <span class="glyphicon glyphicon-plus"></span>Registrar conductor</a>
+                </li>
+                <li ng-class="{active:toolbar.isSelected(18)}">
+                    <a href ng-click="toolbar.selectTab(18)"> <span class="glyphicon glyphicon-plus"></span>Login</a>
                 </li>
                  
             

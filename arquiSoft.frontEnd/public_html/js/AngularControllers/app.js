@@ -158,13 +158,7 @@ aplicacionMundial.directive('competitorInfo', function(){
         };
     }); 
     
-    aplicacionMundial.directive('loginInfo', function(){
-        return{
-            restrict:'E',
-            templateUrl:'partials/login-info.html',
-            controller: 'jesuslogin'
-        };
-    });
+   
  
    aplicacionMundial.controller("jesuslogin", function($http, $scope) {
  
@@ -173,7 +167,6 @@ aplicacionMundial.directive('competitorInfo', function(){
     });
     
     var $scope1;
-
     
     
     
@@ -184,6 +177,18 @@ aplicacionMundial.directive('competitorInfo', function(){
             controller: 'loginCtrl'
         };
     });
+    aplicacionMundial.controller("loginCtrl", function($http, $scope) {
+  
+ $scope.login=function(){
+
+ $http.get('http://localhost:8080/login/login/idUsr/' + $scope.usuarios.username + '/pass/' + $scope.usuarios.password ).success(function(data,headers){
+
+     $scope.role = data;
+     $scope.toolbar.selectTab(1);
+
+            });
+
+    }});
     
     
     
@@ -433,20 +438,7 @@ aplicacionMundial.directive('competitorInfo', function(){
     
     
     
-    aplicacionMundial.controller("loginCtrl", function($http, $scope) {
- 
- $scope.login=function(){
- $http.get('http://localhost:8080/competitors/login/emailUsr/' + $scope.login.email + '/passwordusr/' +$scope.login.password).             success(function(data, status, headers, config) {
-        
-     $scope.competitors = data;
-     $scope1 = data;
-        $scope.toolbar.selectTab(4);
-
-      }).
-      error(function(data, status, headers, config) {
-        // log error
-      });
-    }});
+    
     
     
     
