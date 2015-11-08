@@ -16,6 +16,7 @@ import java.util.List;
 
 
 import java.util.ListIterator;
+import java.util.logging.Logger;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -26,7 +27,8 @@ public class Mundo
 {
 	private List<Mobibus> disponibles;
 	private List<Emergencia> emergencias;
-
+	private Logger LOGGER;
+	
 	public Mundo()
 	{
 		disponibles = new List<Mobibus>() {
@@ -481,10 +483,12 @@ public class Mundo
 		} catch (MalformedURLException e) {
 
 			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 
 		} catch (IOException e) {
 
 			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 
 		}
 	}
@@ -673,10 +677,12 @@ public class Mundo
 		} catch (MalformedURLException e) {
 
 			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 
 		} catch (IOException e) {
 
 			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 
 		}
 	}

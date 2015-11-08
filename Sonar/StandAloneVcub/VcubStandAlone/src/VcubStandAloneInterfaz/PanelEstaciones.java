@@ -29,6 +29,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import javax.swing.JTextField;
 
@@ -58,7 +59,7 @@ public class PanelEstaciones extends JPanel implements ListSelectionListener, Ac
 	/**
 	 * Panel principal de la aplicación
 	 */
-	private PanelPrincipal principal;
+	private transient PanelPrincipal principal;
 
 	/**
 	 * Lista de ubicaciones
@@ -69,6 +70,8 @@ public class PanelEstaciones extends JPanel implements ListSelectionListener, Ac
 	 * label numero de ubicaciones
 	 */
 	private JLabel label;
+	
+	private Logger LOGGER;
 
 	// -----------------------------------------------------------------
 	// Constructor
@@ -211,6 +214,7 @@ public class PanelEstaciones extends JPanel implements ListSelectionListener, Ac
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				LOGGER.log(null, "context", e);
 			}
 		}
 		if(zzEV!=null)

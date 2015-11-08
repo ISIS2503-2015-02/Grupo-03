@@ -22,6 +22,7 @@ import javax.swing.event.ListSelectionListener;
 
 
 
+
 import MobibusStandAloneMundo.Mobibus;
 import MobibusStandAloneMundo.Ubicacion;
 
@@ -31,6 +32,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import javax.swing.JTextField;
 
@@ -60,7 +62,7 @@ public class PanelMobibus extends JPanel implements ListSelectionListener, Actio
 	/**
 	 * Panel principal de la aplicación
 	 */
-	private PanelPrincipal principal;
+	private transient PanelPrincipal principal;
 
 	/**
 	 * Lista de ubicaciones
@@ -71,6 +73,8 @@ public class PanelMobibus extends JPanel implements ListSelectionListener, Actio
 	 * label numero de ubicaciones
 	 */
 	private JLabel label;
+	
+	private Logger LOGGER;
 
 	// -----------------------------------------------------------------
 	// Constructor
@@ -213,6 +217,7 @@ public class PanelMobibus extends JPanel implements ListSelectionListener, Actio
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				LOGGER.log(null, "context", e);
 			}
 		}
 		if(zzM!=null)

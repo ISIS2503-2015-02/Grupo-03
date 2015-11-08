@@ -31,6 +31,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 public class PanelInfo extends JPanel implements ActionListener
 {
@@ -63,12 +64,14 @@ public class PanelInfo extends JPanel implements ActionListener
 	/**
 	 * Panel principal de la interfaz
 	 */
-	private PanelPrincipal principal;
+	private transient PanelPrincipal principal;
 	
 	/**
 	 * label mapa
 	 */
 	private JLabel labelIM;
+	
+	private Logger LOGGER;
 
 	// -----------------------------------------------------------------
 	// Constructor
@@ -208,6 +211,7 @@ public class PanelInfo extends JPanel implements ActionListener
 		catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			LOGGER.log(null, "context", e);
 		}
 
 		if(zzIM!=null)

@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -63,6 +64,8 @@ public class PanelEmergencias extends JPanel implements ListSelectionListener, A
 	 * label numero de ubicaciones
 	 */
 	private JLabel label;
+	
+	private Logger LOGGER;
 
 	// -----------------------------------------------------------------
 	// Constructor
@@ -205,6 +208,7 @@ public class PanelEmergencias extends JPanel implements ListSelectionListener, A
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				LOGGER.log(null, "context", e);
 			}
 		}
 		if(zz!=null)

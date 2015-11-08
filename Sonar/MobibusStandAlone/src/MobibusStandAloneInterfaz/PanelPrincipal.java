@@ -22,17 +22,15 @@ import MobibusStandAloneMundo.Mobibus;
 
 public class PanelPrincipal extends JPanel {
 
-	private Mundo mundo;
+	private transient Mundo mundo;
 
-	private PanelMenu botones;
+	private transient PanelMenu botones;
 
+	private transient PanelMobibus estaciones;
 
-	private PanelMobibus estaciones;
+	private transient PanelEmergencias emergencias;
 
-	private PanelEmergencias emergencias;
-
-	private MobibusStandAloneInterfaz.PanelInfo info;
-
+	private transient MobibusStandAloneInterfaz.PanelInfo info;
 
 	public static void main(String[] args) 
 	{

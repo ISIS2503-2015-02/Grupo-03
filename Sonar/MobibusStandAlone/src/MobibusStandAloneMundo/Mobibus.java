@@ -73,7 +73,7 @@ public class Mobibus
         {
             this.estado = "reservado"; 
         }
-        else if(this.estado.equals(null))
+        else if(this.estado==null)
         {
             this.estado = "disponible";
         }
