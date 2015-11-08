@@ -40,10 +40,6 @@ public class PanelPrincipal extends JPanel {
 	private Panel panel;
 	private PanelCrearEmergencia emergencia;
 	private PanelLogIn login;
-	//
-	//	private PanelCambiarCodigoPostal postal;
-	//
-	//	private PanelCambiarCiudad ciudad;
 
 	public static void main(String[] args) 
 	{
@@ -78,6 +74,7 @@ public class PanelPrincipal extends JPanel {
 		btnPnico.setForeground(Color.RED);
 		btnPnico.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		btnPnico.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				mundo.Panico();
 				
@@ -88,6 +85,7 @@ public class PanelPrincipal extends JPanel {
 		btnCrearEmergencia.setBounds(164, 45, 117, 23);
 		panel.add(btnCrearEmergencia);
 		btnCrearEmergencia.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				mostrarEmergencia();
 			}
@@ -121,7 +119,7 @@ public class PanelPrincipal extends JPanel {
 		try {
 			mundo.crearEmergencia(descripcion, consecuencia, magnitud);
 		} catch (ParseException e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 	}
 

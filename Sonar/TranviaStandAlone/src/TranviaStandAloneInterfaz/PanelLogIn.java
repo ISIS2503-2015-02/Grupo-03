@@ -35,8 +35,8 @@ public class PanelLogIn extends JPanel {
 		
 		JButton btnIngresar = new JButton("Ingresar");
 		btnIngresar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
-//				principal.getTranvia(textField.getText());
 				principal.mostrarPanel();
 			}
 		});
