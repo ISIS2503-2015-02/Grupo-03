@@ -4,12 +4,12 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-10-19T15:24:58")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2015-11-08T20:11:30")
 @StaticMetamodel(Ubicacion.class)
 public class Ubicacion_ { 
 
-    public static final SingularAttribute<Ubicacion, Long> id;
-    public static final SingularAttribute<Ubicacion, Double> latitud;
-    public static final SingularAttribute<Ubicacion, Double> longitud;
+    public static volatile SingularAttribute<Ubicacion, Long> id;
+    public static volatile SingularAttribute<Ubicacion, Double> latitud;
+    public static volatile SingularAttribute<Ubicacion, Double> longitud;
 
 }

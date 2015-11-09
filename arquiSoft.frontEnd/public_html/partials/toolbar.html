@@ -12,7 +12,7 @@ and open the template in the editor.
                     </div>
         <div id="navbar" class="navbar-collapse collapse" >
             <ul class="nav navbar-nav">
-                <li ng-class="{active:toolbar.isSelected(1)}"ng-show="roles.role.role === 'administrador'" >
+                <li ng-class="{active:toolbar.isSelected(1)}"ng-show="userRole === 'administrador'" >
                     <a  href ng-click="toolbar.selectTab(1)" > <span class="glyphicon glyphicon-plus"></span>Agregar Vcub</a>
                 </li>
                 <li ng-class="{active:toolbar.isSelected(2)}" ng-show="role.role === 'administrador' " >

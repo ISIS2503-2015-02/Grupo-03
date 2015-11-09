@@ -168,7 +168,8 @@ aplicacionMundial.directive('competitorInfo', function(){
     
     var $scope1;
     
-    
+         
+
     
      aplicacionMundial.directive('loginForm', function(){
         return{
@@ -183,8 +184,18 @@ aplicacionMundial.directive('competitorInfo', function(){
 
  $http.get('http://localhost:8080/login/login/idUsr/' + $scope.usuarios.username + '/pass/' + $scope.usuarios.password ).success(function(data,headers){
 
-     $scope.role = data;
-     $scope.toolbar.selectTab(1);
+    $scope.reload = function()
+{
+   location.reload(); 
+}
+        $scope.userRole = 'administrador';
+
+     $scope.reload();
+
+      $scope.toolbar.selectTab(1);
+
+
+   
 
             });
 
@@ -193,8 +204,7 @@ aplicacionMundial.directive('competitorInfo', function(){
     
     
     
-    
-    
+
 
     
     
