@@ -1,20 +1,15 @@
 package MobibusStandAloneMundo;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Date;
-import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-
-
 import java.util.ListIterator;
 import java.util.logging.Logger;
 
@@ -35,22 +30,16 @@ public class Mundo
 
 			@Override
 			public <T> T[] toArray(T[] a) {
-				// TODO Auto-generated method stub
-				return null;
+				return a;
 			}
 
 			@Override
 			public Object[] toArray() {
 				// TODO Auto-generated method stub
-				return null;
+				Object[] ob = new Object[0];
+				return ob;
 			}
-
-			@Override
-			public List<Mobibus> subList(int fromIndex, int toIndex) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
+			
 			@Override
 			public int size() {
 				// TODO Auto-generated method stub
@@ -170,25 +159,32 @@ public class Mundo
 				// TODO Auto-generated method stub
 				return false;
 			}
+
+			@Override
+			public List<Mobibus> subList(int arg0, int arg1) {
+				// TODO Auto-generated method stub
+				List<Mobibus> lista = new ArrayList<Mobibus>();
+				return lista;
+			}
 		};
 		emergencias = new List<Emergencia>() {
 
 			@Override
 			public <T> T[] toArray(T[] a) {
 				// TODO Auto-generated method stub
-				return null;
+				return a;
 			}
 
 			@Override
 			public Object[] toArray() {
-				// TODO Auto-generated method stub
-				return null;
+				Object[] ob = new Object[0];
+				return ob;
 			}
 
 			@Override
 			public List<Emergencia> subList(int fromIndex, int toIndex) {
-				// TODO Auto-generated method stub
-				return null;
+				List<Emergencia> em = new ArrayList<Emergencia>();
+				return em;
 			}
 
 			@Override
@@ -321,19 +317,19 @@ public class Mundo
 				@Override
 				public <T> T[] toArray(T[] a) {
 					// TODO Auto-generated method stub
-					return null;
+					return a;
 				}
 
 				@Override
 				public Object[] toArray() {
-					// TODO Auto-generated method stub
-					return null;
+					Object[] ob = new Object[0];
+					return ob;
 				}
 
 				@Override
 				public List<Mobibus> subList(int fromIndex, int toIndex) {
-					// TODO Auto-generated method stub
-					return null;
+					List<Mobibus> em = new ArrayList<Mobibus>();
+					return em;
 				}
 
 				@Override
@@ -456,19 +452,19 @@ public class Mundo
 					return false;
 				}
 			};
-
-			URL urlX = new URL("http://172.24.100.41:80/mobibus/get");
+			String ip = System.getProperty("myapplication.ip");
+			
+			URL urlX = new URL("http://" + ip + ":80/mobibus/get");
 			HttpURLConnection connX = (HttpURLConnection) urlX.openConnection();
 			connX.setRequestMethod("GET");
 			connX.setRequestProperty("Accept", "application/json");
 
 			if (connX.getResponseCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : "
+				throw new RuntimeException("hay una falla : Error de codigo HTTP: "
 						+ connX.getResponseCode());
 			}
 
-			BufferedReader brX = new BufferedReader(new InputStreamReader(
-					(connX.getInputStream())));
+			BufferedReader brX = new BufferedReader(new InputStreamReader(connX.getInputStream()));
 
 			String outputX;
 			while((outputX = brX.readLine())!=null)
@@ -498,21 +494,20 @@ public class Mundo
 				@Override
 				public <T> T[] toArray(T[] a) {
 					// TODO Auto-generated method stub
-					return null;
+					return a;
 				}
 
 				@Override
 				public Object[] toArray() {
-					// TODO Auto-generated method stub
-					return null;
+					Object[] ob = new Object[0];
+					return ob;
 				}
 
 				@Override
 				public List<Emergencia> subList(int fromIndex, int toIndex) {
-					// TODO Auto-generated method stub
-					return null;
+					List<Emergencia> em = new ArrayList<Emergencia>();
+					return em;
 				}
-
 				@Override
 				public int size() {
 					// TODO Auto-generated method stub
@@ -634,18 +629,19 @@ public class Mundo
 				}
 			};
 
-			URL urlY = new URL("http://172.24.100.41:80/emergencia/get");
+			String ip = System.getProperty("myapplication.ip");
+			URL urlY = new URL("http://" + ip + ":80/emergencia/get");
 			HttpURLConnection connY = (HttpURLConnection) urlY.openConnection();
 			connY.setRequestMethod("GET");
 			connY.setRequestProperty("Accept", "application/json");
 
 			if (connY.getResponseCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : "
+				throw new RuntimeException("Falla: Error de codigo Http: "
 						+ connY.getResponseCode());
 			}
 
 			BufferedReader brY = new BufferedReader(new InputStreamReader(
-					(connY.getInputStream())));
+					connY.getInputStream()));
 
 			String outputY;
 			while((outputY = brY.readLine())!=null)
@@ -657,12 +653,12 @@ public class Mundo
 					if(arrayElementY.getAsJsonArray().get(i)!=null)
 					{
 						String blog = String.valueOf(arrayElementY.getAsJsonArray().get(i).getAsJsonObject().get("id"));
-						Long id = Long.valueOf(blog);
+						
 						String descripcion = String.valueOf(arrayElementY.getAsJsonArray().get(i).getAsJsonObject().get("descripcion"));
 						String consecuencia = String.valueOf(arrayElementY.getAsJsonArray().get(i).getAsJsonObject().get("consecuencia"));
 						String magnitud = String.valueOf(arrayElementY.getAsJsonArray().get(i).getAsJsonObject().get("magnitud"));
 						Ubicacion tempUb = new Ubicacion(Long.valueOf(i), i*4, i+3);
-						Long pId = Long.valueOf(blog);
+						
 						Emergencia temp = new Emergencia(descripcion, consecuencia, magnitud, null, tempUb, null);
 						emergencias.add(temp);
 					}
@@ -765,7 +761,7 @@ public class Mundo
 		double distancia = 0;
 		if(ubi1!=null && ubi2!=null)
 		{
-			distancia=Math.pow((Math.pow((ubi1.getLatitud()-ubi2.getLatitud()),2)+Math.pow((ubi1.getLongitud()-ubi2.getLongitud()),2)),1/2);
+			distancia=Math.pow(Math.pow(ubi1.getLatitud()-ubi2.getLatitud(),2)+Math.pow(ubi1.getLongitud()-ubi2.getLongitud(),2),1/2);
 		}
 		return distancia;
 	}
