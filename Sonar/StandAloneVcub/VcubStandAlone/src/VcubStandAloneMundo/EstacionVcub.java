@@ -1,5 +1,6 @@
 package VcubStandAloneMundo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EstacionVcub 
@@ -21,7 +22,7 @@ public class EstacionVcub
     /**
      * los vcubs guardados en la estación.
      */
-    private List<Vcub> vcubsXX;
+    private List vcubsXX;
     
     /**
      * la ubicacion de la estación de vcubs.
@@ -44,13 +45,13 @@ public class EstacionVcub
      * constructor de Estacion
      * @param id
      * @param capacidad
-     * @param vcubs
+     * @param agregar
      * @param ubicacion 
      */
-    public EstacionVcub(int id, int capacidad, List<Vcub> vcubs, Ubicacion ubicacion) {
+    public EstacionVcub(int id, int capacidad, List<Vcub> agregar, Ubicacion ubicacion) {
         this.idXX = id;
         this.capacidadXX = capacidad;
-        this.vcubsXX = vcubs;
+        this.vcubsXX = agregar;
         this.ubicacionXX = ubicacion;
     }
 

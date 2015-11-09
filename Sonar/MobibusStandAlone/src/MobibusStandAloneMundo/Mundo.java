@@ -452,9 +452,8 @@ public class Mundo
 					return false;
 				}
 			};
-			String ip = System.getProperty("myapplication.ip");
 			
-			URL urlX = new URL("http://" + ip + ":80/mobibus/get");
+			URL urlX = new URL("http://172.24.100.41:80/mobibus/get");
 			HttpURLConnection connX = (HttpURLConnection) urlX.openConnection();
 			connX.setRequestMethod("GET");
 			connX.setRequestProperty("Accept", "application/json");
@@ -629,8 +628,7 @@ public class Mundo
 				}
 			};
 
-			String ip = System.getProperty("myapplication.ip");
-			URL urlY = new URL("http://" + ip + ":80/emergencia/get");
+			URL urlY = new URL("http://172.24.100.41:80/emergencia/get");
 			HttpURLConnection connY = (HttpURLConnection) urlY.openConnection();
 			connY.setRequestMethod("GET");
 			connY.setRequestProperty("Accept", "application/json");

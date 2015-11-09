@@ -3,6 +3,7 @@ package TranviaStandAloneMundo;
 import java.lang.reflect.Array;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Emergencia 
 {
@@ -16,9 +17,9 @@ public class Emergencia
 
 	private Ubicacion ubicacion;
 	
-	private ArrayList<Vehiculo> vehiculos;
+	private List<Vehiculo> vehiculos;
 
-	public Emergencia(String pDescripcion, String pConsecuencia, String pMagnitud, Date pFecha, Ubicacion pUbicacion, ArrayList<Vehiculo> pVehiculos)
+	public Emergencia(String pDescripcion, String pConsecuencia, String pMagnitud, Date pFecha, Ubicacion pUbicacion, List<Vehiculo> pVehiculos)
 	{
 		descripcion = pDescripcion;
 		consecuencia = pConsecuencia;
@@ -53,7 +54,7 @@ public class Emergencia
 		return ubicacion;
 	}
 	
-	public ArrayList<Vehiculo> darVehiculos()
+	public List<Vehiculo> darVehiculos()
 	{
 		return vehiculos;
 	}

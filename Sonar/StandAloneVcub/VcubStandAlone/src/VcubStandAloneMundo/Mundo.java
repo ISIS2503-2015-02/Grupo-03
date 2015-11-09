@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Logger;
@@ -22,19 +23,19 @@ import com.google.gson.JsonParser;
 
 public class Mundo 
 {
-	private ArrayList<Vcub> disponibles;
-	private ArrayList<EstacionVcub> estaciones;
+	private List<Vcub> disponibles;
+	private List<EstacionVcub> estaciones;
 	private transient Logger LOGGER;
 
 	public Mundo()
 	{
-		disponibles = new ArrayList<Vcub>();
+		disponibles = new ArrayList();
 	}
 
 	public void disponibles()
 	{
 		try {
-			disponibles = new ArrayList<Vcub>();
+			disponibles = new ArrayList();
 
 			URL url = new URL("http://172.24.100.41:80/vcub/disponibles");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -42,7 +43,7 @@ public class Mundo
 			conn.setRequestProperty("Accept", "application/json");
 
 			if (conn.getResponseCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : "
+				throw new RuntimeException("Falla, error de codigo HTTP: "
 						+ conn.getResponseCode());
 			}
 
@@ -89,12 +90,12 @@ public class Mundo
 			conn.setRequestProperty("Accept", "application/json");
 
 			if (conn.getResponseCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : "
+				throw new RuntimeException("Falla, error HTTP codigo: "
 						+ conn.getResponseCode());
 			}
 
 			BufferedReader br = new BufferedReader(new InputStreamReader(
-					(conn.getInputStream())));
+				conn.getInputStream()));
 
 			String output;
 			while((output = br.readLine())!=null)
@@ -112,7 +113,7 @@ public class Mundo
 						int tempLongitud = arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("ubicacion").getAsJsonObject().get("longitud").getAsInt();
 						Ubicacion tempUb = new Ubicacion(tempId2, tempLatitud, tempLongitud);
 						JsonArray vcubsEst = arrayElement.getAsJsonArray().get(i).getAsJsonObject().get("vcubs").getAsJsonArray();
-						ArrayList<Vcub> agregar = new ArrayList<Vcub>();
+						List<Vcub> agregar = new ArrayList<Vcub>();
 						agregarVcubs(vcubsEst, agregar);
 						EstacionVcub tempEst = new EstacionVcub(tempId, tempCap, agregar, tempUb);
 						estaciones.add(tempEst);
@@ -132,7 +133,7 @@ public class Mundo
 		}
 	}
 
-	public void agregarVcubs(JsonArray jsonArray, ArrayList res)
+	public void agregarVcubs(JsonArray jsonArray, List<Vcub> disponibles2)
 	{
 		for(int i=0;i<jsonArray.size();i++)
 		{
@@ -141,19 +142,19 @@ public class Mundo
 				Long tempId = jsonArray.getAsJsonArray().get(i).getAsJsonObject().get("id").getAsLong();
 				String estado = jsonArray.getAsJsonArray().get(i).getAsJsonObject().get("estado").getAsString();
 				Vcub temp = new Vcub(tempId, estado);
-				res.add(temp);
+				disponibles2.add(temp);
 			}
 		}
 	}
 
 
-	public ArrayList darDisponibles()
+	public List darDisponibles()
 	{
 
 		return disponibles;
 	}
 
-	public ArrayList darEstaciones()
+	public List darEstaciones()
 	{
 
 		return estaciones;
@@ -174,7 +175,7 @@ public class Mundo
 			}
 
 			BufferedReader br = new BufferedReader(new InputStreamReader(
-					(conn.getInputStream())));
+					conn.getInputStream()));
 
 			String output;
 			while((output = br.readLine())!=null)
@@ -227,7 +228,7 @@ public class Mundo
 			wr.flush();
 
 			if (conn.getResponseCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : "
+				throw new RuntimeException("Falla, error HTTP codigo : "
 						+ conn.getResponseCode());
 			}
 			else 

@@ -120,7 +120,7 @@ public class Mundo
 			wr.flush();
 
 			if (conn.getResponseCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : "
+				throw new RuntimeException("Falla, error Http codigo : "
 						+ conn.getResponseCode());
 			}
 
@@ -170,18 +170,17 @@ public class Mundo
 			wr.flush();
 
 			if (conn.getResponseCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : "
+				throw new RuntimeException("Falla, error Http codigo : "
 						+ conn.getResponseCode());
 			}
 			
 			BufferedReader br = new BufferedReader(new InputStreamReader(
-					(conn.getInputStream())));
+					conn.getInputStream()));
 
 			String output;
 			while((output = br.readLine())!=null)
 			{
 				JsonParser parser = new JsonParser();
-				JsonElement arrayElement = parser.parse(output);
 			}
 
 
