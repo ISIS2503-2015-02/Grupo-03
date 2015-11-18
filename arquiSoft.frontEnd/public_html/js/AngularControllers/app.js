@@ -184,13 +184,16 @@ aplicacionMundial.directive('competitorInfo', function(){
 
  $http.get('http://localhost:8080/login/login/idUsr/' + $scope.usuarios.username + '/pass/' + $scope.usuarios.password ).success(function(data,headers){
 
-    $scope.reload = function()
+/**
+ *     $scope.reload = function()
 {
    location.reload(); 
 }
+     $scope.reload();
+
+ */
         $scope.userRole = 'administrador';
 
-     $scope.reload();
 
       $scope.toolbar.selectTab(1);
 

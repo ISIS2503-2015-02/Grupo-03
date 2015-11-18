@@ -25,23 +25,23 @@
                    <hr>
             <hr>
          <toolbar></toolbar>
-         <div ng-show ="toolbar.isSelected(1) "  >
+         <div ng-show ="toolbar.isSelected(1) " ng-show ="userRole === 'administrador'"  >
                <vcub-form vcubInfo></vcub-form>
             </div>
-         <div ng-if="toolbar.isSelected(2)">
+         <div ng-show="toolbar.isSelected(2) " ng-show="userRole === 'administrador'">
               <tranvia-form tranviaInfo></tranvia-form>
              </div>
          <div ng-if="toolbar.isSelected(3)">
                 <mobibus-info></mobibus-info>
             </div>
-          <div ng-if="toolbar.isSelected(4)">
+          <div ng-show="toolbar.isSelected(4)"ng-show ="userRole === 'administrador'">
                 <reserva-form reserva-info><reserva-form>
             </div>
     
             <div ng-if="toolbar.isSelected(5)">
                 <vcub-info></vcub-info>
             </div>
-         <div ng-if="toolbar.isSelected(6)">
+         <div ng-show="toolbar.isSelected(6)" ng-show="userRole === 'administrador'">
                 <ubicacion-form ubicacionInfo></ubicacion-form>
             </div>
             <div ng-if="toolbar.isSelected(7)">
@@ -51,7 +51,7 @@
 
                     <tranvia-info></tranvia-info>
             </div>
-         <div ng-if="toolbar.isSelected(9)">
+         <div ng-show="toolbar.isSelected(9)" ng-show="userRole === 'administrador'">
                <usuario-form usuarioInfo></usuario-form>
             </div>
          <div ng-if="toolbar.isSelected(10)">
@@ -59,19 +59,19 @@
              </div>
          
             
-         <div ng-if="toolbar.isSelected(11)">
+         <div ng-show="toolbar.isSelected(11)" ng-show="userRole === 'administrador'">
               <alquilar-form usuarioInfo></alquilar-form>
              </div>
         
-        <div ng-if="toolbar.isSelected(12)">
+        <div ng-show="toolbar.isSelected(12)" ng-show="userRole === 'administrador'">
               <devolver-form usuarioInfo ></devolver-form>
              </div>
          
               
-          <div ng-if="toolbar.isSelected(13)">
+          <div ng-show="toolbar.isSelected(13)">
               <mejorConductor></mejorConductor>
              </div>
-              <div ng-if="toolbar.isSelected(14)">
+              <div ng-if="toolbar.isSelected(14)" ng-show="userRole === 'administrador'">
                 <mobibus-form></mobibus-form>
             </div>
          
@@ -79,10 +79,10 @@
                 <reserva-info></reserva-info>
             </div>
          
-          <div ng-if="toolbar.isSelected(16)">
+          <div ng-show="toolbar.isSelected(16)" ng-show="userRole === 'administrador'">
                <cancelar-form reserva-info><cancelar-form>
             </div>
-         <div ng-if="toolbar.isSelected(17)">
+         <div ng-show="toolbar.isSelected(17)" ng-show="userRole === 'administrador'">
                <addconductor-form ><addconductor-form>
             </div>
            <div ng-if="toolbar.isSelected(18)">
