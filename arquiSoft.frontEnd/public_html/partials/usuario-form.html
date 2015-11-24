@@ -1,46 +1,104 @@
-<form name="usuarioForm" ng-submit="addUsuario()" ng-controller="usuarioCtrl" novalidate>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Validación un formulario</title>
+<script type="text/javascript">
+function validacion() {
+valor1 = document.getElementById("usn").value;
+valor2 = document.getElementById("doc").value;
+valor3 = document.getElementById("cc").value;
+valor4 = document.getElementById("tel").value;
+valor5 = document.getElementById("direc").value;
+valor6 = document.getElementById("cor").value;
+valor7 = document.getElementById("tar").value;
+
+   if (valor1 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+  if (valor2 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+  if (valor3 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+  if (valor4 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+  if (valor5 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+  if (valor6 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+  if (valor7 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+  
+  
+  return true;
+}
+</script>
+</head>
+<body>
+<form name="usuarioForm" ng-submit="addUsuario()" ng-controller="usuarioCtrl" onSubmit="return validacion()">
     <h2 class="form-title">Agregar Usuario</h2>
     <div class="row">
         <div class="col-md-6">
             <label>Nombre</label>
-            <input ng-model="usuario.nombre" type="text" class="form-control" required/>
+            <input ng-model="usuario.nombre" id="usn" type="text" class="form-control" required/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
             <label>Documento</label>
-            <input ng-model="usuario.documento" type="number" class="form-control" required/>
+            <input ng-model="usuario.documento" id="doc" type="number" class="form-control" required/>
         </div>
     </div>
     
      <div class="row">
         <div class="col-md-6">
             <label>Tipo Documento </label>
-            <input ng-model="usuario.tipoDocumento" type="text" class="form-control" required/>
+            <input ng-model="usuario.tipoDocumento" id="cc" type="text" class="form-control" required/>
         </div>
     </div>
      <div class="row">
         <div class="col-md-6">
             <label>Telefono </label>
-            <input ng-model="usuario.telefono" type="number" class="form-control" required/>
+            <input ng-model="usuario.telefono" type="number" id="tel" class="form-control" required/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
             <label>Direccion </label>
-            <input ng-model="usuario.direccion" type="text" class="form-control" required/>
+            <input ng-model="usuario.direccion" type="text" id="direc" class="form-control" required/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
             <label>Correo</label>
-            <input ng-model="usuario.correo" type="text" class="form-control" required/>
+            <input ng-model="usuario.correo" id="cor" type="text" class="form-control" required/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
             <label>Tarjeta</label>
-            <input ng-model="usuario.tarjeta" type="number" class="form-control" required/>
+            <input ng-model="usuario.tarjeta" id="tar" type="number" class="form-control" required/>
         </div>
     </div>
     <div class="row">
@@ -49,4 +107,5 @@
         </div>
     </div>        
 </form>
-
+</body>
+</html>

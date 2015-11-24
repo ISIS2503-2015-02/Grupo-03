@@ -1,15 +1,41 @@
-<form name="devolverForm" ng-submit="devolver()" ng-controller="devolverCtrl" novalidate>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Validación un formulario</title>
+<script type="text/javascript">
+function validacion() {
+valor1 = document.getElementById("usId").value;
+valor2 = document.getElementById("vId").value;
+   if (valor1 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+   if (valor2 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+ 
+  return true;
+}
+</script>
+</head>
+<body>
+<form name="devolverForm" ng-submit="devolver()" ng-controller="devolverCtrl" onSubmit="return validacion()">
     <h2 class="form-title">Devolver</h2>
     <div class="row">
         <div class="col-md-6">
             <label>Id del Usuario</label>
-            <input ng-model="devolver.id" type="number" class="form-control" required/>
+            <input ng-model="devolver.id" type="number" class="form-control" id="usId" required/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
             <label>Id del Vcub</label>
-            <input ng-model="devolver.idV" type="number" class="form-control" required/>
+            <input ng-model="devolver.idV" type="number" class="form-control" id="vId" required/>
         </div>
     </div>
     <div class="row">
@@ -18,4 +44,11 @@
         </div>
     </div>        
 </form>
+
+</body>
+</html>
+
+
+
+
 

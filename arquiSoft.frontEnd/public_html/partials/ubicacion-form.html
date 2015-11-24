@@ -1,15 +1,41 @@
-<form name="ubicacionForm" ng-submit="addUbicacion()" ng-controller="ubicacionCtrl" novalidate>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Validación un formulario</title>
+<script type="text/javascript">
+function validacion() {
+valor1 = document.getElementById("lat").value;
+valor2 = document.getElementById("lon").value;
+   if (valor1 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+  if (valor2 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+  
+  return true;
+}
+</script>
+</head>
+<body>
+<form name="ubicacionForm" ng-submit="addUbicacion()" ng-controller="ubicacionCtrl" onSubmit="return validacion()">
     <h2 class="form-title">Registrar una Ubicacion</h2>
     <div class="row">
         <div class="col-md-6">
             <label>Latitud:</label>
-            <input ng-model="ubicacion.latitud" type="number" class="form-control" required/>
+            <input ng-model="ubicacion.latitud" id="lat" type="number" class="form-control" required/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
             <label>Longitud:</label>
-            <input ng-model="ubicacion.longitud" type="number" class="form-control" required/>
+            <input ng-model="ubicacion.longitud" id="lon" type="number" class="form-control" required/>
         </div>
     </div>
     <div class="row">
@@ -18,4 +44,8 @@
         </div>
     </div>        
 </form>
+
+</body>
+</html>
+
 

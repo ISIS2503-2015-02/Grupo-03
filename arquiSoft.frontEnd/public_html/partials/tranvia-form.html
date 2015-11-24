@@ -1,33 +1,83 @@
-<form name="tranviaForm" ng-submit="addTranvia()" ng-controller="tranviaCtrl" novalidate>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Validación un formulario</title>
+<script type="text/javascript">
+function validacion() {
+valor1 = document.getElementById("tvia").value;
+valor2 = document.getElementById("tmt").value;
+valor3 = document.getElementById("coord").value;
+valor4 = document.getElementById("lin").value;
+valor5 = document.getElementById("kill").value;
+
+   if (valor1 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+  
+  if (valor2 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+  
+  if (valor3 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+  
+  if (valor4 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+  
+  if (valor5 == null) {
+    // Si no se cumple la condicion...
+    alert();
+    return false;
+  }
+  
+    
+  return true;
+}
+</script>
+</head>
+<body>
+<form name="tranviaForm" ng-submit="addTranvia()" ng-controller="tranviaCtrl" onSubmit=="return validacion()">
     <h2 class="form-title">Agregar Tranvia</h2>
     <div class="row">
         <div class="col-md-6">
             <label>Id</label>
-            <input ng-model="tranvia.id" type="number" class="form-control" required/>
+            <input ng-model="tranvia.id" id="tvia" type="number" class="form-control" required/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
             <label>Temperatura</label>
-            <input ng-model="tranvia.tempatura" type="number" class="form-control" required/>
+            <input ng-model="tranvia.tempatura" id="tmt" type="number" class="form-control" required/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
             <label>Coordenada: </label>
-            <input ng-model="tranvia.coordenada" type="text" class="form-control" required/>
+            <input ng-model="tranvia.coordenada" id="coord" type="text" class="form-control" required/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
             <label>Linea: </label>
-            <input ng-model="tranvia.linea" type="text" class="form-control" required/>
+            <input ng-model="tranvia.linea" id="lin" type="text" class="form-control" required/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
             <label>Kilometraje:</label>
-            <input ng-model="tranvia.kilometraje" type="number" class="form-control" required/>
+            <input ng-model="tranvia.kilometraje" id="kill" type="number" class="form-control" required/>
         </div>
     </div>
     <div class="row">
@@ -37,3 +87,6 @@
     </div>        
 </form>
 
+
+</body>
+</html>
