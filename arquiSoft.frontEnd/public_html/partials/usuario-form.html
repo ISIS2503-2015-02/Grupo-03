@@ -60,13 +60,13 @@ valor7 = document.getElementById("tar").value;
     <h2 class="form-title">Agregar Usuario</h2>
     <div class="row">
         <div class="col-md-6">
-            <label>Nombre</label>
+            <label>Nombre completo</label>
             <input ng-model="usuario.nombre" id="usn" type="text" class="form-control" required/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <label>Documento</label>
+            <label>Documento (sin puntos)</label>
             <input ng-model="usuario.documento" id="doc" type="number" class="form-control" required/>
         </div>
     </div>
@@ -74,7 +74,12 @@ valor7 = document.getElementById("tar").value;
      <div class="row">
         <div class="col-md-6">
             <label>Tipo Documento </label>
-            <input ng-model="usuario.tipoDocumento" id="cc" type="text" class="form-control" required/>
+            <select id="opciones" name="opciones">
+  <option value="1">cédula de ciudadanía</option>
+  <option value="2">tarjeta de identidad</option>
+  <option value="3">cédula de extranjería</option>
+  <option value="4">pasaporte</option>
+</select>
         </div>
     </div>
      <div class="row">
